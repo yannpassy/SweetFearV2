@@ -1,0 +1,896 @@
+fileFormatVersion: 2
+guid: 7f259babb41c38141842c0821d12f6d4
+timeCreated: 1476350167
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Barriere
+    100004: Barriere 1
+    100006: Barriere 10
+    100008: Barriere 11
+    100010: Barriere 12
+    100012: Barriere 13
+    100014: Barriere 14
+    100016: Barriere 15
+    100018: Barriere 16
+    100020: Barriere 17
+    100022: Barriere 2
+    100024: Barriere 3
+    100026: Barriere 4
+    100028: Barriere 5
+    100030: Barriere 6
+    100032: Barriere 7
+    100034: Barriere 8
+    100036: Barriere 9
+    100038: Bonhomme de neige
+    100040: Bonhomme de neige 1
+    100042: Bonhomme de neige 2
+    100044: Bonhomme de neige 3
+    100046: Cabane
+    100048: Camera002
+    100050: Cristal
+    100052: Cristal 1
+    100054: Cristal 10
+    100056: Cristal 11
+    100058: Cristal 12
+    100060: Cristal 13
+    100062: Cristal 14
+    100064: Cristal 15
+    100066: Cristal 16
+    100068: Cristal 17
+    100070: Cristal 18
+    100072: Cristal 19
+    100074: Cristal 2
+    100076: Cristal 20
+    100078: Cristal 21
+    100080: Cristal 22
+    100082: Cristal 23
+    100084: Cristal 24
+    100086: Cristal 25
+    100088: Cristal 26
+    100090: Cristal 27
+    100092: Cristal 28
+    100094: Cristal 29
+    100096: Cristal 3
+    100098: Cristal 30
+    100100: Cristal 31
+    100102: Cristal 32
+    100104: Cristal 33
+    100106: Cristal 34
+    100108: Cristal 35
+    100110: Cristal 36
+    100112: Cristal 37
+    100114: Cristal 38
+    100116: Cristal 39
+    100118: Cristal 4
+    100120: Cristal 40
+    100122: Cristal 41
+    100124: Cristal 42
+    100126: Cristal 43
+    100128: Cristal 44
+    100130: Cristal 45
+    100132: Cristal 46
+    100134: Cristal 47
+    100136: Cristal 48
+    100138: Cristal 49
+    100140: Cristal 5
+    100142: Cristal 50
+    100144: Cristal 51
+    100146: Cristal 52
+    100148: Cristal 53
+    100150: Cristal 54
+    100152: Cristal 55
+    100154: Cristal 56
+    100156: Cristal 57
+    100158: Cristal 58
+    100160: Cristal 59
+    100162: Cristal 6
+    100164: Cristal 7
+    100166: Cristal 8
+    100168: Cristal 9
+    100170: Cristal_clef
+    100172: Cristal_clef 1
+    100174: Cristal_clef 2
+    100176: Cristal_power
+    100178: Cristal_power 1
+    100180: Cristal_power 10
+    100182: Cristal_power 11
+    100184: Cristal_power 12
+    100186: Cristal_power 13
+    100188: Cristal_power 14
+    100190: Cristal_power 15
+    100192: Cristal_power 16
+    100194: Cristal_power 17
+    100196: Cristal_power 18
+    100198: Cristal_power 19
+    100200: Cristal_power 2
+    100202: Cristal_power 20
+    100204: Cristal_power 21
+    100206: Cristal_power 22
+    100208: Cristal_power 3
+    100210: Cristal_power 4
+    100212: Cristal_power 5
+    100214: Cristal_power 6
+    100216: Cristal_power 7
+    100218: Cristal_power 8
+    100220: Cristal_power 9
+    100222: Fontaine
+    100224: ile hiver
+    100226: Montagne
+    100228: Plane001
+    100230: Puit
+    100232: Sapin
+    100234: Sapin 1
+    100236: Sapin 10
+    100238: Sapin 11
+    100240: Sapin 12
+    100242: Sapin 13
+    100244: Sapin 14
+    100246: Sapin 15
+    100248: Sapin 16
+    100250: Sapin 17
+    100252: Sapin 18
+    100254: Sapin 19
+    100256: Sapin 2
+    100258: Sapin 20
+    100260: Sapin 21
+    100262: Sapin 22
+    100264: Sapin 23
+    100266: Sapin 24
+    100268: Sapin 25
+    100270: Sapin 26
+    100272: Sapin 27
+    100274: Sapin 28
+    100276: Sapin 29
+    100278: Sapin 3
+    100280: Sapin 30
+    100282: Sapin 31
+    100284: Sapin 32
+    100286: Sapin 33
+    100288: Sapin 34
+    100290: Sapin 35
+    100292: Sapin 36
+    100294: Sapin 37
+    100296: Sapin 38
+    100298: Sapin 39
+    100300: Sapin 4
+    100302: Sapin 40
+    100304: Sapin 41
+    100306: Sapin 42
+    100308: Sapin 43
+    100310: Sapin 44
+    100312: Sapin 45
+    100314: Sapin 46
+    100316: Sapin 47
+    100318: Sapin 48
+    100320: Sapin 49
+    100322: Sapin 5
+    100324: Sapin 6
+    100326: Sapin 7
+    100328: Sapin 8
+    100330: Sapin 9
+    400000: //RootNode
+    400002: Barriere
+    400004: Barriere 1
+    400006: Barriere 10
+    400008: Barriere 11
+    400010: Barriere 12
+    400012: Barriere 13
+    400014: Barriere 14
+    400016: Barriere 15
+    400018: Barriere 16
+    400020: Barriere 17
+    400022: Barriere 2
+    400024: Barriere 3
+    400026: Barriere 4
+    400028: Barriere 5
+    400030: Barriere 6
+    400032: Barriere 7
+    400034: Barriere 8
+    400036: Barriere 9
+    400038: Bonhomme de neige
+    400040: Bonhomme de neige 1
+    400042: Bonhomme de neige 2
+    400044: Bonhomme de neige 3
+    400046: Cabane
+    400048: Camera002
+    400050: Cristal
+    400052: Cristal 1
+    400054: Cristal 10
+    400056: Cristal 11
+    400058: Cristal 12
+    400060: Cristal 13
+    400062: Cristal 14
+    400064: Cristal 15
+    400066: Cristal 16
+    400068: Cristal 17
+    400070: Cristal 18
+    400072: Cristal 19
+    400074: Cristal 2
+    400076: Cristal 20
+    400078: Cristal 21
+    400080: Cristal 22
+    400082: Cristal 23
+    400084: Cristal 24
+    400086: Cristal 25
+    400088: Cristal 26
+    400090: Cristal 27
+    400092: Cristal 28
+    400094: Cristal 29
+    400096: Cristal 3
+    400098: Cristal 30
+    400100: Cristal 31
+    400102: Cristal 32
+    400104: Cristal 33
+    400106: Cristal 34
+    400108: Cristal 35
+    400110: Cristal 36
+    400112: Cristal 37
+    400114: Cristal 38
+    400116: Cristal 39
+    400118: Cristal 4
+    400120: Cristal 40
+    400122: Cristal 41
+    400124: Cristal 42
+    400126: Cristal 43
+    400128: Cristal 44
+    400130: Cristal 45
+    400132: Cristal 46
+    400134: Cristal 47
+    400136: Cristal 48
+    400138: Cristal 49
+    400140: Cristal 5
+    400142: Cristal 50
+    400144: Cristal 51
+    400146: Cristal 52
+    400148: Cristal 53
+    400150: Cristal 54
+    400152: Cristal 55
+    400154: Cristal 56
+    400156: Cristal 57
+    400158: Cristal 58
+    400160: Cristal 59
+    400162: Cristal 6
+    400164: Cristal 7
+    400166: Cristal 8
+    400168: Cristal 9
+    400170: Cristal_clef
+    400172: Cristal_clef 1
+    400174: Cristal_clef 2
+    400176: Cristal_power
+    400178: Cristal_power 1
+    400180: Cristal_power 10
+    400182: Cristal_power 11
+    400184: Cristal_power 12
+    400186: Cristal_power 13
+    400188: Cristal_power 14
+    400190: Cristal_power 15
+    400192: Cristal_power 16
+    400194: Cristal_power 17
+    400196: Cristal_power 18
+    400198: Cristal_power 19
+    400200: Cristal_power 2
+    400202: Cristal_power 20
+    400204: Cristal_power 21
+    400206: Cristal_power 22
+    400208: Cristal_power 3
+    400210: Cristal_power 4
+    400212: Cristal_power 5
+    400214: Cristal_power 6
+    400216: Cristal_power 7
+    400218: Cristal_power 8
+    400220: Cristal_power 9
+    400222: Fontaine
+    400224: ile hiver
+    400226: Montagne
+    400228: Plane001
+    400230: Puit
+    400232: Sapin
+    400234: Sapin 1
+    400236: Sapin 10
+    400238: Sapin 11
+    400240: Sapin 12
+    400242: Sapin 13
+    400244: Sapin 14
+    400246: Sapin 15
+    400248: Sapin 16
+    400250: Sapin 17
+    400252: Sapin 18
+    400254: Sapin 19
+    400256: Sapin 2
+    400258: Sapin 20
+    400260: Sapin 21
+    400262: Sapin 22
+    400264: Sapin 23
+    400266: Sapin 24
+    400268: Sapin 25
+    400270: Sapin 26
+    400272: Sapin 27
+    400274: Sapin 28
+    400276: Sapin 29
+    400278: Sapin 3
+    400280: Sapin 30
+    400282: Sapin 31
+    400284: Sapin 32
+    400286: Sapin 33
+    400288: Sapin 34
+    400290: Sapin 35
+    400292: Sapin 36
+    400294: Sapin 37
+    400296: Sapin 38
+    400298: Sapin 39
+    400300: Sapin 4
+    400302: Sapin 40
+    400304: Sapin 41
+    400306: Sapin 42
+    400308: Sapin 43
+    400310: Sapin 44
+    400312: Sapin 45
+    400314: Sapin 46
+    400316: Sapin 47
+    400318: Sapin 48
+    400320: Sapin 49
+    400322: Sapin 5
+    400324: Sapin 6
+    400326: Sapin 7
+    400328: Sapin 8
+    400330: Sapin 9
+    2300000: Barriere
+    2300002: Barriere 1
+    2300004: Barriere 10
+    2300006: Barriere 11
+    2300008: Barriere 12
+    2300010: Barriere 13
+    2300012: Barriere 14
+    2300014: Barriere 15
+    2300016: Barriere 16
+    2300018: Barriere 17
+    2300020: Barriere 2
+    2300022: Barriere 3
+    2300024: Barriere 4
+    2300026: Barriere 5
+    2300028: Barriere 6
+    2300030: Barriere 7
+    2300032: Barriere 8
+    2300034: Barriere 9
+    2300036: Bonhomme de neige
+    2300038: Bonhomme de neige 1
+    2300040: Bonhomme de neige 2
+    2300042: Bonhomme de neige 3
+    2300044: Cabane
+    2300046: Cristal
+    2300048: Cristal 1
+    2300050: Cristal 10
+    2300052: Cristal 11
+    2300054: Cristal 12
+    2300056: Cristal 13
+    2300058: Cristal 14
+    2300060: Cristal 15
+    2300062: Cristal 16
+    2300064: Cristal 17
+    2300066: Cristal 18
+    2300068: Cristal 19
+    2300070: Cristal 2
+    2300072: Cristal 20
+    2300074: Cristal 21
+    2300076: Cristal 22
+    2300078: Cristal 23
+    2300080: Cristal 24
+    2300082: Cristal 25
+    2300084: Cristal 26
+    2300086: Cristal 27
+    2300088: Cristal 28
+    2300090: Cristal 29
+    2300092: Cristal 3
+    2300094: Cristal 30
+    2300096: Cristal 31
+    2300098: Cristal 32
+    2300100: Cristal 33
+    2300102: Cristal 34
+    2300104: Cristal 35
+    2300106: Cristal 36
+    2300108: Cristal 37
+    2300110: Cristal 38
+    2300112: Cristal 39
+    2300114: Cristal 4
+    2300116: Cristal 40
+    2300118: Cristal 41
+    2300120: Cristal 42
+    2300122: Cristal 43
+    2300124: Cristal 44
+    2300126: Cristal 45
+    2300128: Cristal 46
+    2300130: Cristal 47
+    2300132: Cristal 48
+    2300134: Cristal 49
+    2300136: Cristal 5
+    2300138: Cristal 50
+    2300140: Cristal 51
+    2300142: Cristal 52
+    2300144: Cristal 53
+    2300146: Cristal 54
+    2300148: Cristal 55
+    2300150: Cristal 56
+    2300152: Cristal 57
+    2300154: Cristal 58
+    2300156: Cristal 59
+    2300158: Cristal 6
+    2300160: Cristal 7
+    2300162: Cristal 8
+    2300164: Cristal 9
+    2300166: Cristal_clef
+    2300168: Cristal_clef 1
+    2300170: Cristal_clef 2
+    2300172: Cristal_power
+    2300174: Cristal_power 1
+    2300176: Cristal_power 10
+    2300178: Cristal_power 11
+    2300180: Cristal_power 12
+    2300182: Cristal_power 13
+    2300184: Cristal_power 14
+    2300186: Cristal_power 15
+    2300188: Cristal_power 16
+    2300190: Cristal_power 17
+    2300192: Cristal_power 18
+    2300194: Cristal_power 19
+    2300196: Cristal_power 2
+    2300198: Cristal_power 20
+    2300200: Cristal_power 21
+    2300202: Cristal_power 22
+    2300204: Cristal_power 3
+    2300206: Cristal_power 4
+    2300208: Cristal_power 5
+    2300210: Cristal_power 6
+    2300212: Cristal_power 7
+    2300214: Cristal_power 8
+    2300216: Cristal_power 9
+    2300218: Fontaine
+    2300220: ile hiver
+    2300222: Montagne
+    2300224: Plane001
+    2300226: Puit
+    2300228: Sapin
+    2300230: Sapin 1
+    2300232: Sapin 10
+    2300234: Sapin 11
+    2300236: Sapin 12
+    2300238: Sapin 13
+    2300240: Sapin 14
+    2300242: Sapin 15
+    2300244: Sapin 16
+    2300246: Sapin 17
+    2300248: Sapin 18
+    2300250: Sapin 19
+    2300252: Sapin 2
+    2300254: Sapin 20
+    2300256: Sapin 21
+    2300258: Sapin 22
+    2300260: Sapin 23
+    2300262: Sapin 24
+    2300264: Sapin 25
+    2300266: Sapin 26
+    2300268: Sapin 27
+    2300270: Sapin 28
+    2300272: Sapin 29
+    2300274: Sapin 3
+    2300276: Sapin 30
+    2300278: Sapin 31
+    2300280: Sapin 32
+    2300282: Sapin 33
+    2300284: Sapin 34
+    2300286: Sapin 35
+    2300288: Sapin 36
+    2300290: Sapin 37
+    2300292: Sapin 38
+    2300294: Sapin 39
+    2300296: Sapin 4
+    2300298: Sapin 40
+    2300300: Sapin 41
+    2300302: Sapin 42
+    2300304: Sapin 43
+    2300306: Sapin 44
+    2300308: Sapin 45
+    2300310: Sapin 46
+    2300312: Sapin 47
+    2300314: Sapin 48
+    2300316: Sapin 49
+    2300318: Sapin 5
+    2300320: Sapin 6
+    2300322: Sapin 7
+    2300324: Sapin 8
+    2300326: Sapin 9
+    3300000: Barriere
+    3300002: Barriere 1
+    3300004: Barriere 10
+    3300006: Barriere 11
+    3300008: Barriere 12
+    3300010: Barriere 13
+    3300012: Barriere 14
+    3300014: Barriere 15
+    3300016: Barriere 16
+    3300018: Barriere 17
+    3300020: Barriere 2
+    3300022: Barriere 3
+    3300024: Barriere 4
+    3300026: Barriere 5
+    3300028: Barriere 6
+    3300030: Barriere 7
+    3300032: Barriere 8
+    3300034: Barriere 9
+    3300036: Bonhomme de neige
+    3300038: Bonhomme de neige 1
+    3300040: Bonhomme de neige 2
+    3300042: Bonhomme de neige 3
+    3300044: Cabane
+    3300046: Cristal
+    3300048: Cristal 1
+    3300050: Cristal 10
+    3300052: Cristal 11
+    3300054: Cristal 12
+    3300056: Cristal 13
+    3300058: Cristal 14
+    3300060: Cristal 15
+    3300062: Cristal 16
+    3300064: Cristal 17
+    3300066: Cristal 18
+    3300068: Cristal 19
+    3300070: Cristal 2
+    3300072: Cristal 20
+    3300074: Cristal 21
+    3300076: Cristal 22
+    3300078: Cristal 23
+    3300080: Cristal 24
+    3300082: Cristal 25
+    3300084: Cristal 26
+    3300086: Cristal 27
+    3300088: Cristal 28
+    3300090: Cristal 29
+    3300092: Cristal 3
+    3300094: Cristal 30
+    3300096: Cristal 31
+    3300098: Cristal 32
+    3300100: Cristal 33
+    3300102: Cristal 34
+    3300104: Cristal 35
+    3300106: Cristal 36
+    3300108: Cristal 37
+    3300110: Cristal 38
+    3300112: Cristal 39
+    3300114: Cristal 4
+    3300116: Cristal 40
+    3300118: Cristal 41
+    3300120: Cristal 42
+    3300122: Cristal 43
+    3300124: Cristal 44
+    3300126: Cristal 45
+    3300128: Cristal 46
+    3300130: Cristal 47
+    3300132: Cristal 48
+    3300134: Cristal 49
+    3300136: Cristal 5
+    3300138: Cristal 50
+    3300140: Cristal 51
+    3300142: Cristal 52
+    3300144: Cristal 53
+    3300146: Cristal 54
+    3300148: Cristal 55
+    3300150: Cristal 56
+    3300152: Cristal 57
+    3300154: Cristal 58
+    3300156: Cristal 59
+    3300158: Cristal 6
+    3300160: Cristal 7
+    3300162: Cristal 8
+    3300164: Cristal 9
+    3300166: Cristal_clef
+    3300168: Cristal_clef 1
+    3300170: Cristal_clef 2
+    3300172: Cristal_power
+    3300174: Cristal_power 1
+    3300176: Cristal_power 10
+    3300178: Cristal_power 11
+    3300180: Cristal_power 12
+    3300182: Cristal_power 13
+    3300184: Cristal_power 14
+    3300186: Cristal_power 15
+    3300188: Cristal_power 16
+    3300190: Cristal_power 17
+    3300192: Cristal_power 18
+    3300194: Cristal_power 19
+    3300196: Cristal_power 2
+    3300198: Cristal_power 20
+    3300200: Cristal_power 21
+    3300202: Cristal_power 22
+    3300204: Cristal_power 3
+    3300206: Cristal_power 4
+    3300208: Cristal_power 5
+    3300210: Cristal_power 6
+    3300212: Cristal_power 7
+    3300214: Cristal_power 8
+    3300216: Cristal_power 9
+    3300218: Fontaine
+    3300220: ile hiver
+    3300222: Montagne
+    3300224: Plane001
+    3300226: Puit
+    3300228: Sapin
+    3300230: Sapin 1
+    3300232: Sapin 10
+    3300234: Sapin 11
+    3300236: Sapin 12
+    3300238: Sapin 13
+    3300240: Sapin 14
+    3300242: Sapin 15
+    3300244: Sapin 16
+    3300246: Sapin 17
+    3300248: Sapin 18
+    3300250: Sapin 19
+    3300252: Sapin 2
+    3300254: Sapin 20
+    3300256: Sapin 21
+    3300258: Sapin 22
+    3300260: Sapin 23
+    3300262: Sapin 24
+    3300264: Sapin 25
+    3300266: Sapin 26
+    3300268: Sapin 27
+    3300270: Sapin 28
+    3300272: Sapin 29
+    3300274: Sapin 3
+    3300276: Sapin 30
+    3300278: Sapin 31
+    3300280: Sapin 32
+    3300282: Sapin 33
+    3300284: Sapin 34
+    3300286: Sapin 35
+    3300288: Sapin 36
+    3300290: Sapin 37
+    3300292: Sapin 38
+    3300294: Sapin 39
+    3300296: Sapin 4
+    3300298: Sapin 40
+    3300300: Sapin 41
+    3300302: Sapin 42
+    3300304: Sapin 43
+    3300306: Sapin 44
+    3300308: Sapin 45
+    3300310: Sapin 46
+    3300312: Sapin 47
+    3300314: Sapin 48
+    3300316: Sapin 49
+    3300318: Sapin 5
+    3300320: Sapin 6
+    3300322: Sapin 7
+    3300324: Sapin 8
+    3300326: Sapin 9
+    4300000: Plane001
+    4300002: ile hiver
+    4300004: Sapin
+    4300006: Cristal_power
+    4300008: Barriere
+    4300010: Bonhomme de neige
+    4300012: Cabane
+    4300014: Fontaine
+    4300016: Puit
+    4300018: Cristal
+    4300020: Sapin
+    4300022: Sapin
+    4300024: Sapin
+    4300026: Sapin
+    4300028: Sapin
+    4300030: Sapin
+    4300032: Sapin
+    4300034: Sapin
+    4300036: Sapin
+    4300038: Sapin
+    4300040: Sapin
+    4300042: Sapin
+    4300044: Sapin
+    4300046: Sapin
+    4300048: Sapin
+    4300050: Sapin
+    4300052: Sapin
+    4300054: Sapin
+    4300056: Sapin
+    4300058: Sapin
+    4300060: Sapin
+    4300062: Sapin
+    4300064: Sapin
+    4300066: Sapin
+    4300068: Sapin
+    4300070: Barriere
+    4300072: Barriere
+    4300074: Sapin
+    4300076: Barriere
+    4300078: Barriere
+    4300080: Sapin
+    4300082: Sapin
+    4300084: Sapin
+    4300086: Barriere
+    4300088: Sapin
+    4300090: Sapin
+    4300092: Sapin
+    4300094: Sapin
+    4300096: Sapin
+    4300098: Sapin
+    4300100: Sapin
+    4300102: Bonhomme de neige
+    4300104: Sapin
+    4300106: Sapin
+    4300108: Sapin
+    4300110: Bonhomme de neige
+    4300112: Barriere
+    4300114: Sapin
+    4300116: Sapin
+    4300118: Sapin
+    4300120: Sapin
+    4300122: Sapin
+    4300124: Barriere
+    4300126: Sapin
+    4300128: Barriere
+    4300130: Barriere
+    4300132: Barriere
+    4300134: Cristal_power
+    4300136: Cristal_power
+    4300138: Cristal_power
+    4300140: Barriere
+    4300142: Barriere
+    4300144: Barriere
+    4300146: Barriere
+    4300148: Cristal_power
+    4300150: Cristal_power
+    4300152: Barriere
+    4300154: Cristal_power
+    4300156: Cristal_power
+    4300158: Cristal_power
+    4300160: Cristal_power
+    4300162: Cristal_power
+    4300164: Cristal_power
+    4300166: Cristal_power
+    4300168: Cristal
+    4300170: Cristal_power
+    4300172: Cristal_power
+    4300174: Cristal_power
+    4300176: Cristal_power
+    4300178: Cristal_power
+    4300180: Cristal_power
+    4300182: Cristal
+    4300184: Cristal_power
+    4300186: Cristal
+    4300188: Cristal
+    4300190: Cristal
+    4300192: Cristal
+    4300194: Cristal
+    4300196: Cristal
+    4300198: Cristal
+    4300200: Cristal
+    4300202: Cristal
+    4300204: Cristal
+    4300206: Cristal
+    4300208: Cristal
+    4300210: Cristal
+    4300212: Cristal
+    4300214: Cristal
+    4300216: Cristal_power
+    4300218: Cristal
+    4300220: Cristal
+    4300222: Cristal
+    4300224: Cristal
+    4300226: Cristal
+    4300228: Cristal
+    4300230: Cristal
+    4300232: Cristal
+    4300234: Cristal
+    4300236: Cristal
+    4300238: Cristal
+    4300240: Cristal
+    4300242: Cristal
+    4300244: Cristal
+    4300246: Cristal
+    4300248: Cristal_clef
+    4300250: Cristal
+    4300252: Cristal
+    4300254: Cristal
+    4300256: Cristal
+    4300258: Cristal
+    4300260: Cristal
+    4300262: Cristal
+    4300264: Cristal
+    4300266: Cristal
+    4300268: Cristal
+    4300270: Cristal
+    4300272: Cristal
+    4300274: Cristal
+    4300276: Cristal
+    4300278: Cristal
+    4300280: Cristal
+    4300282: Cristal
+    4300284: Cristal_clef
+    4300286: Cristal
+    4300288: Cristal
+    4300290: Cristal
+    4300292: Cristal
+    4300294: Cristal
+    4300296: Cristal
+    4300298: Cristal
+    4300300: Cristal
+    4300302: Cristal
+    4300304: Cristal_clef
+    4300306: Cristal
+    4300308: Sapin
+    4300310: Barriere
+    4300312: Cristal_power
+    4300314: Barriere
+    4300316: Sapin
+    4300318: Sapin
+    4300320: Sapin
+    4300322: Cristal_power
+    4300324: Bonhomme de neige
+    4300326: Montagne
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

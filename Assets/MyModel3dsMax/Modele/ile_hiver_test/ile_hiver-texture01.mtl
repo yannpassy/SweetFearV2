@@ -1,0 +1,44 @@
+newmtl Material__78
+Ns 100.000
+d 1.00000
+illum 2
+Kd 1.00000 1.00000 1.00000
+Ka 0.00000 0.00000 0.00000
+Ks 1.00000 1.00000 1.00000
+Ke 0.00000e+0 0.00000e+0 0.00000e+0
+map_Kd ile_hiver-texture01_Material__78_color.tga
+map_Ks ile_hiver-texture01_Material__78_gloss.tga
+map_bump ile_hiver-texture01_Material__78_nmap.tga
+newmtl Standardmaterial
+Ns 100.000
+d 1.00000
+illum 2
+Kd 1.00000 1.00000 1.00000
+Ka 0.00000 0.00000 0.00000
+Ks 1.00000 1.00000 1.00000
+Ke 0.00000e+0 0.00000e+0 0.00000e+0
+map_Kd ile_hiver-texture01_Standardmaterial_color.tga
+map_Ks ile_hiver-texture01_Standardmaterial_gloss.tga
+map_bump ile_hiver-texture01_Standardmaterial_nmap.tga
+newmtl Material__77
+Ns 100.000
+d 1.00000
+illum 2
+Kd 1.00000 1.00000 1.00000
+Ka 0.00000 0.00000 0.00000
+Ks 1.00000 1.00000 1.00000
+Ke 0.00000e+0 0.00000e+0 0.00000e+0
+map_Kd ile_hiver-texture01_Material__77_color.tga
+map_Ks ile_hiver-texture01_Material__77_gloss.tga
+map_bump ile_hiver-texture01_Material__77_nmap.tga
+newmtl Material__76
+Ns 100.000
+d 1.00000
+illum 2
+Kd 1.00000 1.00000 1.00000
+Ka 0.00000 0.00000 0.00000
+Ks 1.00000 1.00000 1.00000
+Ke 0.00000e+0 0.00000e+0 0.00000e+0
+map_Kd ile_hiver-texture01_Material__76_color.tga
+map_Ks ile_hiver-texture01_Material__76_gloss.tga
+map_bump ile_hiver-texture01_Material__76_nmap.tga
