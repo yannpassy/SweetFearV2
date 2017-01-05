@@ -39,9 +39,9 @@ public class TimmyMove : MonoBehaviour {
         etatTimmy = etat.patrouille;
         indexCircuit = 0;
         indexCheminRetour = 0;
-        directionTimmy = circuit[indexCircuit] - timmy.transform.position;
-        // directionTimmy =  timmy.transform.position - circuit[indexCircuit];
-
+        //directionTimmy = circuit[indexCircuit] - timmy.transform.position;
+        timmy.transform.LookAt(circuit[indexCircuit]);
+        directionTimmy = Vector3.forward;
     }
 
     // Update is called once per frame
@@ -59,7 +59,8 @@ public class TimmyMove : MonoBehaviour {
                 //Debug.Log("Suzy vue");
                 localisationPerso = perso.transform.position;
                 cheminRetour.Add(timmy.transform.position);
-                directionTimmy = perso.transform.position - timmy.transform.position;
+                //directionTimmy = perso.transform.position - timmy.transform.position;
+                timmy.transform.LookAt(perso.transform.position);
                 etatTimmy = etat.poursuite;
             }
 
@@ -68,7 +69,8 @@ public class TimmyMove : MonoBehaviour {
             {
                 indexCircuit++;
                 if (indexCircuit >= circuit.Count) { indexCircuit = 0; }
-                directionTimmy = circuit[indexCircuit] - timmy.transform.position;
+                //directionTimmy = circuit[indexCircuit] - timmy.transform.position;
+                timmy.transform.LookAt(circuit[indexCircuit]);
                 etatTimmy = etat.patrouille;
             }
         }
@@ -83,14 +85,16 @@ public class TimmyMove : MonoBehaviour {
                     //Debug.Log("Suzy vue de nouveau");
                     localisationPerso = perso.transform.position;
                     cheminRetour.Add(timmy.transform.position);
-                    directionTimmy = perso.transform.position - timmy.transform.position;
+                    //directionTimmy = perso.transform.position - timmy.transform.position;
+                    timmy.transform.LookAt(perso.transform.position);
                     etatTimmy = etat.poursuite;
                 }
                 // si Timmy ne voit plus Suzy, il revient au parcours
                 else
                 {
                     indexCheminRetour = cheminRetour.Count - 1;
-                    directionTimmy= cheminRetour[indexCheminRetour] - timmy.transform.position;
+                    //directionTimmy= cheminRetour[indexCheminRetour] - timmy.transform.position;
+                    timmy.transform.LookAt(cheminRetour[indexCheminRetour]);
                     etatTimmy = etat.retourPatrouille;
                 }
             }
@@ -109,21 +113,23 @@ public class TimmyMove : MonoBehaviour {
                     //Debug.Log("Suzy vue au retour");
                     localisationPerso = perso.transform.position;
                     cheminRetour.Add(timmy.transform.position);
-                    directionTimmy = perso.transform.position - timmy.transform.position;
+                    //directionTimmy = perso.transform.position - timmy.transform.position;
+                    timmy.transform.LookAt(perso.transform.position);
                     etatTimmy = etat.poursuite;
                 }
                 // Timmy va vers  le parcours
                 else if (indexCheminRetour - 1 >= 0)
                 {
                     indexCheminRetour--;
-                    directionTimmy = cheminRetour[indexCheminRetour] - timmy.transform.position;
+                    //directionTimmy = cheminRetour[indexCheminRetour] - timmy.transform.position;
+                    timmy.transform.LookAt(cheminRetour[indexCheminRetour]);
                     etatTimmy = etat.retourPatrouille;
                 }
                 // Timmy retourne vers la patrouille 
                 else
                 {
-                    //indexCheminRetour--;
-                    directionTimmy = circuit[indexCircuit] - timmy.transform.position;
+                    //directionTimmy = circuit[indexCircuit] - timmy.transform.position;
+                    timmy.transform.LookAt(circuit[indexCircuit]);
                     etatTimmy = etat.patrouille;
                 }
             }
