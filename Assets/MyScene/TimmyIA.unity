@@ -234,7 +234,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 528218860}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.28, y: 0, z: 0.81}
+  m_LocalPosition: {x: 5.95, y: 0, z: 0.78}
   m_LocalScale: {x: 0.69232166, y: 0.69232166, z: 0.69232166}
   m_Children: []
   m_Father: {fileID: 204362756}
@@ -354,6 +354,64 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1001 &719912432
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 400094, guid: 0f1cc755c70cbd94a9a318e2063e5f66, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -11.11
+      objectReference: {fileID: 0}
+    - target: {fileID: 400094, guid: 0f1cc755c70cbd94a9a318e2063e5f66, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.97
+      objectReference: {fileID: 0}
+    - target: {fileID: 400094, guid: 0f1cc755c70cbd94a9a318e2063e5f66, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.6807
+      objectReference: {fileID: 0}
+    - target: {fileID: 400094, guid: 0f1cc755c70cbd94a9a318e2063e5f66, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400094, guid: 0f1cc755c70cbd94a9a318e2063e5f66, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400094, guid: 0f1cc755c70cbd94a9a318e2063e5f66, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400094, guid: 0f1cc755c70cbd94a9a318e2063e5f66, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400094, guid: 0f1cc755c70cbd94a9a318e2063e5f66, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 100094, guid: 0f1cc755c70cbd94a9a318e2063e5f66, type: 3}
+      propertyPath: m_Name
+      value: Timmy (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 400094, guid: 0f1cc755c70cbd94a9a318e2063e5f66, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.4284968
+      objectReference: {fileID: 0}
+    - target: {fileID: 400094, guid: 0f1cc755c70cbd94a9a318e2063e5f66, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.42849702
+      objectReference: {fileID: 0}
+    - target: {fileID: 400094, guid: 0f1cc755c70cbd94a9a318e2063e5f66, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.42849702
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 0f1cc755c70cbd94a9a318e2063e5f66, type: 3}
+  m_IsPrefabParent: 0
 --- !u!1 &779289837
 GameObject:
   m_ObjectHideFlags: 0
@@ -379,7 +437,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 779289837}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.36, y: 0, z: 8.2}
+  m_LocalPosition: {x: -2.25, y: 0, z: 11.02}
   m_LocalScale: {x: 0.69232166, y: 0.69232166, z: 0.69232166}
   m_Children: []
   m_Father: {fileID: 204362756}
@@ -455,7 +513,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &783450794
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -548,6 +606,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &862051218 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100094, guid: 0f1cc755c70cbd94a9a318e2063e5f66, type: 3}
+  m_PrefabInternal: {fileID: 719912432}
+--- !u!114 &862051221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 862051218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d5efbfc577447c4cb9a04ff256cd628, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timmy: {fileID: 862051218}
+  perso: {fileID: 1983953602}
+  circuitTimmy: {fileID: 204362755}
 --- !u!1 &1325856862
 GameObject:
   m_ObjectHideFlags: 0
@@ -818,7 +894,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1983953602}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.89, y: 1.807, z: 4.37}
+  m_LocalPosition: {x: -11.29, y: 1.807, z: -9.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
