@@ -34,7 +34,7 @@ public class TimmyMove : MonoBehaviour {
 
         champDeVision = 5.0f;
         pointCheminApproximation = 0.5f;
-        vitesse = 1.0f;
+        vitesse = 5.0f;
 
         etatTimmy = etat.patrouille;
         indexCircuit = 0;
