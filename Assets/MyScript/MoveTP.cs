@@ -8,7 +8,7 @@ public class MoveTP : MonoBehaviour
     public Transform objectReference;
     public OVRCameraRig cameraOVR;
     public bool clef;
-    private enum Etat { Look, AnalyseCommande, fadeOut, teleportation, fadeIn, demiTour };
+    private enum Etat { Look, AnalyseCommande, fadeOut, teleportation, fadeIn, demiTour, cristauxPowers };
     Etat etat;
     private Vector3 centreCamera;
     private Vector3 nouvellePosition;
@@ -23,13 +23,15 @@ public class MoveTP : MonoBehaviour
     private Vector3 PositionCube;
     public Camera cam;
     public GameObject cube;
+    public GameObject sphere;
     private GameObject vide;
+    private Rigidbody rb;
     private float dist;
     private float distZoneTp = 13.0f;
 
     void Start()
     {
-        Screen.lockCursor = true;
+        //Screen.lockCursor = true;
         centreCamera = new Vector3(Screen.width / 2.0f, Screen.height / 2.0f, cameraOVR.transform.forward.z);
         vide = GameObject.Find("Vide");
         etat = Etat.Look;
@@ -40,8 +42,8 @@ public class MoveTP : MonoBehaviour
     void Update()
     {
         //affiche la souris
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Escape))
-            Screen.lockCursor = false;
+        //if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Escape))
+            //Screen.lockCursor = false;
 
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);  // pour l'oculus, mettre centreCamera par Input.mousePosition
         RaycastHit hit;
@@ -108,35 +110,10 @@ public class MoveTP : MonoBehaviour
             {
                 etat = Etat.demiTour;
             }
-            if (tagTouchee == "Coffre1")
+            if(tagTouchee == "CristauxPowers")
             {
-                Debug.Log(chrono);
-                Sequence seq = DOTween.Sequence();
-                GameObject.Find("Couvercle1").transform.DOMoveY(0.6f, 2);
-                seq.Append(GameObject.Find("key_gold").transform.DOMoveY(0.3f, 2));
-                seq.Append(GameObject.Find("key_gold").transform.DOMove(this.transform.position, 0.5f));
-                clef = true;
-                chrono = 0;
-                etat = Etat.Look;
-            }
-            if (tagTouchee == "Coffre2")
-            {
-                GameObject.Find("Couvercle2").transform.DOMoveY(0.6f, 2);
-                chrono = 0;
-                etat = Etat.Look;
-            }
-
-            if (tagTouchee == "Pouttre")
-            {
-                if (clef == true)
-                {
-                    Sequence seq = DOTween.Sequence();
-                    seq.Append(GameObject.Find("Pouttre").transform.DOMoveY(5.0f, 2));
-                    seq.Insert(1, GameObject.Find("Porte2").transform.DOMoveX(3.5f, 5));
-                    seq.Insert(1, GameObject.Find("Porte1").transform.DOMoveX(-0.05f, 5));
-                    chrono = 0;
-                    etat = Etat.Look;
-                }
+                etat = Etat.cristauxPowers;
+                Debug.Log("c'est bon");
             }
         }
         else if (etat == Etat.fadeOut)
@@ -154,9 +131,9 @@ public class MoveTP : MonoBehaviour
         {
             this.transform.position = new Vector3(nouvellePosition.x, nouvellePosition.y + 0.066f, nouvellePosition.z);
 
-            cameraOVR.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + 0.066f + 0.7f, this.transform.position.z);
+            //cameraOVR.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + 0.066f + 0.7f, this.transform.position.z);
 
-            cameraOVR.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + 0.066f + 2.5f, this.transform.position.z);
+            //cameraOVR.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + 0.066f + 2.5f, this.transform.position.z);
 
             etat = Etat.fadeIn;
         }
@@ -190,6 +167,13 @@ public class MoveTP : MonoBehaviour
             //cameraOVR.transform.rotation *= Quaternion.AngleAxis (180, Vector3.up);
             //chrono = 0;
             //etat = Etat.Look;
+        }
+        else if(etat == Etat.cristauxPowers)
+        {
+            rb = sphere.GetComponent<Rigidbody>();
+            rb.isKinematic = false;
+            chrono = 0;
+            etat = Etat.Look;
         }
 
 

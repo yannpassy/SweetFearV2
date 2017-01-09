@@ -10,6 +10,9 @@ TagManager:
   - terrain
   - demi-tour
   - enfant
+  - cristauxPowers
+  - CristauxPowers
+  - obstacle
   layers:
   - Default
   - TransparentFX
