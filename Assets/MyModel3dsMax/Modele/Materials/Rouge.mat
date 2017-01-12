@@ -83,6 +83,12 @@ Material:
         name: _DstBlend
       second: 0
     - first:
+        name: _FogMaxRadius
+      second: 1
+    - first:
+        name: _FogRadius
+      second: 1
+    - first:
         name: _GlossMapScale
       second: 1
     - first:
@@ -124,4 +130,7 @@ Material:
       second: {r: 1, g: 0, b: 0, a: 1}
     - first:
         name: _EmissionColor
+      second: {r: 0, g: 0, b: 0, a: 1}
+    - first:
+        name: _Player1_Pos
       second: {r: 0, g: 0, b: 0, a: 1}

@@ -1,75 +1,34 @@
 fileFormatVersion: 2
-guid: dd1cea9d74edbdb40b414f4f7b2e2e7c
-timeCreated: 1483624675
+guid: 106ea65026997fc4ab766fe0df8b005f
+timeCreated: 1484231951
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: Maillon
-    100002: Maillon 1
-    100004: Maillon 2
-    100006: Maillon 3
-    100008: Maillon 4
-    100010: Maillon 5
-    100012: Maillon 6
-    100014: Maillon 7
-    100016: PoigneeD
-    100018: PoigneeG
-    100020: //RootNode
-    100022: Porte002
-    100024: Serrure
-    400000: Maillon
-    400002: Maillon 1
-    400004: Maillon 2
-    400006: Maillon 3
-    400008: Maillon 4
-    400010: Maillon 5
-    400012: Maillon 6
-    400014: Maillon 7
-    400016: PoigneeD
-    400018: PoigneeG
-    400020: //RootNode
-    400022: Porte002
-    400024: Serrure
-    2300000: Maillon
-    2300002: Maillon 1
-    2300004: Maillon 2
-    2300006: Maillon 3
-    2300008: Maillon 4
-    2300010: Maillon 5
-    2300012: Maillon 6
-    2300014: Maillon 7
-    2300016: PoigneeD
-    2300018: PoigneeG
-    2300020: //RootNode
-    2300022: Porte002
-    2300024: Serrure
-    3300000: Maillon
-    3300002: Maillon 1
-    3300004: Maillon 2
-    3300006: Maillon 3
-    3300008: Maillon 4
-    3300010: Maillon 5
-    3300012: Maillon 6
-    3300014: Maillon 7
-    3300016: PoigneeD
-    3300018: PoigneeG
-    3300020: //RootNode
-    3300022: Porte002
-    3300024: Serrure
-    4300000: Porte
-    4300002: Serrure
-    4300004: Porte002
-    4300006: PoigneeG
-    4300008: PoigneeD
-    4300010: Maillon
-    4300012: Maillon
-    4300014: Maillon
-    4300016: Maillon
-    4300018: Maillon
-    4300020: Maillon
-    4300022: Maillon
-    4300024: Maillon
+    100000: PillierG
+    100002: //RootNode
+    100004: PorteD
+    100006: PorteG
+    100008: Serrure
+    400000: PillierG
+    400002: //RootNode
+    400004: PorteD
+    400006: PorteG
+    400008: Serrure
+    2300000: PillierG
+    2300002: PorteD
+    2300004: PorteG
+    2300006: Serrure
+    3300000: PillierG
+    3300002: PorteD
+    3300004: PorteG
+    3300006: Serrure
+    4300000: PillierG
+    4300002: PorteD
+    4300004: Serrure
+    4300006: PorteG
+    7400000: Take 001
+    9500000: //RootNode
   materials:
     importMaterials: 1
     materialName: 0
@@ -132,7 +91,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
