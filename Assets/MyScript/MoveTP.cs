@@ -31,7 +31,7 @@ public class MoveTP : MonoBehaviour
 
     void Start()
     {
-        //Screen.lockCursor = true;
+        Screen.lockCursor = true;
         centreCamera = new Vector3(Screen.width / 2.0f, Screen.height / 2.0f, cameraOVR.transform.forward.z);
         vide = GameObject.Find("Vide");
         etat = Etat.Look;
@@ -42,8 +42,8 @@ public class MoveTP : MonoBehaviour
     void Update()
     {
         //affiche la souris
-        //if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Escape))
-            //Screen.lockCursor = false;
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Escape))
+            Screen.lockCursor = false;
 
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);  // pour l'oculus, mettre centreCamera par Input.mousePosition
         RaycastHit hit;
