@@ -23,7 +23,7 @@ public class MoveTP : MonoBehaviour
     private Vector3 PositionCube;
     public Camera cam;
     public GameObject cube;
-    public GameObject sphere;
+    public GameObject cristauxPowers;
     private GameObject vide;
     private Rigidbody rb;
     private float dist;
@@ -57,6 +57,9 @@ public class MoveTP : MonoBehaviour
                 nouvellePosition = hit.point;
                 cube.transform.position = nouvellePosition;
                 tagTouchee = hit.collider.tag;
+                cristauxPowers = hit.collider.gameObject;
+                Debug.Log(cristauxPowers);
+                
             }
         }
         else
@@ -113,7 +116,6 @@ public class MoveTP : MonoBehaviour
             if(tagTouchee == "CristauxPowers")
             {
                 etat = Etat.cristauxPowers;
-                Debug.Log("c'est bon");
             }
         }
         else if (etat == Etat.fadeOut)
@@ -170,8 +172,7 @@ public class MoveTP : MonoBehaviour
         }
         else if(etat == Etat.cristauxPowers)
         {
-            rb = sphere.GetComponent<Rigidbody>();
-            rb.isKinematic = false;
+            cristauxPowers.transform.GetChild(0).gameObject.transform.GetComponent<Rigidbody>().isKinematic = false;
             chrono = 0;
             etat = Etat.Look;
         }

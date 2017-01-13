@@ -17,11 +17,5 @@ public class EnregistrementFragment : MonoBehaviour {
        
     }
 
-	void OnTriggerEnter(Collider col) {
-        if (col.gameObject.GetComponent<MeshCollider>().isTrigger == true)
-        {
-            rb.freezeRotation = false;
-            rb.constraints = RigidbodyConstraints.None;
-        }
-	}
+	
 }

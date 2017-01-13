@@ -13,6 +13,7 @@ TagManager:
   - cristauxPowers
   - CristauxPowers
   - obstacle
+  - curseur
   layers:
   - Default
   - TransparentFX
