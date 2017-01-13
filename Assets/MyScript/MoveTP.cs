@@ -172,6 +172,7 @@ public class MoveTP : MonoBehaviour
         }
         else if(etat == Etat.cristauxPowers)
         {
+            cristauxPowers.GetComponent<MeshCollider>().isTrigger = true;
             cristauxPowers.transform.GetChild(0).gameObject.transform.GetComponent<Rigidbody>().isKinematic = false;
             chrono = 0;
             etat = Etat.Look;
