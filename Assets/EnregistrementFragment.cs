@@ -17,5 +17,12 @@ public class EnregistrementFragment : MonoBehaviour {
        
     }
 
-	
+    private void OnTriggerEnter(Collider col)
+    {
+        if(col.gameObject.GetComponent<MeshCollider>().isTrigger == true)
+        {
+            rb.constraints = RigidbodyConstraints.None;
+            
+        }
+    }
 }
