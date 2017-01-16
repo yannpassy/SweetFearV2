@@ -7,7 +7,6 @@ public class MoveTP : MonoBehaviour
 {
     public Transform objectReference;
     public OVRCameraRig cameraOVR;
-    public bool clef;
     private enum Etat { Look, AnalyseCommande, fadeOut, teleportation, fadeIn, demiTour, cristauxPowers };
     Etat etat;
     private Vector3 centreCamera;
@@ -24,6 +23,7 @@ public class MoveTP : MonoBehaviour
     public Camera cam;
     public GameObject cube;
     public GameObject cristauxPowers;
+    public GameObject clef;
     private GameObject vide;
     private Rigidbody rb;
     private float dist;
@@ -35,7 +35,7 @@ public class MoveTP : MonoBehaviour
         centreCamera = new Vector3(Screen.width / 2.0f, Screen.height / 2.0f, cameraOVR.transform.forward.z);
         vide = GameObject.Find("Vide");
         etat = Etat.Look;
-        clef = false;
+       
     }
 
     // Update is called once per frame
@@ -172,8 +172,14 @@ public class MoveTP : MonoBehaviour
         }
         else if(etat == Etat.cristauxPowers)
         {
-            cristauxPowers.GetComponent<MeshCollider>().isTrigger = true;
+            
             cristauxPowers.transform.GetChild(0).gameObject.transform.GetComponent<Rigidbody>().isKinematic = false;
+            cristauxPowers.GetComponent<MeshCollider>().enabled = false;
+            //if (cristauxPowers.transform.GetChild(1))
+           // {
+                clef = cristauxPowers.transform.GetChild(1).gameObject;
+                clef.transform.DORotate(new Vector3(0, 360, 0), 2.0f, 0);
+           // }
             chrono = 0;
             etat = Etat.Look;
         }
