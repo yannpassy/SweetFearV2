@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: testShaderStencil
+  m_Name: MeterialZoneTp
   m_Shader: {fileID: 4800000, guid: bafcb9930b748984a85e07c51c958ecf, type: 3}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
@@ -110,6 +110,9 @@ Material:
         name: _Parallax
       second: 0.02
     - first:
+        name: _Shininess
+      second: 0.7
+    - first:
         name: _SmoothnessTextureChannel
       second: 0
     - first:
@@ -127,7 +130,13 @@ Material:
     m_Colors:
     - first:
         name: _Color
-      second: {r: 0.036332168, g: 0.8235294, b: 0.23720306, a: 1}
+      second: {r: 0.05839101, g: 0.88235295, b: 0.26864323, a: 1}
+    - first:
+        name: _Emission
+      second: {r: 0, g: 0, b: 0, a: 0}
     - first:
         name: _EmissionColor
       second: {r: 0, g: 0, b: 0, a: 1}
+    - first:
+        name: _SpecColor
+      second: {r: 1, g: 1, b: 1, a: 0}

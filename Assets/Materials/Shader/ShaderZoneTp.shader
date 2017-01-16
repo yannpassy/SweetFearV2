@@ -3,13 +3,13 @@
 		_Color ("Color", Color) = (1,1,1,1)
 	}
 	SubShader {
-		Tags { "RenderType"="Opaque" "Queue" = "Geometry+1" }
+		Tags { "RenderType"="Opaque" "Queue" = "Geometry+2" }
 
 		LOD 200
 		ColorMask RGB
-		Cull Front 
+		Cull Back 
 		ZWrite Off
-		ZTest Greater  
+		ZTest Less
 		Stencil{
 			Ref 1
 			Comp equal
