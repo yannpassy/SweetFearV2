@@ -16,6 +16,8 @@ TagManager:
   - curseur
   - Fire
   - EcranTitre
+  - porte
+  - serrureRouge
   layers:
   - Default
   - TransparentFX

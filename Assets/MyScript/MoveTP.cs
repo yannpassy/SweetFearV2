@@ -7,24 +7,32 @@ public class MoveTP : MonoBehaviour
 {
     public Transform objectReference;
     public OVRCameraRig cameraOVR;
-    private enum Etat { Look, AnalyseCommande, fadeOut, teleportation, fadeIn, demiTour, cristauxPowers };
+    private enum Etat { Look, AnalyseCommande, fadeOut, teleportation, fadeIn, demiTour, cristauxPowers, ouvertureRouge };
     Etat etat;
+
     private Vector3 centreCamera;
     private Vector3 nouvellePosition;
+
     private double chrono;
     private double chronoFadeOut;
     private double chronoFadeIn;
+
     private string tagTouchee;
+
     private OVRScreenFadeOut fadeout;
     private OVRScreenFadeIn fadein;
 
     private Vector3 anciennePositionCube;
     private Vector3 PositionCube;
+
     public Camera cam;
+
     public GameObject cube;
     public GameObject cristauxPowers;
     public GameObject clef;
+    public GameObject porte;
     private GameObject vide;
+
     private Rigidbody rb;
     private float dist;
     private float distZoneTp = 13.0f;
@@ -91,7 +99,7 @@ public class MoveTP : MonoBehaviour
                 anciennePositionCube = nouvellePosition;
             }
 
-            if (chrono > 2)
+            if (chrono > 1)
             {
                 //etat = Etat.teleportation;
                 etat = Etat.AnalyseCommande;
@@ -104,10 +112,14 @@ public class MoveTP : MonoBehaviour
             {
                 etat = Etat.fadeOut;
             }
-            if (tagTouchee == "obstacle")
+            if (tagTouchee == "obstacle" || tagTouchee == "porte")
             {
                 chrono = 0;
                 etat = Etat.Look;
+            }
+            if(tagTouchee == "serrureRouge")
+            {
+                etat = Etat.ouvertureRouge;
             }
             if (tagTouchee == "demi-tour")
             {
@@ -177,11 +189,17 @@ public class MoveTP : MonoBehaviour
             cristauxPowers.GetComponent<MeshCollider>().enabled = false;
             //if (cristauxPowers.transform.GetChild(1))
            // {
-                clef = cristauxPowers.transform.GetChild(1).gameObject;
-                clef.transform.DORotate(new Vector3(0, 360, 0), 2.0f, 0);
-           // }
+               // clef = cristauxPowers.transform.GetChild(1).gameObject;
+
+            // }
             chrono = 0;
             etat = Etat.Look;
+        }
+
+        else if(etat == Etat.ouvertureRouge)
+        {
+            porte.GetComponent<Animation>().Play();
+           
         }
 
 
