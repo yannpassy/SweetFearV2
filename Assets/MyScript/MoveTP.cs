@@ -31,11 +31,14 @@ public class MoveTP : MonoBehaviour
     public GameObject cristauxPowers;
     public GameObject clef;
     public GameObject porte;
+    public GameObject clefOuverture;
     private GameObject vide;
 
     private Rigidbody rb;
     private float dist;
     private float distZoneTp = 13.0f;
+
+    private bool obtentionClefRouge;
 
     void Start()
     {
@@ -57,18 +60,15 @@ public class MoveTP : MonoBehaviour
         RaycastHit hit;
         dist = Vector3.Distance(anciennePositionCube, cube.transform.position);
 
+        
         if (Physics.Raycast(ray, out hit, Mathf.Infinity))
         {
-            if (chrono < 2)
-            {
                 cube.SetActive(true);
                 nouvellePosition = hit.point;
                 cube.transform.position = nouvellePosition;
                 tagTouchee = hit.collider.tag;
                 cristauxPowers = hit.collider.gameObject;
                 Debug.Log(cristauxPowers);
-                
-            }
         }
         else
         {
@@ -89,6 +89,16 @@ public class MoveTP : MonoBehaviour
 
         if (etat == Etat.Look)
         {
+            if(tagTouchee == "serrureRouge")
+            {
+                cube.SetActive(false);
+                clefOuverture.SetActive(true);
+            }
+            else
+            {
+                cube.SetActive(true);
+                clefOuverture.SetActive(false);
+            }
             if (dist < 0.1f && Vector3.Distance(this.transform.position, cube.transform.position) <= distZoneTp)
             {
                 chrono += Time.deltaTime;
@@ -117,8 +127,9 @@ public class MoveTP : MonoBehaviour
                 chrono = 0;
                 etat = Etat.Look;
             }
-            if(tagTouchee == "serrureRouge")
+            if(tagTouchee == "serrureRouge" && obtentionClefRouge == true)
             {
+                clefOuverture.transform.DORotate(new Vector3(90, 0, 90), 1, 0);
                 etat = Etat.ouvertureRouge;
             }
             if (tagTouchee == "demi-tour")
@@ -187,11 +198,13 @@ public class MoveTP : MonoBehaviour
             
             cristauxPowers.transform.GetChild(0).gameObject.transform.GetComponent<Rigidbody>().isKinematic = false;
             cristauxPowers.GetComponent<MeshCollider>().enabled = false;
-            //if (cristauxPowers.transform.GetChild(1))
-           // {
-               // clef = cristauxPowers.transform.GetChild(1).gameObject;
-
-            // }
+            if (cristauxPowers.transform.FindChild("Clef"))
+            {
+                clef = cristauxPowers.transform.GetChild(1).gameObject;
+                clef.transform.DOMoveY(6, 2);
+                StartCoroutine(AffichageText());
+                
+            }
             chrono = 0;
             etat = Etat.Look;
         }
@@ -199,23 +212,18 @@ public class MoveTP : MonoBehaviour
         else if(etat == Etat.ouvertureRouge)
         {
             porte.GetComponent<Animation>().Play();
-           
+            chrono = 0;
+            etat = Etat.Look;
         }
 
 
     }
 
-    void OnCollisionEnter(Collision collision)
+    IEnumerator AffichageText()
     {
-        if (collision.gameObject.name == "Vide")
-        {
-            SceneManager.LoadScene("GameOver");
-        }
-        if (collision.gameObject.name == "Fin")
-        {
-            SceneManager.LoadScene("Fin");
-        }
-    }
+        yield return new WaitForSeconds(2);
 
+        
+    }
 
 }
