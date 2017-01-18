@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class InteractionMenu : MonoBehaviour {
     public OVRCameraRig cameraOVR;
     public Camera cam;
-    private enum Etat { Look, EcranTitre };
+    private enum Etat { Look, EcranTitre, EnValidation };
     Etat etat;
     private Vector3 centreCamera;
     private Vector3 nouvellePosition;
@@ -16,17 +16,19 @@ public class InteractionMenu : MonoBehaviour {
     public GameObject curseur;
     private float dist;
     private double chrono;
-    public GameObject progressBar ;
+    private GameObject progressBar ;
+    private GameObject allProgressBar;
+
     // Use this for initialization
     void Start () {
         Screen.lockCursor = true;
         centreCamera = new Vector3(Screen.width / 2.0f, Screen.height / 2.0f, cameraOVR.transform.forward.z);
         etat = Etat.Look;
+        allProgressBar = GameObject.Find("ProgressBar");
     }
 	
 	// Update is called once per frame
 	void Update () {
-        Debug.Log(chrono);
         //affiche la souris
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Escape))
             Screen.lockCursor = false;
@@ -54,20 +56,28 @@ public class InteractionMenu : MonoBehaviour {
 
         if (etat == Etat.Look)
         {
-            if (tagTouchee == "EcranTitre")
+            if (tagTouchee != "")
             {
-                progressBar.GetComponent<Image>().fillAmount+= Time.deltaTime;
+                foreach (Transform _progressBar in allProgressBar.transform)
+                {
+                    if(_progressBar.gameObject.tag== tagTouchee)
+                    {
+                        progressBar = _progressBar.gameObject;
+                        etat==(Enum)(int)System.Enum.Parse(typeof(string), tagTouchee);
+                        //progressBar.GetComponent<Image>().fillAmount += Time.deltaTime;
+                    }
+                }
             }
             else
             {
                 anciennePositionCurseur = nouvellePosition;
-                progressBar.GetComponent<Image>().fillAmount = 0;
+                //progressBar.GetComponent<Image>().fillAmount = 0;
             }
-
-            if (progressBar.GetComponent<Image>().fillAmount>=1)
-            {
-                //etat = Etat.EcranTitre;
-            }
+            
+        }
+        else if (etat == Etat.EcranTitre)
+        {
+            progressBar.GetComponent<Image>().fillAmount += Time.deltaTime * 0.2f;
         }
     }
 }
