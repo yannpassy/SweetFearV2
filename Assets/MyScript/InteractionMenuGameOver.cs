@@ -12,6 +12,7 @@ public class InteractionMenuGameOver : MonoBehaviour {
     private Vector3 centreCamera;
     private Vector3 nouvellePosition;
     private string tagTouchee;
+    private string tagSelectionnee;
 
     private Vector3 anciennePositionCurseur;
     public GameObject curseur;
@@ -58,22 +59,38 @@ public class InteractionMenuGameOver : MonoBehaviour {
 
         if (etat == Etat.Look)
         {
-            progressBarRecommencer.GetComponent<Image>().fillAmount += Time.deltaTime;
+            progressBarRecommencer.GetComponent<Image>().fillAmount = 0;
+            progressBarQuitter.GetComponent<Image>().fillAmount = 0;
 
-            if (tagTouchee == "Recommencer")
+            if (tagTouchee == "Recommencer" || tagTouchee == "Quitter")
             {
-                progressBarRecommencer.GetComponent<Image>().fillAmount += Time.deltaTime;
+                tagSelectionnee = tagTouchee;
+                etat = Etat.enValidation;
+            }
+            
+        }
+        else if (etat == Etat.enValidation)
+        {
+            if (tagSelectionnee == tagTouchee)
+            {
+                if(tagSelectionnee=="Recommencer")
+                    progressBarRecommencer.GetComponent<Image>().fillAmount += Time.deltaTime;
+                else
+                    progressBarQuitter.GetComponent<Image>().fillAmount += Time.deltaTime;
             }
             else
             {
                 anciennePositionCurseur = nouvellePosition;
-                progressBarRecommencer.GetComponent<Image>().fillAmount = 0;
+                etat = Etat.Look;
             }
 
             if (progressBarRecommencer.GetComponent<Image>().fillAmount >= 1)
             {
                 SceneManager.LoadScene("NiveauHiver");
-                //etat = Etat.EcranTitre;
+            }
+            else if (progressBarQuitter.GetComponent<Image>().fillAmount >= 1)
+            {
+                //quitter le jeu
             }
         }
     }
