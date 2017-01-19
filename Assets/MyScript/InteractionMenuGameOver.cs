@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class InteractionMenuGameOver : MonoBehaviour {
     public OVRCameraRig cameraOVR;
@@ -69,6 +70,7 @@ public class InteractionMenuGameOver : MonoBehaviour {
 
             if (progressBarRecommencer.GetComponent<Image>().fillAmount >= 1)
             {
+                SceneManager.LoadScene("NiveauHiver");
                 //etat = Etat.EcranTitre;
             }
         }
