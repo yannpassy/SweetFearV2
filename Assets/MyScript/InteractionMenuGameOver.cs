@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class InteractionMenuGameOver : MonoBehaviour {
     public OVRCameraRig cameraOVR;
     public Camera cam;
-    private enum Etat { Look, EcranTitre };
+    private enum Etat { Look };
     Etat etat;
     private Vector3 centreCamera;
     private Vector3 nouvellePosition;
