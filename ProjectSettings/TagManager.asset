@@ -18,6 +18,8 @@ TagManager:
   - EcranTitre
   - porte
   - serrureRouge
+  - Recommencer
+  - Quitter
   layers:
   - Default
   - TransparentFX
