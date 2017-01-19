@@ -40,12 +40,16 @@ public class MoveTP : MonoBehaviour
 
     private bool obtentionClefRouge;
 
+    public GameObject canvasClef;
+    public GameObject canvasPorte;
+
     void Start()
     {
         Screen.lockCursor = true;
         centreCamera = new Vector3(Screen.width / 2.0f, Screen.height / 2.0f, cameraOVR.transform.forward.z);
         vide = GameObject.Find("Vide");
         etat = Etat.Look;
+        obtentionClefRouge = false;
        
     }
 
@@ -89,15 +93,22 @@ public class MoveTP : MonoBehaviour
 
         if (etat == Etat.Look)
         {
-            if(tagTouchee == "serrureRouge")
+            if(tagTouchee == "serrureRouge" && obtentionClefRouge == true)
             {
                 cube.SetActive(false);
                 clefOuverture.SetActive(true);
+                
+            }
+            else if(tagTouchee == "serrureRouge" && obtentionClefRouge == false)
+            {
+                canvasPorte.SetActive(true);
+                cube.SetActive(true);
             }
             else
             {
                 cube.SetActive(true);
                 clefOuverture.SetActive(false);
+                canvasPorte.SetActive(false);
             }
             if (dist < 0.1f && Vector3.Distance(this.transform.position, cube.transform.position) <= distZoneTp)
             {
@@ -154,6 +165,8 @@ public class MoveTP : MonoBehaviour
         }
         else if (etat == Etat.teleportation)
         {
+            this.gameObject.GetComponent<AudioSource>().Play();
+
             this.transform.position = new Vector3(nouvellePosition.x, nouvellePosition.y + 0.066f, nouvellePosition.z);
 
             //cameraOVR.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + 0.066f + 0.7f, this.transform.position.z);
@@ -202,8 +215,8 @@ public class MoveTP : MonoBehaviour
             {
                 clef = cristauxPowers.transform.GetChild(1).gameObject;
                 clef.transform.DOMoveY(6, 2);
-                StartCoroutine(AffichageText());
-                
+                obtentionClefRouge = true;
+                StartCoroutine(AffichageText());    
             }
             chrono = 0;
             etat = Etat.Look;
@@ -211,7 +224,7 @@ public class MoveTP : MonoBehaviour
 
         else if(etat == Etat.ouvertureRouge)
         {
-            porte.GetComponent<Animation>().Play();
+            StartCoroutine(DeplacementPorte());
             chrono = 0;
             etat = Etat.Look;
         }
@@ -219,11 +232,20 @@ public class MoveTP : MonoBehaviour
 
     }
 
+    IEnumerator DeplacementPorte()
+    {
+        yield return new WaitForSeconds(1);
+
+        porte.GetComponent<Animation>().Play();
+
+    }
+
     IEnumerator AffichageText()
     {
         yield return new WaitForSeconds(2);
 
-        
+        Destroy(clef);
+        canvasClef.SetActive(true);
     }
 
 }
