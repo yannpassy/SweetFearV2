@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class InteractionMenuGameOver : MonoBehaviour {
     public OVRCameraRig cameraOVR;
     public Camera cam;
-    private enum Etat { Look };
+    private enum Etat { Look , enValidation};
     Etat etat;
     private Vector3 centreCamera;
     private Vector3 nouvellePosition;
@@ -58,6 +58,8 @@ public class InteractionMenuGameOver : MonoBehaviour {
 
         if (etat == Etat.Look)
         {
+            progressBarRecommencer.GetComponent<Image>().fillAmount += Time.deltaTime;
+
             if (tagTouchee == "Recommencer")
             {
                 progressBarRecommencer.GetComponent<Image>().fillAmount += Time.deltaTime;
