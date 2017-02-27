@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.01.08.00">
     <object class="Event" id="{dbc0bfa4-da9b-4ef9-a2b0-1f8f8c6b228a}">
         <property name="name">
-            <value>132594__cactus2003__creepy-ambience</value>
+            <value>AmbienceCreepy</value>
         </property>
         <property name="outputFormat">
             <value>2</value>
@@ -20,7 +20,12 @@
             <destination>{b517c546-db30-4b21-bbcd-9dad382fc9ff}</destination>
         </relationship>
         <relationship name="markerTracks">
+<<<<<<< HEAD
             <destination>{84be8dc2-2d84-439f-bf88-cc718068c7e8}</destination>
+=======
+            <destination>{e6318e09-4970-43e6-a0ff-c28c0a06b4ab}</destination>
+            <destination>{31c54988-b283-4d3a-a536-d81db0461dba}</destination>
+>>>>>>> 3b963496b009b9c0ed89ac60c50edd54f3715082
         </relationship>
         <relationship name="groupTracks">
             <destination>{3e58f047-c370-45d1-8498-162c354cc731}</destination>
@@ -54,7 +59,12 @@
         </relationship>
     </object>
     <object class="EventAutomatableProperties" id="{b517c546-db30-4b21-bbcd-9dad382fc9ff}"/>
+<<<<<<< HEAD
     <object class="MarkerTrack" id="{84be8dc2-2d84-439f-bf88-cc718068c7e8}"/>
+=======
+    <object class="MarkerTrack" id="{e6318e09-4970-43e6-a0ff-c28c0a06b4ab}"/>
+    <object class="MarkerTrack" id="{31c54988-b283-4d3a-a536-d81db0461dba}"/>
+>>>>>>> 3b963496b009b9c0ed89ac60c50edd54f3715082
     <object class="GroupTrack" id="{3e58f047-c370-45d1-8498-162c354cc731}">
         <relationship name="modules">
             <destination>{2eb9c668-c39a-422e-827d-76b09b5dcc17}</destination>
@@ -68,8 +78,13 @@
             <destination>{2eb9c668-c39a-422e-827d-76b09b5dcc17}</destination>
         </relationship>
         <relationship name="markers">
+<<<<<<< HEAD
             <destination>{b928b6cb-b3fe-4ca4-a034-c8bd6aa62957}</destination>
             <destination>{1bb132ac-f509-4586-9a01-5cfda3b80f19}</destination>
+=======
+            <destination>{21a0b2f7-8085-46e0-b7f7-3098842d83ca}</destination>
+            <destination>{9533611e-66e3-423b-830c-acce737a8640}</destination>
+>>>>>>> 3b963496b009b9c0ed89ac60c50edd54f3715082
         </relationship>
     </object>
     <object class="EventMixerMaster" id="{9b0a1940-4768-47bc-82d1-201f9ec6e5bb}">
@@ -123,17 +138,24 @@
             <destination>{9b0a1940-4768-47bc-82d1-201f9ec6e5bb}</destination>
         </relationship>
     </object>
+<<<<<<< HEAD
     <object class="LoopRegion" id="{b928b6cb-b3fe-4ca4-a034-c8bd6aa62957}">
         <property name="position">
             <value>5</value>
         </property>
         <property name="length">
             <value>5</value>
+=======
+    <object class="TempoMarker" id="{21a0b2f7-8085-46e0-b7f7-3098842d83ca}">
+        <property name="position">
+            <value>0</value>
+>>>>>>> 3b963496b009b9c0ed89ac60c50edd54f3715082
         </property>
         <relationship name="timeline">
             <destination>{aa531e86-113a-4100-9ed2-43300f1c737b}</destination>
         </relationship>
         <relationship name="markerTrack">
+<<<<<<< HEAD
             <destination>{84be8dc2-2d84-439f-bf88-cc718068c7e8}</destination>
         </relationship>
     </object>
@@ -143,12 +165,27 @@
         </property>
         <property name="length">
             <value>5</value>
+=======
+            <destination>{e6318e09-4970-43e6-a0ff-c28c0a06b4ab}</destination>
+        </relationship>
+    </object>
+    <object class="LoopRegion" id="{9533611e-66e3-423b-830c-acce737a8640}">
+        <property name="position">
+            <value>0</value>
+        </property>
+        <property name="length">
+            <value>15</value>
+>>>>>>> 3b963496b009b9c0ed89ac60c50edd54f3715082
         </property>
         <relationship name="timeline">
             <destination>{aa531e86-113a-4100-9ed2-43300f1c737b}</destination>
         </relationship>
         <relationship name="markerTrack">
+<<<<<<< HEAD
             <destination>{84be8dc2-2d84-439f-bf88-cc718068c7e8}</destination>
+=======
+            <destination>{31c54988-b283-4d3a-a536-d81db0461dba}</destination>
+>>>>>>> 3b963496b009b9c0ed89ac60c50edd54f3715082
         </relationship>
     </object>
     <object class="MixerBusEffectChain" id="{03d7df8f-d23a-4bf1-851b-1918a631bb78}">
