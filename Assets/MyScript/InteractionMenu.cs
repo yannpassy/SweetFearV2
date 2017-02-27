@@ -71,6 +71,7 @@ public class InteractionMenu : MonoBehaviour
 
             if (progressBar.GetComponent<Image>().fillAmount >= 1)
             {
+                SceneManager.LoadScene("NiveauHiver");
                 //etat = Etat.EcranTitre;
             }
         }

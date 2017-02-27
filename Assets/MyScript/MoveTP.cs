@@ -33,6 +33,7 @@ public class MoveTP : MonoBehaviour
     public GameObject porte;
     public GameObject clefOuverture;
     private GameObject vide;
+    public GameObject Timmy;
 
     private Rigidbody rb;
     private float dist;
@@ -80,6 +81,10 @@ public class MoveTP : MonoBehaviour
             chrono = 0;
         }
 
+        if(Vector3.Distance(this.transform.position, Timmy.transform.position) < 0.2f)
+        {
+            SceneManager.LoadScene("EcranGameOver");
+        }
         //affiche ou affiche pas le curseur
         if (Vector3.Distance(this.transform.position, cube.transform.position) <= distZoneTp)
         {
@@ -93,7 +98,19 @@ public class MoveTP : MonoBehaviour
 
         if (etat == Etat.Look)
         {
-            if(tagTouchee == "serrureRouge" && obtentionClefRouge == true)
+            if (tagTouchee == "terrain")
+            {
+                cube.GetComponent<MeshRenderer>().material.color = Color.green;
+            }
+            if (tagTouchee == "obstacle" || tagTouchee == "porte")
+            {
+                cube.GetComponent<MeshRenderer>().material.color = Color.red;
+            }
+            if (tagTouchee == "CristauxPowers")
+            {
+                cube.GetComponent<MeshRenderer>().material.color = Color.green;
+            }
+            if (tagTouchee == "serrureRouge" && obtentionClefRouge == true)
             {
                 cube.SetActive(false);
                 clefOuverture.SetActive(true);
@@ -129,12 +146,14 @@ public class MoveTP : MonoBehaviour
         else if (etat == Etat.AnalyseCommande)
         {
             
-            if (tagTouchee == "terrain")
+           if (tagTouchee == "terrain")
             {
                 etat = Etat.fadeOut;
+                cube.GetComponent<MeshRenderer>().material.color = Color.green;
             }
             if (tagTouchee == "obstacle" || tagTouchee == "porte")
             {
+                cube.GetComponent<MeshRenderer>().material.color = Color.red;
                 chrono = 0;
                 etat = Etat.Look;
             }
@@ -150,6 +169,7 @@ public class MoveTP : MonoBehaviour
             if(tagTouchee == "CristauxPowers")
             {
                 etat = Etat.cristauxPowers;
+                cube.GetComponent<MeshRenderer>().material.color = Color.green;
             }
         }
         else if (etat == Etat.fadeOut)

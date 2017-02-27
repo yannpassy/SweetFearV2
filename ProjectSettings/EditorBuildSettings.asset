@@ -6,6 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/MyScene/EcranGameOver.unity
+    path: Assets/MyScene/EcranTitre.unity
   - enabled: 1
     path: Assets/MyScene/NiveauHiver.unity
+  - enabled: 1
+    path: Assets/MyScene/EcranGameOver.unity

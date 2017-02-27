@@ -90,7 +90,7 @@ public class InteractionMenuGameOver : MonoBehaviour {
             }
             else if (progressBarQuitter.GetComponent<Image>().fillAmount >= 1)
             {
-                //quitter le jeu
+                Application.Quit();
             }
         }
     }
