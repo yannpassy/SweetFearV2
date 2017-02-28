@@ -23,7 +23,7 @@ MonoBehaviour:
   - {fileID: 114285406661569284}
   MasterBankRef: {fileID: 114214936388123534}
   StringsBankRef: {fileID: 114153070308261834}
-  stringsBankWriteTime: 636238715899565299
+  stringsBankWriteTime: 636238883413091795
   cacheVersion: 2
 --- !u!114 &11400262
 MonoBehaviour:
@@ -5319,6 +5319,21 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 40
+--- !u!114 &114086465800684144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: creep
+  Min: 0
+  Max: 10
+  Default: 0
 --- !u!114 &114086860991438024
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6172,11 +6187,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Path: SonSweetFear\Build\Desktop\Master Bank.strings.bank
-  lastModified: 636238715899565299
+  lastModified: 636238883413091795
   LoadResult: 0
   FileSizes:
   - Name: Desktop
-    Value: 916
+    Value: 998
   Exists: 1
 --- !u!114 &114154402868983420
 MonoBehaviour:
@@ -7139,6 +7154,21 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 0
   MaxDistance: 0
+--- !u!114 &114209034567181742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: creep
+  Min: 0
+  Max: 10
+  Default: 0
 --- !u!114 &114214032889540112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7158,7 +7188,7 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 0
   Parameters:
-  - {fileID: 114653438436742152}
+  - {fileID: 114727709511276694}
   MinDistance: 1
   MaxDistance: 20
 --- !u!114 &114214936388123534
@@ -7174,11 +7204,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: C:\Users\Guillaume\Desktop\SweetFearV2\SweetFear2\SweetFearV2\SonSweetFear\Build\Desktop\Master
     Bank.bank
-  lastModified: 636238715899540464
+  lastModified: 636238883413066762
   LoadResult: 0
   FileSizes:
   - Name: Desktop
-    Value: 5905216
+    Value: 5906144
   Exists: 1
 --- !u!114 &114216910484326164
 MonoBehaviour:
@@ -7849,6 +7879,26 @@ MonoBehaviour:
   - {fileID: 114583605211234008}
   MinDistance: 1
   MaxDistance: 20
+--- !u!114 &114259551230164130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/New Event
+  guid: 2fa58700b5335440a3bcf79b9a2d513d
+  Banks: []
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
 --- !u!114 &114260468751391754
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8342,6 +8392,21 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 0
   MaxDistance: 0
+--- !u!114 &114301304797995602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: creep
+  Min: 0
+  Max: 10
+  Default: 0
 --- !u!114 &114302836429277682
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8589,6 +8654,21 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
+--- !u!114 &114320075358376760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: creep
+  Min: 0
+  Max: 10
+  Default: 0
 --- !u!114 &114322055591290958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8610,6 +8690,21 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 0
   MaxDistance: 0
+--- !u!114 &114322780694818396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: creep
+  Min: 0
+  Max: 10
+  Default: 0
 --- !u!114 &114324149701359188
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8823,7 +8918,7 @@ MonoBehaviour:
   - {fileID: 114214936388123534}
   IsStream: 1
   Is3D: 1
-  IsOneShot: 1
+  IsOneShot: 0
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
@@ -9084,6 +9179,21 @@ MonoBehaviour:
   Name: Surface
   Min: 0
   Max: 3
+  Default: 0
+--- !u!114 &114363192881771316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: creep
+  Min: 0
+  Max: 10
   Default: 0
 --- !u!114 &114363475341187422
 MonoBehaviour:
@@ -10179,6 +10289,21 @@ MonoBehaviour:
   - Name: Desktop
     Value: 180256
   Exists: 1
+--- !u!114 &114454076522459466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: creep
+  Min: 0
+  Max: 10
+  Default: 0
 --- !u!114 &114454681645535700
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10382,6 +10507,21 @@ MonoBehaviour:
   - {fileID: 114869230282498910}
   MinDistance: 0
   MaxDistance: 0
+--- !u!114 &114469904576351800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: creep
+  Min: 0
+  Max: 10
+  Default: 0
 --- !u!114 &114470214688390664
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11275,6 +11415,21 @@ MonoBehaviour:
   - Name: Desktop
     Value: 180256
   Exists: 1
+--- !u!114 &114546935966938342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: creep
+  Min: 0
+  Max: 10
+  Default: 0
 --- !u!114 &114548413824870104
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11831,6 +11986,27 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 40
+--- !u!114 &114574543946553784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/New Event (2)
+  guid: 1ec4d78b9a7a394fbe017386c1afe73c
+  Banks: []
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 114813356174029052}
+  MinDistance: 1
+  MaxDistance: 20
 --- !u!114 &114580031083895750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12034,6 +12210,21 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 0
   MaxDistance: 0
+--- !u!114 &114598043635482868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: creep
+  Min: 0
+  Max: 10
+  Default: 0
 --- !u!114 &114604176114261312
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12774,6 +12965,21 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 0
   MaxDistance: 0
+--- !u!114 &114657416923690832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: creep
+  Min: 0
+  Max: 10
+  Default: 0
 --- !u!114 &114657873527391418
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13249,6 +13455,21 @@ MonoBehaviour:
   - {fileID: 114569668133907838}
   MinDistance: 0
   MaxDistance: 0
+--- !u!114 &114688531468664590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: creep
+  Min: 0
+  Max: 10
+  Default: 0
 --- !u!114 &114689170204195666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13840,6 +14061,21 @@ MonoBehaviour:
   Min: 0
   Max: 2000
   Default: 0
+--- !u!114 &114727709511276694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: creep
+  Min: 0
+  Max: 10
+  Default: 0
 --- !u!114 &114729069114514434
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14029,6 +14265,21 @@ MonoBehaviour:
   - {fileID: 114037268362726180}
   MinDistance: 1
   MaxDistance: 20
+--- !u!114 &114747382505931228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: creep
+  Min: 0
+  Max: 10
+  Default: 0
 --- !u!114 &114749144929600726
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14904,6 +15155,21 @@ MonoBehaviour:
   - Name: Desktop
     Value: 276416
   Exists: 1
+--- !u!114 &114812281069850046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: creep
+  Min: 0
+  Max: 10
+  Default: 0
 --- !u!114 &114812408984254138
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14926,6 +15192,21 @@ MonoBehaviour:
   - {fileID: 114591462445752450}
   MinDistance: 0
   MaxDistance: 0
+--- !u!114 &114813356174029052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: MonTest
+  Min: 0
+  Max: 10
+  Default: 0
 --- !u!114 &114814751798606090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16129,6 +16410,21 @@ MonoBehaviour:
   - Name: Desktop
     Value: 18740
   Exists: 1
+--- !u!114 &114908381746532444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: creep
+  Min: 0
+  Max: 10
+  Default: 0
 --- !u!114 &114910458574931468
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16311,6 +16607,21 @@ MonoBehaviour:
   - {fileID: 114391899697534146}
   MinDistance: 0.1
   MaxDistance: 20
+--- !u!114 &114928762911745864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: creep
+  Min: 0
+  Max: 10
+  Default: 0
 --- !u!114 &114929988297136842
 MonoBehaviour:
   m_ObjectHideFlags: 0
