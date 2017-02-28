@@ -5,7 +5,7 @@
             <value>4.20000029</value>
         </property>
         <property name="name">
-            <value>Group1</value>
+            <value>Ambiance</value>
         </property>
         <relationship name="effectChain">
             <destination>{27e20e57-f9e2-4904-91b4-79d45b4ade92}</destination>
