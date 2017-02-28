@@ -78,6 +78,7 @@
         <relationship name="automationTracks">
             <destination>{990cc288-7ab1-41db-a17c-819436da77bc}</destination>
             <destination>{d2675370-52f3-49cf-89a6-d43a41b886a7}</destination>
+            <destination>{73bcc717-4b8f-4bbe-aea6-ef99b5cd467e}</destination>
         </relationship>
         <relationship name="modules">
             <destination>{057e54e5-c2f6-48b0-88f5-cc6b49daeeef}</destination>
@@ -121,6 +122,7 @@
             <destination>{bc30d306-ef77-4529-8014-dbf97f7d520b}</destination>
             <destination>{30beccd3-c900-41cf-8e63-a62466fcd5d1}</destination>
             <destination>{c89061c9-ac55-4fe2-b0b7-81dd2f28f921}</destination>
+            <destination>{e5b05f53-68e0-488c-b735-79a2b1acb64b}</destination>
         </relationship>
     </object>
     <object class="EventMixerMaster" id="{0f22fc8c-7bbd-42cf-ad76-9de485a1548d}">
@@ -202,6 +204,17 @@
         </relationship>
         <relationship name="objectBeingAutomated">
             <destination>{88462ef8-a298-4717-b2b3-32b9f2f37cc5}</destination>
+        </relationship>
+    </object>
+    <object class="AutomationTrack" id="{73bcc717-4b8f-4bbe-aea6-ef99b5cd467e}">
+        <property name="nameOfPropertyBeingAutomated">
+            <value>pitch</value>
+        </property>
+        <relationship name="automationCurves">
+            <destination>{e5b05f53-68e0-488c-b735-79a2b1acb64b}</destination>
+        </relationship>
+        <relationship name="objectBeingAutomated">
+            <destination>{057e54e5-c2f6-48b0-88f5-cc6b49daeeef}</destination>
         </relationship>
     </object>
     <object class="SingleSound" id="{057e54e5-c2f6-48b0-88f5-cc6b49daeeef}">
@@ -342,6 +355,12 @@
             <destination>{02cb9d7e-dbc4-48b8-a7da-b5c952a240fb}</destination>
         </relationship>
     </object>
+    <object class="AutomationCurve" id="{e5b05f53-68e0-488c-b735-79a2b1acb64b}">
+        <relationship name="automationPoints">
+            <destination>{a16d7248-5868-4320-b614-89aa3eedc3f6}</destination>
+            <destination>{d1844727-052b-491c-8286-736d211a4e4c}</destination>
+        </relationship>
+    </object>
     <object class="MixerBusEffectChain" id="{1110e8f3-ffd5-4e46-99cc-792cae4a192c}">
         <relationship name="effects">
             <destination>{d65d8f41-f130-442f-9bc3-ba9c084162ee}</destination>
@@ -403,7 +422,7 @@
             <value>0</value>
         </property>
         <property name="value">
-            <value>-80</value>
+            <value>-68.0174026</value>
         </property>
         <property name="curveShape">
             <value>0.31419751</value>
@@ -414,15 +433,15 @@
             <value>9.9671862182116495</value>
         </property>
         <property name="value">
-            <value>-41.0347824</value>
+            <value>-45.5282593</value>
         </property>
     </object>
     <object class="AutomationPoint" id="{ebce6066-cc32-40ec-92c6-b78f4f1ac7d9}">
         <property name="position">
-            <value>2.0754716981132075</value>
+            <value>2.272354388843314</value>
         </property>
         <property name="value">
-            <value>-68.0174026</value>
+            <value>-58.0173874</value>
         </property>
         <property name="curveShape">
             <value>-0.0958659127</value>
@@ -546,6 +565,22 @@
         </property>
         <property name="curveShape">
             <value>1</value>
+        </property>
+    </object>
+    <object class="AutomationPoint" id="{a16d7248-5868-4320-b614-89aa3eedc3f6}">
+        <property name="position">
+            <value>0</value>
+        </property>
+        <property name="value">
+            <value>-23.347826</value>
+        </property>
+    </object>
+    <object class="AutomationPoint" id="{d1844727-052b-491c-8286-736d211a4e4c}">
+        <property name="position">
+            <value>10</value>
+        </property>
+        <property name="value">
+            <value>2.91304398</value>
         </property>
     </object>
     <object class="MixerBusFader" id="{d65d8f41-f130-442f-9bc3-ba9c084162ee}"/>

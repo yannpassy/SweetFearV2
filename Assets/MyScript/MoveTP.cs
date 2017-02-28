@@ -185,7 +185,6 @@ public class MoveTP : MonoBehaviour
         }
         else if (etat == Etat.teleportation)
         {
-            this.gameObject.GetComponent<AudioSource>().Play();
 
             this.transform.position = new Vector3(nouvellePosition.x, nouvellePosition.y + 0.066f, nouvellePosition.z);
 
