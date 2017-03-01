@@ -5,6 +5,10 @@ using DG.Tweening;
 
 public class MoveTP : MonoBehaviour
 {
+	public string myAmbiance = "event:/AmbianceCreepy";
+	FMOD.Studio.EventInstance eventCreepy;
+	FMOD.Studio.ParameterInstance parameterCreepy;
+
     public Transform objectReference;
     public OVRCameraRig cameraOVR;
     private enum Etat { Look, AnalyseCommande, fadeOut, teleportation, fadeIn, demiTour, cristauxPowers, ouvertureRouge };
@@ -51,12 +55,46 @@ public class MoveTP : MonoBehaviour
         vide = GameObject.Find("Vide");
         etat = Etat.Look;
         obtentionClefRouge = false;
+		eventCreepy = FMODUnity.RuntimeManager.CreateInstance (myAmbiance);
+		eventCreepy.start ();
+		eventCreepy.getParameter ("creep", out parameterCreepy);
        
     }
 
     // Update is called once per frame
     void Update()
     {
+		if (Vector3.Distance (this.transform.position, Timmy.transform.position) > 10) {
+			parameterCreepy.setValue (0.0f);
+		}
+		if (Vector3.Distance (this.transform.position, Timmy.transform.position) > 9 && Vector3.Distance(this.transform.position, Timmy.transform.position) < 10) {
+			parameterCreepy.setValue (2.0f);
+		}
+		if (Vector3.Distance (this.transform.position, Timmy.transform.position) > 7 && Vector3.Distance(this.transform.position, Timmy.transform.position) < 8) {
+			parameterCreepy.setValue (4.0f);
+		}
+		if (Vector3.Distance (this.transform.position, Timmy.transform.position) > 6 && Vector3.Distance(this.transform.position, Timmy.transform.position) < 7) {
+			parameterCreepy.setValue (5.0f);
+		}
+		if (Vector3.Distance (this.transform.position, Timmy.transform.position) > 5 &&  Vector3.Distance(this.transform.position, Timmy.transform.position) < 6) {
+			parameterCreepy.setValue (6.0f);
+		}
+		if (Vector3.Distance (this.transform.position, Timmy.transform.position) > 4 &&  Vector3.Distance(this.transform.position, Timmy.transform.position) < 5) {
+			parameterCreepy.setValue (7.0f);
+		}
+		if (Vector3.Distance (this.transform.position, Timmy.transform.position) > 3 &&  Vector3.Distance(this.transform.position, Timmy.transform.position) < 4) {
+			parameterCreepy.setValue (8.0f);
+		}
+		if (Vector3.Distance (this.transform.position, Timmy.transform.position) > 2 &&  Vector3.Distance(this.transform.position, Timmy.transform.position) < 3) {
+			parameterCreepy.setValue (9.0f);
+		}
+		if (Vector3.Distance (this.transform.position, Timmy.transform.position) > 1 &&  Vector3.Distance(this.transform.position, Timmy.transform.position) < 2) {
+			parameterCreepy.setValue (10.0f);
+		}
+		if (Vector3.Distance (this.transform.position, Timmy.transform.position) < 1.0f) {
+			eventCreepy.release ();
+		}
+
         //affiche la souris
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Escape))
             Screen.lockCursor = false;
@@ -73,7 +111,6 @@ public class MoveTP : MonoBehaviour
                 cube.transform.position = nouvellePosition;
                 tagTouchee = hit.collider.tag;
                 cristauxPowers = hit.collider.gameObject;
-                Debug.Log(cristauxPowers);
         }
         else
         {
@@ -185,9 +222,10 @@ public class MoveTP : MonoBehaviour
         }
         else if (etat == Etat.teleportation)
         {
-            this.gameObject.GetComponent<AudioSource>().Play();
 
             this.transform.position = new Vector3(nouvellePosition.x, nouvellePosition.y + 0.066f, nouvellePosition.z);
+
+			FMODUnity.RuntimeManager.PlayOneShot ("event:/instant-teleport", this.transform.position);	
 
             //cameraOVR.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + 0.066f + 0.7f, this.transform.position.z);
 
