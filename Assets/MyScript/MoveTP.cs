@@ -31,7 +31,7 @@ public class MoveTP : MonoBehaviour
 
     public Camera cam;
 
-    public GameObject cube;
+    public GameObject curseur;
     public GameObject cristauxPowers;
     public GameObject clef;
     public GameObject porte;
@@ -96,19 +96,18 @@ public class MoveTP : MonoBehaviour
 		}
 
         //affiche la souris
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Escape))
-            Screen.lockCursor = false;
+        /*if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Escape))
+            Screen.lockCursor = false;*/
 
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);  // pour l'oculus, mettre centreCamera par Input.mousePosition
         RaycastHit hit;
-        dist = Vector3.Distance(anciennePositionCube, cube.transform.position);
+        dist = Vector3.Distance(anciennePositionCube, curseur.transform.position);
 
         
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+		if (Physics.Raycast(ray, out hit, Mathf.Infinity))
         {
-                cube.SetActive(true);
                 nouvellePosition = hit.point;
-                cube.transform.position = nouvellePosition;
+                curseur.transform.position = nouvellePosition;
                 tagTouchee = hit.collider.tag;
                 cristauxPowers = hit.collider.gameObject;
         }
@@ -120,62 +119,62 @@ public class MoveTP : MonoBehaviour
 			tagTouchee = hit.collider.tag;
 			cristauxPowers = hit.collider.gameObject;
 		}*/
-        else
+		else if(Vector3.Distance(this.transform.position, curseur.transform.position) > distZoneTp)
         {
-            cube.SetActive(false);
+            curseur.SetActive(false);
             chrono = 0;
         }
+		else if(Vector3.Distance(this.transform.position, curseur.transform.position) < distZoneTp){
+			curseur.SetActive(true);
+		}
 
         if(Vector3.Distance(this.transform.position, Timmy.transform.position) < 0.2f)
         {
             SceneManager.LoadScene("EcranGameOver");
         }
         //affiche ou affiche pas le curseur
-        if (Vector3.Distance(this.transform.position, cube.transform.position) <= distZoneTp)
-        {
-			//cube.GetComponent<MeshRenderer> ().enabled = true;
-        }
-		if (Vector3.Distance(this.transform.position, cube.transform.position) > distZoneTp)
-        {
-			//cube.GetComponent<MeshRenderer> ().enabled = false;
-        }
 
 
         if (etat == Etat.Look)
         {
             if (tagTouchee == "terrain")
             {
-               // cube.GetComponent<MeshRenderer>().material.color = Color.green;
+               // A venir
             }
-            if (tagTouchee == "obstacle" || tagTouchee == "porte")
+            else if (tagTouchee == "obstacle" || tagTouchee == "porte")
             {
-             //   cube.GetComponent<MeshRenderer>().material.color = Color.red;
+               // A venir
             }
-            if (tagTouchee == "CristauxPowers")
+            else if (tagTouchee == "CristauxPowers")
             {
-                //cube.GetComponent<MeshRenderer>().material.color = Color.green;
+               // A venir
             }
-            if (tagTouchee == "serrureRouge" && obtentionClefRouge == true)
+            else if (tagTouchee == "serrureRouge" && obtentionClefRouge == true)
             {
-                cube.SetActive(false);
+                curseur.SetActive(false);
                 clefOuverture.SetActive(true);
                 
             }
             else if(tagTouchee == "serrureRouge" && obtentionClefRouge == false)
             {
                 canvasPorte.SetActive(true);
-                cube.SetActive(true);
+                curseur.SetActive(true);
             }
             else
             {
-                cube.SetActive(true);
+                //curseur.SetActive(true);
                 clefOuverture.SetActive(false);
                 canvasPorte.SetActive(false);
             }
-            if (dist < 0.1f && Vector3.Distance(this.transform.position, cube.transform.position) <= distZoneTp)
+			if (dist < 0.1f) {
+				curseur.transform.GetChild (0).GetComponent<Animation> ().Play ();
+			}
+
+            if (dist < 0.5f && Vector3.Distance(this.transform.position, curseur.transform.position) <= distZoneTp)
             {
                 chrono += Time.deltaTime;
             }
+
             else
             {
                 chrono = 0;
@@ -194,11 +193,11 @@ public class MoveTP : MonoBehaviour
            if (tagTouchee == "terrain")
             {
                 etat = Etat.fadeOut;
-                cube.GetComponent<MeshRenderer>().material.color = Color.green;
+                //curseur.GetComponent<MeshRenderer>().material.color = Color.green;
             }
             if (tagTouchee == "obstacle" || tagTouchee == "porte")
             {
-                cube.GetComponent<MeshRenderer>().material.color = Color.red;
+                //curseur.GetComponent<MeshRenderer>().material.color = Color.red;
                 chrono = 0;
                 etat = Etat.Look;
             }
@@ -214,7 +213,7 @@ public class MoveTP : MonoBehaviour
             if(tagTouchee == "CristauxPowers")
             {
                 etat = Etat.cristauxPowers;
-                cube.GetComponent<MeshRenderer>().material.color = Color.green;
+                //curseur.GetComponent<MeshRenderer>().material.color = Color.green;
             }
         }
         else if (etat == Etat.fadeOut)
@@ -243,6 +242,7 @@ public class MoveTP : MonoBehaviour
         }
         else if (etat == Etat.fadeIn)
         {
+			curseur.transform.GetChild (0).GetComponent<Animation> ().Stop ();
             cam.GetComponent<OVRScreenFadeIn>().enabled = true;
             chronoFadeIn += Time.deltaTime;
             if (chronoFadeIn > cam.GetComponent<OVRScreenFadeIn>().fadeTime)
