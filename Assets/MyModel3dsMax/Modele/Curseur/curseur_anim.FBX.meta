@@ -1,28 +1,28 @@
 fileFormatVersion: 2
-guid: ed95beb3c2ab34c45934e82e0709cd48
-timeCreated: 1481793689
+guid: 698feb98d19597a419b44b43960337a2
+timeCreated: 1488376382
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
     100000: //RootNode
-    100002: Torus0
+    100002: Torus 0
     100004: Torus1
     100006: Torus2
     100008: Torus3
     100010: Torus4
     400000: //RootNode
-    400002: Torus0
+    400002: Torus 0
     400004: Torus1
     400006: Torus2
     400008: Torus3
     400010: Torus4
-    2300000: Torus0
+    2300000: Torus 0
     2300002: Torus1
     2300004: Torus2
     2300006: Torus3
     2300008: Torus4
-    3300000: Torus0
+    3300000: Torus 0
     3300002: Torus1
     3300004: Torus2
     3300006: Torus3
@@ -30,10 +30,11 @@ ModelImporter:
     4300000: Torus3
     4300002: Torus1
     4300004: Torus2
-    4300006: Torus0
+    4300006: Torus 0
     4300008: Torus4
-    7400000: Take 001
+    7400000: Curseur_anim_simple
     9500000: //RootNode
+    11100000: //RootNode
   materials:
     importMaterials: 1
     materialName: 0
@@ -54,7 +55,47 @@ ModelImporter:
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Curseur_anim_simple
+      takeName: Curseur_anim_simple
+      firstFrame: 0
+      lastFrame: 100
+      wrapMode: 2
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 1
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Torus 0
+        weight: 1
+      - path: Torus1
+        weight: 1
+      - path: Torus2
+        weight: 1
+      - path: Torus3
+        weight: 1
+      - path: Torus4
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []
@@ -93,10 +134,10 @@ ModelImporter:
     rootMotionBoneName: 
     rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
-    hasExtraRoot: 0
+    hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 1
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

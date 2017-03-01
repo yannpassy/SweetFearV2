@@ -133,11 +133,11 @@ public class MoveTP : MonoBehaviour
         //affiche ou affiche pas le curseur
         if (Vector3.Distance(this.transform.position, cube.transform.position) <= distZoneTp)
         {
-			cube.GetComponent<MeshRenderer> ().enabled = true;
+			//cube.GetComponent<MeshRenderer> ().enabled = true;
         }
 		if (Vector3.Distance(this.transform.position, cube.transform.position) > distZoneTp)
         {
-			cube.GetComponent<MeshRenderer> ().enabled = false;
+			//cube.GetComponent<MeshRenderer> ().enabled = false;
         }
 
 
@@ -145,15 +145,15 @@ public class MoveTP : MonoBehaviour
         {
             if (tagTouchee == "terrain")
             {
-                cube.GetComponent<MeshRenderer>().material.color = Color.green;
+               // cube.GetComponent<MeshRenderer>().material.color = Color.green;
             }
             if (tagTouchee == "obstacle" || tagTouchee == "porte")
             {
-                cube.GetComponent<MeshRenderer>().material.color = Color.red;
+             //   cube.GetComponent<MeshRenderer>().material.color = Color.red;
             }
             if (tagTouchee == "CristauxPowers")
             {
-                cube.GetComponent<MeshRenderer>().material.color = Color.green;
+                //cube.GetComponent<MeshRenderer>().material.color = Color.green;
             }
             if (tagTouchee == "serrureRouge" && obtentionClefRouge == true)
             {
