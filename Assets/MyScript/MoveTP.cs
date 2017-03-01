@@ -41,7 +41,7 @@ public class MoveTP : MonoBehaviour
 
     private Rigidbody rb;
     private float dist;
-    private float distZoneTp = 13.0f;
+    private float distZoneTp = 7.0f;
 
     private bool obtentionClefRouge;
 
@@ -112,6 +112,14 @@ public class MoveTP : MonoBehaviour
                 tagTouchee = hit.collider.tag;
                 cristauxPowers = hit.collider.gameObject;
         }
+		/*if (Physics.Raycast(new Ray(cam.transform.position, cam.transform.rotation*Vector3.forward), out hit, Mathf.Infinity)
+		{
+			cube.SetActive(true);
+			nouvellePosition = hit.point;
+			cube.transform.position = nouvellePosition;
+			tagTouchee = hit.collider.tag;
+			cristauxPowers = hit.collider.gameObject;
+		}*/
         else
         {
             cube.SetActive(false);
@@ -125,11 +133,11 @@ public class MoveTP : MonoBehaviour
         //affiche ou affiche pas le curseur
         if (Vector3.Distance(this.transform.position, cube.transform.position) <= distZoneTp)
         {
-            cube.SetActive(true);
+			cube.GetComponent<MeshRenderer> ().enabled = true;
         }
-        else
+		if (Vector3.Distance(this.transform.position, cube.transform.position) > distZoneTp)
         {
-            cube.SetActive(false);
+			cube.GetComponent<MeshRenderer> ().enabled = false;
         }
 
 
