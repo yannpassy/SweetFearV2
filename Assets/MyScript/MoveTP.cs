@@ -26,7 +26,7 @@ public class MoveTP : MonoBehaviour
     private OVRScreenFadeOut fadeout;
     private OVRScreenFadeIn fadein;
 
-    private Vector3 anciennePositionCube;
+    private Vector3 anciennePositionCurseur;
     private Vector3 PositionCube;
 
     public Camera cam;
@@ -101,12 +101,11 @@ public class MoveTP : MonoBehaviour
 
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);  // pour l'oculus, mettre centreCamera par Input.mousePosition
         RaycastHit hit;
-        dist = Vector3.Distance(anciennePositionCube, curseur.transform.position);
-
         
 		if (Physics.Raycast(ray, out hit, Mathf.Infinity))
         {
                 nouvellePosition = hit.point;
+				anciennePositionCurseur = curseur.transform.position;
                 curseur.transform.position = nouvellePosition;
                 tagTouchee = hit.collider.tag;
                 cristauxPowers = hit.collider.gameObject;
@@ -119,14 +118,6 @@ public class MoveTP : MonoBehaviour
 			tagTouchee = hit.collider.tag;
 			cristauxPowers = hit.collider.gameObject;
 		}*/
-		else if(Vector3.Distance(this.transform.position, curseur.transform.position) > distZoneTp)
-        {
-            curseur.SetActive(false);
-            chrono = 0;
-        }
-		else if(Vector3.Distance(this.transform.position, curseur.transform.position) < distZoneTp){
-			curseur.SetActive(true);
-		}
 
         if(Vector3.Distance(this.transform.position, Timmy.transform.position) < 0.2f)
         {
@@ -137,6 +128,7 @@ public class MoveTP : MonoBehaviour
 
         if (etat == Etat.Look)
         {
+			dist = Vector3.Distance(anciennePositionCurseur, curseur.transform.position);
             if (tagTouchee == "terrain")
             {
                // A venir
@@ -166,20 +158,30 @@ public class MoveTP : MonoBehaviour
                 clefOuverture.SetActive(false);
                 canvasPorte.SetActive(false);
             }
-			if (dist < 0.1f) {
+				
+			if (dist <= 0.02f && Vector3.Distance (this.transform.position, curseur.transform.position) <= distZoneTp) {
 				curseur.transform.GetChild (0).GetComponent<Animation> ().Play ();
+				Debug.Log(dist);
+				chrono += Time.deltaTime;
+			}
+            else 
+            {
+				curseur.transform.GetChild (0).GetComponent<Animation> ().Stop ();
+                chrono = 0;
+                anciennePositionCurseur = nouvellePosition;
+            }
+
+			if(Vector3.Distance(this.transform.position, curseur.transform.position) > distZoneTp)
+			{
+				curseur.SetActive(false);
+				chrono = 0;
 			}
 
-            if (dist < 0.5f && Vector3.Distance(this.transform.position, curseur.transform.position) <= distZoneTp)
-            {
-                chrono += Time.deltaTime;
-            }
 
-            else
-            {
-                chrono = 0;
-                anciennePositionCube = nouvellePosition;
-            }
+			if(Vector3.Distance(this.transform.position, curseur.transform.position) < distZoneTp){
+				curseur.SetActive(true);
+			}
+
 
             if (chrono > 1)
             {
@@ -195,29 +197,35 @@ public class MoveTP : MonoBehaviour
                 etat = Etat.fadeOut;
                 //curseur.GetComponent<MeshRenderer>().material.color = Color.green;
             }
+
+
             if (tagTouchee == "obstacle" || tagTouchee == "porte")
             {
                 //curseur.GetComponent<MeshRenderer>().material.color = Color.red;
                 chrono = 0;
                 etat = Etat.Look;
             }
+
+
             if(tagTouchee == "serrureRouge" && obtentionClefRouge == true)
             {
                 clefOuverture.transform.DORotate(new Vector3(90, 0, 90), 1, 0);
                 etat = Etat.ouvertureRouge;
             }
+
+
             if (tagTouchee == "demi-tour")
             {
                 etat = Etat.demiTour;
             }
+
+
             if(tagTouchee == "CristauxPowers")
             {
                 etat = Etat.cristauxPowers;
                 //curseur.GetComponent<MeshRenderer>().material.color = Color.green;
             }
-        }
-        else if (etat == Etat.fadeOut)
-        {
+        } else if (etat == Etat.fadeOut) {
             cam.GetComponent<OVRScreenFadeOut>().enabled = true;
             chronoFadeOut += Time.deltaTime;
             if (chronoFadeOut > cam.GetComponent<OVRScreenFadeOut>().fadeTime)
@@ -226,9 +234,7 @@ public class MoveTP : MonoBehaviour
                 etat = Etat.teleportation;
                 chronoFadeOut = 0;
             }
-        }
-        else if (etat == Etat.teleportation)
-        {
+        } else if (etat == Etat.teleportation) {
 
             this.transform.position = new Vector3(nouvellePosition.x, nouvellePosition.y + 0.066f, nouvellePosition.z);
 
@@ -239,9 +245,7 @@ public class MoveTP : MonoBehaviour
             //cameraOVR.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + 0.066f + 2.5f, this.transform.position.z);
 
             etat = Etat.fadeIn;
-        }
-        else if (etat == Etat.fadeIn)
-        {
+        } else if (etat == Etat.fadeIn) {
 			curseur.transform.GetChild (0).GetComponent<Animation> ().Stop ();
             cam.GetComponent<OVRScreenFadeIn>().enabled = true;
             chronoFadeIn += Time.deltaTime;
@@ -252,9 +256,7 @@ public class MoveTP : MonoBehaviour
                 chrono = 0;
                 etat = Etat.Look;
             }
-        }
-        else if (etat == Etat.demiTour)
-        {
+        } else if (etat == Etat.demiTour) {
             cam.GetComponent<OVRScreenFadeOut>().enabled = true;
             chronoFadeOut += Time.deltaTime;
             if (chronoFadeOut > cam.GetComponent<OVRScreenFadeOut>().fadeTime)
@@ -271,9 +273,7 @@ public class MoveTP : MonoBehaviour
             //cameraOVR.transform.rotation *= Quaternion.AngleAxis (180, Vector3.up);
             //chrono = 0;
             //etat = Etat.Look;
-        }
-        else if(etat == Etat.cristauxPowers)
-        {
+        } else if(etat == Etat.cristauxPowers) {
             
             cristauxPowers.transform.GetChild(0).gameObject.transform.GetComponent<Rigidbody>().isKinematic = false;
             cristauxPowers.GetComponent<MeshCollider>().enabled = false;
@@ -286,10 +286,7 @@ public class MoveTP : MonoBehaviour
             }
             chrono = 0;
             etat = Etat.Look;
-        }
-
-        else if(etat == Etat.ouvertureRouge)
-        {
+        } else if(etat == Etat.ouvertureRouge) 	{
             StartCoroutine(DeplacementPorte());
             chrono = 0;
             etat = Etat.Look;
