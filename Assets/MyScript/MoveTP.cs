@@ -42,6 +42,8 @@ public class MoveTP : MonoBehaviour
     private Rigidbody rb;
     private float dist;
     private float distZoneTp = 7.0f;
+	private float vitesseAnimation;
+	private Animation anim;
 
     private bool obtentionClefRouge;
 
@@ -104,9 +106,13 @@ public class MoveTP : MonoBehaviour
         
 		if (Physics.Raycast(ray, out hit, Mathf.Infinity))
         {
-                nouvellePosition = hit.point;
-				anciennePositionCurseur = curseur.transform.position;
-                curseur.transform.position = nouvellePosition;
+			anciennePositionCurseur = curseur.transform.position;
+			if (chrono < 1) {
+				nouvellePosition = hit.point;
+				curseur.transform.position = nouvellePosition;
+			} else {
+				curseur.GetComponent<Rigidbody> ().constraints = RigidbodyConstraints.FreezeAll;
+			}
                 tagTouchee = hit.collider.tag;
                 cristauxPowers = hit.collider.gameObject;
         }
@@ -131,11 +137,11 @@ public class MoveTP : MonoBehaviour
 			dist = Vector3.Distance(anciennePositionCurseur, curseur.transform.position);
             if (tagTouchee == "terrain")
             {
-               // A venir
+				curseur.SetActive (true);
             }
             else if (tagTouchee == "obstacle" || tagTouchee == "porte")
             {
-               // A venir
+				curseur.SetActive (false);
             }
             else if (tagTouchee == "CristauxPowers")
             {
@@ -160,9 +166,19 @@ public class MoveTP : MonoBehaviour
             }
 				
 			if (dist <= 0.02f && Vector3.Distance (this.transform.position, curseur.transform.position) <= distZoneTp) {
-				curseur.transform.GetChild (0).GetComponent<Animation> ().Play ();
+				anim = curseur.transform.GetChild (0).GetComponent<Animation> ();
+				anim.Play ();
 				Debug.Log(dist);
 				chrono += Time.deltaTime;
+				if (chrono > 0.25) {
+					anim ["Curseur_anim_simple"].speed = (float)(1.5+((3-1.5)*((chrono-0.25)/(1-0.25))));
+				}
+				if (chrono > 0.5) {
+					anim ["Curseur_anim_simple"].speed = (float)(1.5+((3-1.5)*((chrono-0.25)/(1-0.25))));
+				}
+				if (chrono > 0.75) {
+					anim ["Curseur_anim_simple"].speed = (float)(1.5+((3-1.5)*((chrono-0.25)/(1-0.25))));
+				}
 			}
             else 
             {
@@ -178,7 +194,7 @@ public class MoveTP : MonoBehaviour
 			}
 
 
-			if(Vector3.Distance(this.transform.position, curseur.transform.position) < distZoneTp){
+			if(Vector3.Distance(this.transform.position, curseur.transform.position) < distZoneTp && tagTouchee != "obstacle"){
 				curseur.SetActive(true);
 			}
 
@@ -194,6 +210,7 @@ public class MoveTP : MonoBehaviour
             
            if (tagTouchee == "terrain")
             {
+				curseur.GetComponent<Rigidbody> ().isKinematic = true;
                 etat = Etat.fadeOut;
                 //curseur.GetComponent<MeshRenderer>().material.color = Color.green;
             }
@@ -256,6 +273,7 @@ public class MoveTP : MonoBehaviour
                 chrono = 0;
                 etat = Etat.Look;
             }
+
         } else if (etat == Etat.demiTour) {
             cam.GetComponent<OVRScreenFadeOut>().enabled = true;
             chronoFadeOut += Time.deltaTime;

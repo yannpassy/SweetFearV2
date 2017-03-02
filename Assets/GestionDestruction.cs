@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class GestionDestruction : MonoBehaviour {
     public float[] dur = new float[10];
+	public float[] durationAvantFade = new float[10];
     public GameObject[] mesGameObject = new GameObject[10];
     public float chrono;
 	// Use this for initialization
@@ -56,5 +58,10 @@ public class GestionDestruction : MonoBehaviour {
         {
             mesGameObject[9].GetComponent<ActiveTrueFalse>().enabled = true;
         }
+
+		if (chronoOld < durationAvantFade[0] && chrono >= durationAvantFade[0])
+		{
+			mesGameObject [0].transform.GetChild(31).GetComponent<Material> ().DOColor (Color.yellow, 1.0f);
+		}
     }
 }
