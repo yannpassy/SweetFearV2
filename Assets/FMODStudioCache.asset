@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EditorBanks:
   - {fileID: 114153070308261834}
-  - {fileID: 114587480581308614}
+  - {fileID: 114104673836916962}
   EditorEvents:
   - {fileID: 114214032889540112}
   - {fileID: 114960862324785926}
@@ -21,9 +21,9 @@ MonoBehaviour:
   - {fileID: 114186156051860044}
   - {fileID: 114637629429256500}
   - {fileID: 114285406661569284}
-  MasterBankRef: {fileID: 114587480581308614}
+  MasterBankRef: {fileID: 114104673836916962}
   StringsBankRef: {fileID: 114153070308261834}
-  stringsBankWriteTime: 636238883413091795
+  stringsBankWriteTime: 636239749501036568
   cacheVersion: 2
 --- !u!114 &11400262
 MonoBehaviour:
@@ -5678,6 +5678,25 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 0
+--- !u!114 &114104673836916962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: C:\Users\Tuki\Documents\GitHub\SweetFearV2\SonSweetFear\Build\Desktop\Master
+    Bank.bank
+  lastModified: 636239749500946441
+  LoadResult: 0
+  FileSizes:
+  - Name: Desktop
+    Value: 5906144
+  Exists: 1
 --- !u!114 &114106211026924052
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6206,7 +6225,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Path: SonSweetFear\Build\Desktop\Master Bank.strings.bank
-  lastModified: 636238883413091795
+  lastModified: 636239749501036568
   LoadResult: 0
   FileSizes:
   - Name: Desktop
@@ -6746,7 +6765,7 @@ MonoBehaviour:
   Path: event:/Effondrement
   guid: 7df5d7058a0b594c9b3abca1aef4948b
   Banks:
-  - {fileID: 114587480581308614}
+  - {fileID: 114104673836916962}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -7202,12 +7221,12 @@ MonoBehaviour:
   Path: event:/AmbianceCreepy
   guid: 1f89dc8c7790994494f95f44441c9af0
   Banks:
-  - {fileID: 114587480581308614}
+  - {fileID: 114104673836916962}
   IsStream: 1
   Is3D: 1
   IsOneShot: 0
   Parameters:
-  - {fileID: 114842283368600960}
+  - {fileID: 114768088686446554}
   MinDistance: 1
   MaxDistance: 20
 --- !u!114 &114214936388123534
@@ -8222,7 +8241,7 @@ MonoBehaviour:
   Path: "event:/Rivi\xE8re"
   guid: cb974cbf3dc4bc4aae8391df785db7b7
   Banks:
-  - {fileID: 114587480581308614}
+  - {fileID: 114104673836916962}
   IsStream: 1
   Is3D: 1
   IsOneShot: 0
@@ -8934,7 +8953,7 @@ MonoBehaviour:
   Path: event:/SonAmbianceHiver
   guid: 6b5fcb2116d0f442af8a3328865ce8a6
   Banks:
-  - {fileID: 114587480581308614}
+  - {fileID: 114104673836916962}
   IsStream: 1
   Is3D: 1
   IsOneShot: 0
@@ -12775,7 +12794,7 @@ MonoBehaviour:
   Path: event:/instant-teleport
   guid: 9a0f2b83cc399946b4479bc1b523087b
   Banks:
-  - {fileID: 114587480581308614}
+  - {fileID: 114104673836916962}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -14515,6 +14534,21 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 0
   MaxDistance: 0
+--- !u!114 &114768088686446554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: creep
+  Min: 0
+  Max: 10
+  Default: 0
 --- !u!114 &114770154567374602
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17110,7 +17144,7 @@ MonoBehaviour:
   Path: event:/DestructionCristaux
   guid: 589368d9e4003343a45f876934a33931
   Banks:
-  - {fileID: 114587480581308614}
+  - {fileID: 114104673836916962}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
