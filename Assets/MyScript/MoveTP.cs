@@ -170,7 +170,7 @@ public class MoveTP : MonoBehaviour
 			if (dist <= 0.02f && Vector3.Distance (this.transform.position, curseur.transform.position) <= distZoneTp) {
 				anim = curseur.transform.GetChild (0).gameObject.GetComponent<Animation> ();
 				anim.Play ();
-				Debug.Log(dist);
+				//Debug.Log(dist);
 				chrono += Time.deltaTime;
 				if (chrono > 0.25) {
 					anim ["Curseur_anim_simple"].speed = (float)(1.5+((3-1.5)*((chrono-0.25)/(1-0.25))));
@@ -213,6 +213,8 @@ public class MoveTP : MonoBehaviour
            if (tagTouchee == "terrain")
             {
 				curseur.GetComponent<Rigidbody> ().isKinematic = true;
+				cam.GetComponent<OVRScreenFadeOut>().enabled = true;
+				cam.GetComponent<OVRScreenFadeOut> ().StarFadeOut ();
                 etat = Etat.fadeOut;
                 //curseur.GetComponent<MeshRenderer>().material.color = Color.green;
             }
@@ -245,11 +247,9 @@ public class MoveTP : MonoBehaviour
                 //curseur.GetComponent<MeshRenderer>().material.color = Color.green;
             }
         } else if (etat == Etat.fadeOut) {
-            cam.GetComponent<OVRScreenFadeOut>().enabled = true;
             chronoFadeOut += Time.deltaTime;
             if (chronoFadeOut > cam.GetComponent<OVRScreenFadeOut>().fadeTime)
-            {
-                cam.GetComponent<OVRScreenFadeOut>().enabled = false;
+			{
                 etat = Etat.teleportation;
                 chronoFadeOut = 0;
             }
@@ -259,6 +259,8 @@ public class MoveTP : MonoBehaviour
 
 			FMODUnity.RuntimeManager.PlayOneShot ("event:/instant-teleport", this.transform.position);	
 
+			cam.GetComponent<OVRScreenFadeOut> ().StartFadeIn ();
+
             //cameraOVR.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + 0.066f + 0.7f, this.transform.position.z);
 
             //cameraOVR.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + 0.066f + 2.5f, this.transform.position.z);
@@ -266,13 +268,12 @@ public class MoveTP : MonoBehaviour
             etat = Etat.fadeIn;
         } else if (etat == Etat.fadeIn) {
 			curseur.transform.GetChild (0).GetComponent<Animation> ().Stop ();
-            cam.GetComponent<OVRScreenFadeIn>().enabled = true;
             chronoFadeIn += Time.deltaTime;
-            if (chronoFadeIn > cam.GetComponent<OVRScreenFadeIn>().fadeTime)
+            if (chronoFadeIn > cam.GetComponent<OVRScreenFadeOut>().fadeTime)
             {
-                cam.GetComponent<OVRScreenFadeIn>().enabled = false;
                 chronoFadeIn = 0;
                 chrono = 0;
+				cam.GetComponent<OVRScreenFadeOut> ().enabled = false;
                 etat = Etat.Look;
             }
 

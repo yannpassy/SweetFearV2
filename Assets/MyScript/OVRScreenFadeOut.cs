@@ -8,7 +8,7 @@ public class OVRScreenFadeOut : MonoBehaviour {
 	/// <summary>
 	/// The initial screen color.
 	/// </summary>
-	public Color fadeColor = new Color(0.00f, 0.00f, 0.00f, 1.0f);
+	public Color fadeColor = new Color(0.01f, 0.01f, 0.01f, 1.0f);
 
 	private Material fadeMaterial = null;
 	private bool isFading = false;
@@ -21,9 +21,19 @@ public class OVRScreenFadeOut : MonoBehaviour {
 	}
 
 	public void OnEnable(){
+		//StartCoroutine (FadeOut());
+		Debug.Log("enable");
+	}
+
+	public void StarFadeOut(){
+		Debug.Log("FadeOut");
 		StartCoroutine (FadeOut());
 	}
 
+	public void StartFadeIn(){
+		Debug.Log("FadeIn");
+		StartCoroutine (FadeIn());
+	}
 	void OnDestroy()
 	{
 		if (fadeMaterial != null)
@@ -35,7 +45,7 @@ public class OVRScreenFadeOut : MonoBehaviour {
 	{
 		float elapsedTime = 0.0f;
 		Color color = fadeColor;
-		color.a = 0f;
+		color.a = 0.0f;
 		fadeMaterial.color = color;
 		isFading = true;
 		while (elapsedTime <= fadeTime)
@@ -45,8 +55,24 @@ public class OVRScreenFadeOut : MonoBehaviour {
 			color.a = Mathf.Clamp01(elapsedTime / fadeTime);
 			fadeMaterial.color = color;
 		}
-		isFading = false;
+		//isFading = false;
 
+	}
+
+	public IEnumerator FadeIn()
+	{
+		float elapsedTime = 0.0f;
+		fadeMaterial.color = fadeColor;
+		Color color = fadeColor;
+		//isFading = true;
+		while (elapsedTime < fadeTime)
+		{
+			yield return fadeInstruction;
+			elapsedTime += Time.deltaTime;
+			color.a = 1.0f - Mathf.Clamp01(elapsedTime / fadeTime);
+			fadeMaterial.color = color;
+		}
+		isFading = false;
 	}
 
 	/// <summary>

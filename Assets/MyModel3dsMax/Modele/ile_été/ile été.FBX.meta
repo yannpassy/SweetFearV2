@@ -6,10 +6,19 @@ ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
     100000: //RootNode
+    100002: Buisson
+    100004: "Ile \xE9t\xE9"
     400000: //RootNode
+    400002: Buisson
+    400004: "Ile \xE9t\xE9"
     2300000: //RootNode
+    2300002: Buisson
+    2300004: "Ile \xE9t\xE9"
     3300000: //RootNode
+    3300002: Buisson
+    3300004: "Ile \xE9t\xE9"
     4300000: "Ile \xE9t\xE9"
+    4300002: Buisson
   materials:
     importMaterials: 1
     materialName: 0
