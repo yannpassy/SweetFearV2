@@ -137,7 +137,8 @@ public class MoveTP : MonoBehaviour
 			dist = Vector3.Distance(anciennePositionCurseur, curseur.transform.position);
             if (tagTouchee == "terrain")
             {
-				curseur.SetActive (true);
+				curseur.transform.GetChild(0).gameObject.SetActive(true);
+				curseur.transform.GetChild (1).gameObject.SetActive (false);
             }
             else if (tagTouchee == "obstacle" || tagTouchee == "porte")
             {
@@ -145,7 +146,8 @@ public class MoveTP : MonoBehaviour
             }
             else if (tagTouchee == "CristauxPowers")
             {
-               // A venir
+				curseur.transform.GetChild (0).gameObject.SetActive (false);
+				curseur.transform.GetChild (1).gameObject.SetActive (true);
             }
             else if (tagTouchee == "serrureRouge" && obtentionClefRouge == true)
             {
@@ -166,7 +168,7 @@ public class MoveTP : MonoBehaviour
             }
 				
 			if (dist <= 0.02f && Vector3.Distance (this.transform.position, curseur.transform.position) <= distZoneTp) {
-				anim = curseur.transform.GetChild (0).GetComponent<Animation> ();
+				anim = curseur.transform.GetChild (0).gameObject.GetComponent<Animation> ();
 				anim.Play ();
 				Debug.Log(dist);
 				chrono += Time.deltaTime;
