@@ -21,6 +21,7 @@ public class GestionDestruction : MonoBehaviour {
         if (chronoOld < dur[0] && chrono >= dur[0])
         {
             mesGameObject[0].GetComponent<ActiveTrueFalse>().enabled = true;
+			FMODUnity.RuntimeManager.PlayOneShot("event:/Effondrement", 
         }
         if (chronoOld < dur[1] && chrono >= dur[1])
         {
