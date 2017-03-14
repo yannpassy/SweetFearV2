@@ -66,6 +66,8 @@ public class MoveTP : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+		//On acccentue le son creepy au fur et a mesure de l'approche de l'ourson
 		if (Vector3.Distance (this.transform.position, Timmy.transform.position) > 10) {
 			parameterCreepy.setValue (0.0f);
 		}
@@ -134,6 +136,14 @@ public class MoveTP : MonoBehaviour
 
         if (etat == Etat.Look)
         {
+			//on part sur un renderer gris pour le curseur
+			curseur.transform.GetChild (0).gameObject.transform.GetChild (0).GetComponent<Renderer>().material.color = Color.grey;
+			curseur.transform.GetChild (0).gameObject.transform.GetChild (1).GetComponent<Renderer>().material.color = Color.grey;
+			curseur.transform.GetChild (0).gameObject.transform.GetChild (2).GetComponent<Renderer>().material.color = Color.grey;
+			curseur.transform.GetChild (0).gameObject.transform.GetChild (3).GetComponent<Renderer>().material.color = Color.grey;
+			curseur.transform.GetChild (0).gameObject.transform.GetChild (4).GetComponent<Renderer>().material.color = Color.grey;
+
+			//On calcule la distance entre l'ancienne position du cube et la nouvelle
 			dist = Vector3.Distance(anciennePositionCurseur, curseur.transform.position);
             if (tagTouchee == "terrain")
             {
@@ -174,12 +184,27 @@ public class MoveTP : MonoBehaviour
 				chrono += Time.deltaTime;
 				if (chrono > 0.25) {
 					anim ["Curseur_anim_simple"].speed = (float)(1.5+((3-1.5)*((chrono-0.25)/(1-0.25))));
+					curseur.transform.GetChild (0).gameObject.transform.GetChild (0).GetComponent<Renderer>().material.color = Color.grey;
+					curseur.transform.GetChild (0).gameObject.transform.GetChild (1).GetComponent<Renderer>().material.color = Color.grey;
+					curseur.transform.GetChild (0).gameObject.transform.GetChild (2).GetComponent<Renderer>().material.color = Color.grey;
+					curseur.transform.GetChild (0).gameObject.transform.GetChild (3).GetComponent<Renderer>().material.color = Color.grey;
+					curseur.transform.GetChild (0).gameObject.transform.GetChild (4).GetComponent<Renderer>().material.color = Color.grey;
 				}
 				if (chrono > 0.5) {
 					anim ["Curseur_anim_simple"].speed = (float)(1.5+((3-1.5)*((chrono-0.25)/(1-0.25))));
+					curseur.transform.GetChild (0).gameObject.transform.GetChild (0).GetComponent<Renderer>().material.color = Color.grey;
+					curseur.transform.GetChild (0).gameObject.transform.GetChild (1).GetComponent<Renderer>().material.color = Color.grey;
+					curseur.transform.GetChild (0).gameObject.transform.GetChild (2).GetComponent<Renderer>().material.color = Color.grey;
+					curseur.transform.GetChild (0).gameObject.transform.GetChild (3).GetComponent<Renderer>().material.color = Color.grey;
+					curseur.transform.GetChild (0).gameObject.transform.GetChild (4).GetComponent<Renderer>().material.color = Color.grey;
 				}
 				if (chrono > 0.75) {
 					anim ["Curseur_anim_simple"].speed = (float)(1.5+((3-1.5)*((chrono-0.25)/(1-0.25))));
+					curseur.transform.GetChild (0).gameObject.transform.GetChild (0).GetComponent<Renderer>().material.color = Color.green;
+					curseur.transform.GetChild (0).gameObject.transform.GetChild (1).GetComponent<Renderer>().material.color = Color.green;
+					curseur.transform.GetChild (0).gameObject.transform.GetChild (2).GetComponent<Renderer>().material.color = Color.green;
+					curseur.transform.GetChild (0).gameObject.transform.GetChild (3).GetComponent<Renderer>().material.color = Color.green;
+					curseur.transform.GetChild (0).gameObject.transform.GetChild (4).GetComponent<Renderer>().material.color = Color.green;
 				}
 			}
             else 
