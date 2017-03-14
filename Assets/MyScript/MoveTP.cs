@@ -293,24 +293,21 @@ public class MoveTP : MonoBehaviour
                 etat = Etat.Look;
             }
 
-        } else if (etat == Etat.demiTour) {
+        }else if (etat == Etat.demiTour){
             cam.GetComponent<OVRScreenFadeOut>().enabled = true;
+            cam.GetComponent<OVRScreenFadeOut>().StarFadeOut();
             chronoFadeOut += Time.deltaTime;
             if (chronoFadeOut > cam.GetComponent<OVRScreenFadeOut>().fadeTime)
             {
-                cam.GetComponent<OVRScreenFadeOut>().enabled = false;
-                this.transform.rotation *= Quaternion.AngleAxis(180, Vector3.up);
-                cameraOVR.transform.rotation *= Quaternion.AngleAxis (180, Vector3.up);
-                etat = Etat.fadeIn;
                 chronoFadeOut = 0;
+                FMODUnity.RuntimeManager.PlayOneShot("event:/instant-teleport", this.transform.position);
+                this.transform.rotation *= Quaternion.AngleAxis(180, Vector3.up);
+                cam.GetComponent<OVRScreenFadeOut>().StartFadeIn();
+                etat = Etat.fadeIn;
             }
 
-            // == le code original
-            //this.transform.rotation *= Quaternion.AngleAxis(180, Vector3.up);
-            //cameraOVR.transform.rotation *= Quaternion.AngleAxis (180, Vector3.up);
-            //chrono = 0;
-            //etat = Etat.Look;
-        } else if(etat == Etat.cristauxPowers) {
+        }
+        else if(etat == Etat.cristauxPowers) {
             
             cristauxPowers.transform.GetChild(0).gameObject.transform.GetComponent<Rigidbody>().isKinematic = false;
             cristauxPowers.GetComponent<MeshCollider>().enabled = false;
