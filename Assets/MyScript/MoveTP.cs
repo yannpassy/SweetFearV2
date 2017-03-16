@@ -9,6 +9,12 @@ public class MoveTP : MonoBehaviour
 	FMOD.Studio.EventInstance eventCreepy;
 	FMOD.Studio.ParameterInstance parameterCreepy;
 	Tween color;
+	Tween color2;
+	Tween color3;
+	Tween color4;
+	Tween color5;
+	Tween tweenPioche;
+
 
     public Transform objectReference;
     public OVRCameraRig cameraOVR;
@@ -19,6 +25,7 @@ public class MoveTP : MonoBehaviour
     private Vector3 nouvellePosition;
 
     private double chrono;
+	private double chronoOld;
     private double chronoFadeOut;
     private double chronoFadeIn;
 
@@ -29,6 +36,7 @@ public class MoveTP : MonoBehaviour
 
     private Vector3 anciennePositionCurseur;
     private Vector3 PositionCube;
+	private Vector3 positionPioche;	
 
     public Camera cam;
 
@@ -37,6 +45,7 @@ public class MoveTP : MonoBehaviour
     public GameObject clef;
     public GameObject porte;
     public GameObject clefOuverture;
+	public GameObject pioche;
     private GameObject vide;
     public GameObject Timmy;
 
@@ -45,16 +54,22 @@ public class MoveTP : MonoBehaviour
     private float distZoneTp = 7.0f;
 	private float vitesseAnimation;
 	private Animation anim;
+	private Animation animPioche;
 
     private bool obtentionClefRouge;
+	private bool destructionCristaux;
 
     public GameObject canvasClef;
     public GameObject canvasPorte;
 
     void Start()
     {
+		destructionCristaux = false;
+		Application.targetFrameRate = 60;
         Screen.lockCursor = true;
         centreCamera = new Vector3(Screen.width / 2.0f, Screen.height / 2.0f, cameraOVR.transform.forward.z);
+		anim = curseur.transform.GetChild (0).gameObject.GetComponent<Animation> ();
+		animPioche = pioche.transform.GetChild (0).gameObject.GetComponent<Animation> ();
         vide = GameObject.Find("Vide");
         etat = Etat.Look;
         obtentionClefRouge = false;
@@ -67,7 +82,8 @@ public class MoveTP : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+		animPioche ["pioche anim"].speed = 6.0f;
+		print (animPioche ["pioche anim"].clip.frameRate);
 		//On acccentue le son creepy au fur et a mesure de l'approche de l'ourson
 		if (Vector3.Distance (this.transform.position, Timmy.transform.position) > 10) {
 			parameterCreepy.setValue (0.0f);
@@ -137,69 +153,71 @@ public class MoveTP : MonoBehaviour
 
         if (etat == Etat.Look)
         {
-			//on part sur un renderer gris pour le curseur
-			curseur.transform.GetChild (0).gameObject.transform.GetChild (0).GetComponent<Renderer>().material.color = Color.black;
-			curseur.transform.GetChild (0).gameObject.transform.GetChild (1).GetComponent<Renderer>().material.color = Color.black;
-			curseur.transform.GetChild (0).gameObject.transform.GetChild (2).GetComponent<Renderer>().material.color = Color.black;
-			curseur.transform.GetChild (0).gameObject.transform.GetChild (3).GetComponent<Renderer>().material.color = Color.black;
-			curseur.transform.GetChild (0).gameObject.transform.GetChild (4).GetComponent<Renderer>().material.color = Color.black;
-
-			//On calcule la distance entre l'ancienne position du cube et la nouvelle
-			dist = Vector3.Distance(anciennePositionCurseur, curseur.transform.position);
-            if (tagTouchee == "terrain")
-            {
-				curseur.transform.GetChild(0).gameObject.SetActive(true);
-				curseur.transform.GetChild (1).gameObject.SetActive (false);
-            }
-            else if (tagTouchee == "obstacle" || tagTouchee == "porte")
-            {
-				curseur.SetActive (false);
-            }
-            else if (tagTouchee == "CristauxPowers")
-            {
-				curseur.transform.GetChild (0).gameObject.SetActive (false);
-				curseur.transform.GetChild (1).gameObject.SetActive (true);
-            }
-            else if (tagTouchee == "serrureRouge" && obtentionClefRouge == true)
-            {
-                curseur.SetActive(false);
-                clefOuverture.SetActive(true);
+			if (destructionCristaux == false) {
+				//On calcule la distance entre l'ancienne position du cube et la nouvelle
+				dist = Vector3.Distance (anciennePositionCurseur, curseur.transform.position);
+				if (tagTouchee == "terrain") {
+					curseur.transform.GetChild (0).gameObject.SetActive (true);
+					curseur.transform.GetChild (1).gameObject.SetActive (false);
+					pioche.SetActive (false);
+				} else if (tagTouchee == "obstacle" || tagTouchee == "porte") {
+					curseur.SetActive (false);
+					pioche.SetActive (false);
+				} else if (tagTouchee == "CristauxPowers") {
+					curseur.transform.GetChild (0).gameObject.SetActive (false);
+					curseur.transform.GetChild (1).gameObject.SetActive (true);
+					pioche.SetActive (true);
+					pioche.transform.position = cam.transform.position + cam.transform.rotation * new Vector3 (0, 0, 0.4f);
+				} else if (tagTouchee == "serrureRouge" && obtentionClefRouge == true) {
+					curseur.SetActive (false);
+					clefOuverture.SetActive (true);
+					pioche.SetActive (false);
                 
-            }
-            else if(tagTouchee == "serrureRouge" && obtentionClefRouge == false)
-            {
-                canvasPorte.SetActive(true);
-                curseur.SetActive(true);
-            }
-            else
-            {
-                //curseur.SetActive(true);
-                clefOuverture.SetActive(false);
-                canvasPorte.SetActive(false);
-            }
+				} else if (tagTouchee == "serrureRouge" && obtentionClefRouge == false) {
+					canvasPorte.SetActive (true);
+					curseur.SetActive (true);
+					pioche.SetActive (false);
+				} else {
+					//curseur.SetActive(true);
+					clefOuverture.SetActive (false);
+					canvasPorte.SetActive (false);
+				}
+			} else {
+				StartCoroutine (FinDestructionCristaux());
+			}
 				
 			if (dist <= 0.02f && Vector3.Distance (this.transform.position, curseur.transform.position) <= distZoneTp) {
-				anim = curseur.transform.GetChild (0).gameObject.GetComponent<Animation> ();
 				anim.Play ();
 				//Debug.Log(dist);
+				chronoOld = chrono;
 				chrono += Time.deltaTime;
-				if (chrono > 0.25) {
+				if (chronoOld < 0.25 && chrono >= 0.25) {
+					anim ["Curseur_anim_simple"].speed = (float)(1.5+((3-1.5)*((chrono-0.25)/(1-0.25))));
+					color = curseur.transform.GetChild (0).gameObject.transform.GetChild (0).GetComponent<Renderer> ().material.DOColor (Color.green, 1.25f);
+					color2 = curseur.transform.GetChild (0).gameObject.transform.GetChild (1).GetComponent<Renderer> ().material.DOColor (Color.green,1.25f);
+					color3 = curseur.transform.GetChild (0).gameObject.transform.GetChild (2).GetComponent<Renderer> ().material.DOColor (Color.green,1.25f);
+					color4 = curseur.transform.GetChild (0).gameObject.transform.GetChild (3).GetComponent<Renderer> ().material.DOColor (Color.green,1.25f);
+					color5 = curseur.transform.GetChild (0).gameObject.transform.GetChild (4).GetComponent<Renderer> ().material.DOColor (Color.green,1.25f);
+				}
+				if (chronoOld < 0.5 && chrono >= 0.5) {
 					anim ["Curseur_anim_simple"].speed = (float)(1.5+((3-1.5)*((chrono-0.25)/(1-0.25))));
 				}
-				if (chrono > 0.5) {
+				if (chronoOld < 0.75 && chrono >= 0.75) {
 					anim ["Curseur_anim_simple"].speed = (float)(1.5+((3-1.5)*((chrono-0.25)/(1-0.25))));
-				}
-				if (chrono > 0.75) {
-					anim ["Curseur_anim_simple"].speed = (float)(1.5+((3-1.5)*((chrono-0.25)/(1-0.25))));
-					curseur.transform.GetChild (0).gameObject.transform.GetChild (0).GetComponent<Renderer> ().material.DOColor (Color.green, 0.5f);
-					curseur.transform.GetChild (0).gameObject.transform.GetChild (1).GetComponent<Renderer> ().material.DOColor (Color.green, 0.5f);
-					curseur.transform.GetChild (0).gameObject.transform.GetChild (2).GetComponent<Renderer> ().material.DOColor (Color.green, 0.5f);
-					curseur.transform.GetChild (0).gameObject.transform.GetChild (3).GetComponent<Renderer> ().material.DOColor (Color.green, 0.5f);
-					curseur.transform.GetChild (0).gameObject.transform.GetChild (4).GetComponent<Renderer> ().material.DOColor (Color.green, 0.5f);
 				}
 			}
             else 
             {
+				curseur.transform.GetChild (0).gameObject.transform.GetChild (0).GetComponent<Renderer>().material.color = Color.grey;
+				curseur.transform.GetChild (0).gameObject.transform.GetChild (1).GetComponent<Renderer>().material.color = Color.grey;
+				curseur.transform.GetChild (0).gameObject.transform.GetChild (2).GetComponent<Renderer>().material.color = Color.grey;
+				curseur.transform.GetChild (0).gameObject.transform.GetChild (3).GetComponent<Renderer>().material.color = Color.grey;
+				curseur.transform.GetChild (0).gameObject.transform.GetChild (4).GetComponent<Renderer>().material.color = Color.grey;
+				color.Kill ();
+				color2.Kill ();
+				color3.Kill ();
+				color4.Kill ();
+				color5.Kill ();
 				curseur.transform.GetChild (0).GetComponent<Animation> ().Stop ();
                 chrono = 0;
                 anciennePositionCurseur = nouvellePosition;
@@ -287,6 +305,12 @@ public class MoveTP : MonoBehaviour
             chronoFadeIn += Time.deltaTime;
             if (chronoFadeIn > cam.GetComponent<OVRScreenFadeOut>().fadeTime)
             {
+				//on part sur un renderer noir pour le curseur
+				curseur.transform.GetChild (0).gameObject.transform.GetChild (0).GetComponent<Renderer>().material.color = Color.black;
+				curseur.transform.GetChild (0).gameObject.transform.GetChild (1).GetComponent<Renderer>().material.color = Color.black;
+				curseur.transform.GetChild (0).gameObject.transform.GetChild (2).GetComponent<Renderer>().material.color = Color.black;
+				curseur.transform.GetChild (0).gameObject.transform.GetChild (3).GetComponent<Renderer>().material.color = Color.black;
+				curseur.transform.GetChild (0).gameObject.transform.GetChild (4).GetComponent<Renderer>().material.color = Color.black;
                 chronoFadeIn = 0;
                 chrono = 0;
 				cam.GetComponent<OVRScreenFadeOut> ().enabled = false;
@@ -310,6 +334,9 @@ public class MoveTP : MonoBehaviour
         else if(etat == Etat.cristauxPowers) {
             
             cristauxPowers.transform.GetChild(0).gameObject.transform.GetComponent<Rigidbody>().isKinematic = false;
+			tweenPioche = pioche.transform.DOMove (cristauxPowers.transform.position, 0.35f);
+			StartCoroutine (Pioche ());
+			destructionCristaux = true;
             cristauxPowers.GetComponent<MeshCollider>().enabled = false;
             if (cristauxPowers.transform.FindChild("Clef"))
             {
@@ -344,5 +371,17 @@ public class MoveTP : MonoBehaviour
         Destroy(clef);
         canvasClef.SetActive(true);
     }
+
+	IEnumerator Pioche ()
+	{
+		yield return new WaitForSeconds (0.55f);
+		//pioche.transform.position = cam.transform.position + cam.transform.rotation * Vector3.forward * 2.0f;
+		pioche.SetActive (false);
+	}	
+
+	IEnumerator FinDestructionCristaux (){
+		yield return new WaitForSeconds (0.55f);
+		destructionCristaux = false;
+	}
 
 }
