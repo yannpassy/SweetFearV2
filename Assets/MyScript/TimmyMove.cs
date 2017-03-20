@@ -18,7 +18,7 @@ public class TimmyMove : MonoBehaviour
     private etat etatTimmy;
     private float champDeVision;
     private float pointCheminApproximation;
-    private float vitesse;
+	public float vitesse;
     private float rotationSpeed;
 
     // Use this for initialization
@@ -37,7 +37,7 @@ public class TimmyMove : MonoBehaviour
 
         champDeVision = 5.0f;
         pointCheminApproximation = 0.5f;
-        vitesse = 1.0f;
+        vitesse = 0.4f;
 
         rotationSpeed = 50.0f;
         etatTimmy = etat.patrouille;
