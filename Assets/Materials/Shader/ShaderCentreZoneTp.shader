@@ -4,7 +4,7 @@
 	}
 	
 	SubShader {
-		Tags { "RenderType"="Opaque"  "Queue" = "Geometry+1" }
+		Tags { "RenderType"="Transparent"  "Queue" = "Transparent+1" }
 		LOD 200
 			ColorMask RGB
 			Cull Back
