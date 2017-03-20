@@ -8,22 +8,47 @@ public class TextFade : MonoBehaviour {
 	private float duration;
 	private float chrono;
 	private float chronoOld;
+	private bool passage;
+	Color myColor;
 	// Use this for initialization
 	void Start () {
-		duration = 4;
+		passage = false;
+		duration = 1;
 		tmp.text = "Bienvenue dans ce monde";
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		FadeOutText ();
-			
+		chrono += Time.deltaTime;
+
+		if (passage == false) {
+			FadeInText ();
+		}
+		if (passage == true) {
+			FadeOutText ();
+		}
+
 	}
 
 	void FadeOutText(){
-		Color myColor = tmp.color;
-		float ratio = Time.time / duration;
+		myColor = tmp.color;
+		float ratio = chrono / duration;
 		myColor.a = Mathf.Lerp (1, 0, ratio);
 		tmp.color = myColor;
+		if (chrono > duration) {
+			passage = false;
+			chrono = 0;
+		}
 	}	
+
+	void FadeInText(){
+		myColor = tmp.color;
+		float ratio = chrono / duration;
+		myColor.a = Mathf.Lerp (0, 1, ratio);
+		tmp.color = myColor;
+		if (chrono > duration) {
+			passage = true;
+			chrono = 0;
+		}
+	}
 }
