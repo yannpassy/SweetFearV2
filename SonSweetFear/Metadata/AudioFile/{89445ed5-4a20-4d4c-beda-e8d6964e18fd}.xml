@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.01.08.00">
-    <object class="AudioFile" id="{f85b6966-2b04-4ac6-813e-79a198385ffa}">
+    <object class="AudioFile" id="{89445ed5-4a20-4d4c-beda-e8d6964e18fd}">
         <property name="assetPath">
-            <value>lancerdepioche.wav</value>
+            <value>pioche.wav</value>
         </property>
         <property name="frequencyInKHz">
             <value>48</value>
@@ -11,7 +11,7 @@
             <value>2</value>
         </property>
         <property name="length">
-            <value>2.5743541666666667</value>
+            <value>1.7754166666666666</value>
         </property>
         <relationship name="masterAssetFolder">
             <destination>{035ebcf8-90ec-43b8-8af5-f06b05b95bba}</destination>
