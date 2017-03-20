@@ -157,6 +157,9 @@
         <property name="value">
             <value>0.640000045</value>
         </property>
+        <relationship name="modulators">
+            <destination>{10651684-1390-451c-8b6b-e50176200ab2}</destination>
+        </relationship>
     </object>
     <object class="FloatPluginParameter" id="{389aaf0a-6f6b-4a8b-adfb-032ac68847eb}">
         <property name="name">
@@ -189,6 +192,11 @@
         </property>
         <property name="value">
             <value>0</value>
+        </property>
+    </object>
+    <object class="RandomizerModulator" id="{10651684-1390-451c-8b6b-e50176200ab2}">
+        <property name="nameOfPropertyBeingModulated">
+            <value>value</value>
         </property>
     </object>
 </objects>
