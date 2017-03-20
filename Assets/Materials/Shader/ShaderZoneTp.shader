@@ -3,7 +3,7 @@
 		_Color ("Color", Color) = (1,1,1,1)
 	}
 	SubShader {
-		Tags { "RenderType"="Transparent" "Queue" = "Transparent+2" }
+		Tags { "RenderType"="Opaque" "Queue" = "Geometry+2" }
 
 		LOD 200
 		ColorMask RGB

@@ -168,7 +168,7 @@ Transform:
   m_GameObject: {fileID: 8142294}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -21.8, y: 14, z: -3.62}
-  m_LocalScale: {x: 8.209865, y: 7.41285, z: 8.20986}
+  m_LocalScale: {x: 6.1046233, y: 5.5119915, z: 6.1046257}
   m_Children: []
   m_Father: {fileID: 1818967497}
   m_RootOrder: 0
@@ -4452,8 +4452,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1389350603}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -21.8, y: 18.8, z: -3.62}
-  m_LocalScale: {x: 2.906706, y: 2.6245265, z: 2.9067113}
+  m_LocalPosition: {x: -21.8, y: 15.7, z: -3.62}
+  m_LocalScale: {x: 3.4869728, y: 3.1484616, z: 3.486979}
   m_Children: []
   m_Father: {fileID: 1818967497}
   m_RootOrder: 1
@@ -5798,8 +5798,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1818967496}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 105.86, y: -23.8, z: -8.9143}
-  m_LocalScale: {x: 4.856117, y: 1.1613252, z: 4.7529926}
+  m_LocalPosition: {x: 0.100000024, y: -16.1, z: -8.754999}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8142298}
   - {fileID: 1389350604}
@@ -5918,18 +5918,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ce2d4effaf08d2458835414f3753888, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myAmbiance: event:/AmbianceCreepy
   objectReference: {fileID: 0}
   cameraOVR: {fileID: 1202757630}
+  clef: 0
   cam: {fileID: 1114821269}
-  curseur: {fileID: 0}
+  cube: {fileID: 1386986731}
   cristauxPowers: {fileID: 0}
-  clef: {fileID: 0}
-  porte: {fileID: 0}
-  clefOuverture: {fileID: 0}
-  Timmy: {fileID: 0}
-  canvasClef: {fileID: 0}
-  canvasPorte: {fileID: 0}
 --- !u!114 &1835552954
 MonoBehaviour:
   m_ObjectHideFlags: 0
