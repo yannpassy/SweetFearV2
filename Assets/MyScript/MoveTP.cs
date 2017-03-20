@@ -18,7 +18,7 @@ public class MoveTP : MonoBehaviour
 
     public Transform objectReference;
     public OVRCameraRig cameraOVR;
-    private enum Etat { Look, AnalyseCommande, fadeOut, teleportation, fadeIn, demiTour, cristauxPowers, ouvertureRouge };
+    private enum Etat { Look, AnalyseCommande, fadeOut, teleportation, fadeIn, demiTour, cristauxPowers, ouvertureRouge, QuartGauche, QuartDroite };
     Etat etat;
 
     private Vector3 centreCamera;
@@ -273,9 +273,16 @@ public class MoveTP : MonoBehaviour
             {
                 etat = Etat.demiTour;
             }
+            if (tagTouchee == "gauche")
+            {
+                etat = Etat.QuartGauche;
+            }
+            if (tagTouchee == "droite")
+            {
+                etat = Etat.QuartDroite;
+            }
 
-
-            if(tagTouchee == "CristauxPowers")
+            if (tagTouchee == "CristauxPowers")
             {
                 etat = Etat.cristauxPowers;
                 //curseur.GetComponent<MeshRenderer>().material.color = Color.green;
@@ -326,6 +333,36 @@ public class MoveTP : MonoBehaviour
                 chronoFadeOut = 0;
                 FMODUnity.RuntimeManager.PlayOneShot("event:/instant-teleport", this.transform.position);
                 this.transform.rotation *= Quaternion.AngleAxis(180, Vector3.up);
+                cam.GetComponent<OVRScreenFadeOut>().StartFadeIn();
+                etat = Etat.fadeIn;
+            }
+
+        }
+        else if (etat == Etat.QuartGauche)
+        {
+            cam.GetComponent<OVRScreenFadeOut>().enabled = true;
+            cam.GetComponent<OVRScreenFadeOut>().StarFadeOut();
+            chronoFadeOut += Time.deltaTime;
+            if (chronoFadeOut > cam.GetComponent<OVRScreenFadeOut>().fadeTime)
+            {
+                chronoFadeOut = 0;
+                FMODUnity.RuntimeManager.PlayOneShot("event:/instant-teleport", this.transform.position);
+                this.transform.rotation *= Quaternion.AngleAxis(-90, Vector3.up);
+                cam.GetComponent<OVRScreenFadeOut>().StartFadeIn();
+                etat = Etat.fadeIn;
+            }
+
+        }
+        else if (etat == Etat.QuartDroite)
+        {
+            cam.GetComponent<OVRScreenFadeOut>().enabled = true;
+            cam.GetComponent<OVRScreenFadeOut>().StarFadeOut();
+            chronoFadeOut += Time.deltaTime;
+            if (chronoFadeOut > cam.GetComponent<OVRScreenFadeOut>().fadeTime)
+            {
+                chronoFadeOut = 0;
+                FMODUnity.RuntimeManager.PlayOneShot("event:/instant-teleport", this.transform.position);
+                this.transform.rotation *= Quaternion.AngleAxis(90, Vector3.up);
                 cam.GetComponent<OVRScreenFadeOut>().StartFadeIn();
                 etat = Etat.fadeIn;
             }
