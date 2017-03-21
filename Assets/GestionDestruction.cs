@@ -7,62 +7,95 @@ public class GestionDestruction : MonoBehaviour {
     public float[] dur = new float[10];
 	public float[] durationAvantFade = new float[10];
     public GameObject[] mesGameObject = new GameObject[10];
-    public float chrono;
+	public float chrono;
+	private int compteur;
+	private Tween fade;
+	private bool passage;
+	private float ratio;
+	public float reduction;
 	// Use this for initialization
 	void Start () {
-
+		fade = null;
+		passage = false;
+		compteur = 0;
+		reduction = 1.0f;
     }
 
     // Update is called once per frame
     void Update() {
         float chronoOld = chrono;
         chrono += Time.deltaTime;
-
-        if (chronoOld < dur[0] && chrono >= dur[0])
-        {
-            mesGameObject[0].GetComponent<ActiveTrueFalse>().enabled = true;
-			FMODUnity.RuntimeManager.PlayOneShot ("event:/Effondrement", mesGameObject [0].transform.position);
-        }
-        if (chronoOld < dur[1] && chrono >= dur[1])
-        {
-            mesGameObject[1].GetComponent<ActiveTrueFalse>().enabled = true;
-        }
-        if (chronoOld < dur[2] && chrono >= dur[2])
-        {
-            mesGameObject[2].GetComponent<ActiveTrueFalse>().enabled = true;
-        }
-        if (chronoOld < dur[3] && chrono >= dur[3])
-        {
-            mesGameObject[3].GetComponent<ActiveTrueFalse>().enabled = true;
-        }
-        if (chronoOld < dur[4] && chrono >= dur[4])
-        {
-            mesGameObject[4].GetComponent<ActiveTrueFalse>().enabled = true;
-        }
-        if (chronoOld < dur[5] && chrono >= dur[5])
-        {
-            mesGameObject[5].GetComponent<ActiveTrueFalse>().enabled = true;
-        }
-        if (chronoOld < dur[6] && chrono >= dur[6])
-        {
-            mesGameObject[6].GetComponent<ActiveTrueFalse>().enabled = true;
-        }
-        if (chronoOld < dur[7] && chrono >= dur[7])
-        {
-            mesGameObject[7].GetComponent<ActiveTrueFalse>().enabled = true;
-        }
-        if (chronoOld < dur[8] && chrono >= dur[8])
-        {
-            mesGameObject[8].GetComponent<ActiveTrueFalse>().enabled = true;
-        }
-        if (chronoOld < dur[9] && chrono >= dur[9])
-        {
-            mesGameObject[9].GetComponent<ActiveTrueFalse>().enabled = true;
-        }
-
-		if (chronoOld < durationAvantFade[0] && chrono >= durationAvantFade[0])
-		{
-			mesGameObject [0].transform.GetChild(31).GetComponent<Material> ().DOColor (Color.yellow, 1.0f);
+		if (chrono >= dur[compteur] / 2) {
+			if (passage == false) {
+				fade = mesGameObject [compteur].transform.GetChild (30).gameObject.GetComponent<Renderer> ().material.DOColor (Color.black, reduction);
+				StartCoroutine (CompleteTweenBlack ());
+			}
+			if (passage == true) {
+				fade = mesGameObject [compteur].transform.GetChild (30).gameObject.GetComponent<Renderer> ().material.DOColor (Color.white,  reduction);
+				StartCoroutine (CompleteTweenWhite());
+			}
 		}
+		if (chronoOld < dur[compteur] && chrono >= dur[compteur])
+		{
+			mesGameObject[compteur].GetComponent<ActiveTrueFalse>().enabled = true;
+			compteur++;
+		}
+		if (chronoOld < dur[compteur] && chrono >= dur[compteur])
+        {
+			mesGameObject[compteur].GetComponent<ActiveTrueFalse>().enabled = true;
+			compteur++;
+        }
+		if (chronoOld < dur[compteur] && chrono >= dur[compteur])
+        {
+			mesGameObject[compteur].GetComponent<ActiveTrueFalse>().enabled = true;
+			compteur++;
+        }
+		if (chronoOld < dur[compteur] && chrono >= dur[compteur])
+        {
+			mesGameObject[compteur].GetComponent<ActiveTrueFalse>().enabled = true;
+			compteur++;
+        }
+		if (chronoOld < dur[compteur] && chrono >= dur[compteur])
+        {
+			mesGameObject[compteur].GetComponent<ActiveTrueFalse>().enabled = true;
+			compteur++;
+        }
+		if (chronoOld < dur[compteur] && chrono >= dur[compteur])
+        {
+			mesGameObject[compteur].GetComponent<ActiveTrueFalse>().enabled = true;
+			compteur++;
+        }
+		if (chronoOld < dur[compteur] && chrono >= dur[compteur])
+        {
+			mesGameObject[compteur].GetComponent<ActiveTrueFalse>().enabled = true;
+			compteur++;
+        }
+		if (chronoOld < dur[compteur] && chrono >= dur[compteur])
+        {
+			mesGameObject[compteur].GetComponent<ActiveTrueFalse>().enabled = true;
+			compteur++;
+        }
+		if (chronoOld < dur[compteur] && chrono >= dur[compteur])
+        {
+			mesGameObject[compteur].GetComponent<ActiveTrueFalse>().enabled = true;
+			compteur++;
+        }
+		if (chronoOld < dur[compteur] && chrono >= dur[compteur])
+        {
+			mesGameObject[compteur].GetComponent<ActiveTrueFalse>().enabled = true;
+			compteur++;
+        }
+			
     }
+
+	IEnumerator CompleteTweenBlack(){
+		yield return fade.WaitForCompletion();
+		passage = true;
+		
+	}
+
+	IEnumerator CompleteTweenWhite(){
+		yield return fade.WaitForCompletion();
+		passage = false;
+	}
 }

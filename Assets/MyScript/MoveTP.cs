@@ -88,7 +88,6 @@ public class MoveTP : MonoBehaviour
     void Update()
     {
 		animPioche ["pioche anim"].speed = 6.0f;
-		print (animPioche ["pioche anim"].clip.frameRate);
 		//On acccentue le son creepy au fur et a mesure de l'approche de l'ourson
 		if (Vector3.Distance (this.transform.position, Timmy.transform.position) > 10) {
 			parameterCreepy.setValue (0.0f);
@@ -232,6 +231,7 @@ public class MoveTP : MonoBehaviour
 				color3.Kill ();
 				color4.Kill ();
 				color5.Kill ();
+				pioche.SetActive (false);
 				curseur.transform.GetChild (0).GetComponent<Animation> ().Stop ();
                 chrono = 0;
                 anciennePositionCurseur = nouvellePosition;
