@@ -7,10 +7,10 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: mat_signes
-  m_Shader: {fileID: 4800000, guid: 6a9b9f62f4a9e614cb9af7f98c9f6f7e, type: 3}
-  m_ShaderKeywords: _ALPHAPREMULTIPLY_ON _EMISSION
+  m_Shader: {fileID: 10101, guid: 0000000000000000e000000000000000, type: 0}
+  m_ShaderKeywords: _EMISSION _METALLICGLOSSMAP
   m_LightmapFlags: 1
-  m_CustomRenderQueue: 1
+  m_CustomRenderQueue: 5000
   stringTagMap: {}
   m_SavedProperties:
     serializedVersion: 2
@@ -46,15 +46,27 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
-        name: _MainTex
+        name: _FaceTex
       second:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
-        name: _MetallicGlossMap
+        name: _MainBump
       second:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _MainTex
+      second:
+        m_Texture: {fileID: 2800000, guid: a7b5272a9c66c994499fb84a71fba83a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _MetallicGlossMap
+      second:
+        m_Texture: {fileID: 2800000, guid: 15ea7825096eba241bf48f89c01690fc, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
@@ -74,6 +86,9 @@ Material:
         name: _BumpScale
       second: 1
     - first:
+        name: _ColorMask
+      second: 15
+    - first:
         name: _Cutoff
       second: 0.5
     - first:
@@ -81,10 +96,10 @@ Material:
       second: 1
     - first:
         name: _DstBlend
-      second: 10
+      second: 0
     - first:
         name: _GlossMapScale
-      second: 1
+      second: 0.831
     - first:
         name: _Glossiness
       second: 0
@@ -92,11 +107,17 @@ Material:
         name: _GlossyReflections
       second: 1
     - first:
+        name: _MaskSoftnessX
+      second: 0
+    - first:
+        name: _MaskSoftnessY
+      second: 0
+    - first:
         name: _Metallic
       second: 0
     - first:
         name: _Mode
-      second: 3
+      second: 0
     - first:
         name: _OcclusionStrength
       second: 1
@@ -116,21 +137,54 @@ Material:
         name: _SrcBlend
       second: 1
     - first:
+        name: _Stencil
+      second: 0
+    - first:
+        name: _StencilComp
+      second: 8
+    - first:
+        name: _StencilOp
+      second: 0
+    - first:
+        name: _StencilReadMask
+      second: 255
+    - first:
+        name: _StencilWriteMask
+      second: 255
+    - first:
         name: _UVSec
       second: 0
     - first:
-        name: _ZWrite
+        name: _UseUIAlphaClip
       second: 0
+    - first:
+        name: _VertexOffsetX
+      second: 0
+    - first:
+        name: _VertexOffsetY
+      second: 0
+    - first:
+        name: _ZWrite
+      second: 1
     m_Colors:
     - first:
+        name: _ClipRect
+      second: {r: -32767, g: -32767, b: 32767, a: 32767}
+    - first:
         name: _Color
-      second: {r: 1, g: 1, b: 1, a: 1}
+      second: {r: 1, g: 0.9724138, b: 0, a: 1}
     - first:
         name: _Emission
       second: {r: 0, g: 0, b: 0, a: 0}
     - first:
         name: _EmissionColor
-      second: {r: 0, g: 0, b: 0, a: 1}
+      second: {r: 0.6431373, g: 0.039215688, b: 0.039215688, a: 0}
+    - first:
+        name: _FaceColor
+      second: {r: 1, g: 1, b: 1, a: 1}
     - first:
         name: _SpecColor
       second: {r: 1, g: 1, b: 1, a: 0}
+    - first:
+        name: _Specular
+      second: {r: 0, g: 0, b: 0, a: 0}
