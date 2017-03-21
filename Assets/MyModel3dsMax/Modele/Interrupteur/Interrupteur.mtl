@@ -1,0 +1,33 @@
+newmtl mat_piquet
+Ns 100.000
+d 1.00000
+illum 2
+Kd 1.00000 1.00000 1.00000
+Ka 0.00000 0.00000 0.00000
+Ks 1.00000 1.00000 1.00000
+Ke 0.00000e+0 0.00000e+0 0.00000e+0
+map_Kd Interrupteur_Albedo.tga
+bump Interrupteur_Height.tga
+map_bump Interrupteur_Normal.tga
+newmtl mat_bouton
+Ns 100.000
+d 1.00000
+illum 2
+Kd 1.00000 1.00000 1.00000
+Ka 0.00000 0.00000 0.00000
+Ks 1.00000 1.00000 1.00000
+Ke 0.00000e+0 0.00000e+0 0.00000e+0
+map_Kd Interrupteur_Albedo.tga
+bump Interrupteur_Height.tga
+map_bump Interrupteur_Normal.tga
+newmtl mat_signes
+Ns 100.000
+d 1.00000
+illum 2
+Kd 1.00000 1.00000 1.00000
+Ka 0.00000 0.00000 0.00000
+Ks 1.00000 1.00000 1.00000
+Ke 0.00000e+0 0.00000e+0 0.00000e+0
+map_Kd Interrupteur_Albedo.tga
+bump Interrupteur_Height.tga
+map_bump Interrupteur_Normal.tga
