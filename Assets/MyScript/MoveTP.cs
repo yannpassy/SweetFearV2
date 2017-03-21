@@ -18,7 +18,7 @@ public class MoveTP : MonoBehaviour
 
     public Transform objectReference;
     public OVRCameraRig cameraOVR;
-    private enum Etat { Look, AnalyseCommande, fadeOut, teleportation, fadeIn, demiTour, cristauxPowers, ouvertureRouge };
+    private enum Etat { Look, AnalyseCommande, fadeOut, teleportation, fadeIn, demiTour, cristauxPowers, ouvertureRouge, QuartGauche, QuartDroite };
     Etat etat;
 
     private Vector3 centreCamera;
@@ -37,6 +37,11 @@ public class MoveTP : MonoBehaviour
     private Vector3 anciennePositionCurseur;
     private Vector3 PositionCube;
 	private Vector3 positionPioche;	
+	private Vector3 directionCurseur;
+
+	private Quaternion quatX;
+	private Quaternion quatZ;
+	private Quaternion quatResultat;
 
     public Camera cam;
 
@@ -132,8 +137,11 @@ public class MoveTP : MonoBehaviour
 			} else {
 				curseur.GetComponent<Rigidbody> ().constraints = RigidbodyConstraints.FreezeAll;
 			}
-                tagTouchee = hit.collider.tag;
-                cristauxPowers = hit.collider.gameObject;
+            tagTouchee = hit.collider.tag;
+            cristauxPowers = hit.collider.gameObject;
+			directionCurseur = hit.point - cam.transform.position;
+			directionCurseur.Normalize();
+
         }
 		/*if (Physics.Raycast(new Ray(cam.transform.position, cam.transform.rotation*Vector3.forward), out hit, Mathf.Infinity)
 		{
@@ -157,15 +165,21 @@ public class MoveTP : MonoBehaviour
 				//On calcule la distance entre l'ancienne position du cube et la nouvelle
 				dist = Vector3.Distance (anciennePositionCurseur, curseur.transform.position);
 				if (tagTouchee == "terrain") {
-					curseur.transform.GetChild (0).gameObject.SetActive (true);
-					curseur.transform.GetChild (1).gameObject.SetActive (false);
+					//curseur.transform.GetChild (0).gameObject.SetActive (true);
+					//curseur.transform.GetChild (1).gameObject.SetActive (false);
+					curseur.transform.rotation = Quaternion.AngleAxis(0, Vector3.right);
 					pioche.SetActive (false);
 				} else if (tagTouchee == "obstacle" || tagTouchee == "porte") {
 					curseur.SetActive (false);
 					pioche.SetActive (false);
 				} else if (tagTouchee == "CristauxPowers") {
-					curseur.transform.GetChild (0).gameObject.SetActive (false);
-					curseur.transform.GetChild (1).gameObject.SetActive (true);
+					//curseur.transform.GetChild (0).gameObject.SetActive (false);
+					//curseur.transform.GetChild (1).gameObject.SetActive (true);
+					quatX = Quaternion.AngleAxis (-90, Vector3.right);
+					quatZ = Quaternion.LookRotation (directionCurseur);
+					Debug.Log (quatZ);
+					quatResultat = quatZ * quatX;
+					curseur.transform.rotation = quatResultat;
 					pioche.SetActive (true);
 					pioche.transform.position = cam.transform.position + cam.transform.rotation * new Vector3 (0, 0, 0.4f);
 				} else if (tagTouchee == "serrureRouge" && obtentionClefRouge == true) {
@@ -273,9 +287,16 @@ public class MoveTP : MonoBehaviour
             {
                 etat = Etat.demiTour;
             }
+            if (tagTouchee == "gauche")
+            {
+                etat = Etat.QuartGauche;
+            }
+            if (tagTouchee == "droite")
+            {
+                etat = Etat.QuartDroite;
+            }
 
-
-            if(tagTouchee == "CristauxPowers")
+            if (tagTouchee == "CristauxPowers")
             {
                 etat = Etat.cristauxPowers;
                 //curseur.GetComponent<MeshRenderer>().material.color = Color.green;
@@ -326,6 +347,36 @@ public class MoveTP : MonoBehaviour
                 chronoFadeOut = 0;
                 FMODUnity.RuntimeManager.PlayOneShot("event:/instant-teleport", this.transform.position);
                 this.transform.rotation *= Quaternion.AngleAxis(180, Vector3.up);
+                cam.GetComponent<OVRScreenFadeOut>().StartFadeIn();
+                etat = Etat.fadeIn;
+            }
+
+        }
+        else if (etat == Etat.QuartGauche)
+        {
+            cam.GetComponent<OVRScreenFadeOut>().enabled = true;
+            cam.GetComponent<OVRScreenFadeOut>().StarFadeOut();
+            chronoFadeOut += Time.deltaTime;
+            if (chronoFadeOut > cam.GetComponent<OVRScreenFadeOut>().fadeTime)
+            {
+                chronoFadeOut = 0;
+                FMODUnity.RuntimeManager.PlayOneShot("event:/instant-teleport", this.transform.position);
+                this.transform.rotation *= Quaternion.AngleAxis(-90, Vector3.up);
+                cam.GetComponent<OVRScreenFadeOut>().StartFadeIn();
+                etat = Etat.fadeIn;
+            }
+
+        }
+        else if (etat == Etat.QuartDroite)
+        {
+            cam.GetComponent<OVRScreenFadeOut>().enabled = true;
+            cam.GetComponent<OVRScreenFadeOut>().StarFadeOut();
+            chronoFadeOut += Time.deltaTime;
+            if (chronoFadeOut > cam.GetComponent<OVRScreenFadeOut>().fadeTime)
+            {
+                chronoFadeOut = 0;
+                FMODUnity.RuntimeManager.PlayOneShot("event:/instant-teleport", this.transform.position);
+                this.transform.rotation *= Quaternion.AngleAxis(90, Vector3.up);
                 cam.GetComponent<OVRScreenFadeOut>().StartFadeIn();
                 etat = Etat.fadeIn;
             }
