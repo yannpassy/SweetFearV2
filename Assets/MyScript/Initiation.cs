@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using DG.Tweening;
 
 public class Initiation : MonoBehaviour {
 	public Transform objectReference;
@@ -9,7 +10,7 @@ public class Initiation : MonoBehaviour {
 
 	public TextMeshProUGUI tmp;
 
-	private enum Etat {texte1, texte2, texte3, texte4, tp, texte5, demiTour, texte6, destructionFragment, cristauxPowers};
+	private enum Etat {texte1, texte2, texte3, texte4, tp, texte5, demiTour, texte6, destructionFragment, cristauxPowers, fadeOut, fadeIn };
 
 	Etat etat;
 
@@ -51,12 +52,14 @@ public class Initiation : MonoBehaviour {
 	private Color myColor;
 	private float duration;
 	private float ratio;
-	// Use this for initialization
-	void Start () {
+    Tween tweenPioche;
+    // Use this for initialization
+    void Start () {
 		etat = 0;
 		duration = 2.5f;
-		
-	}
+        destructionCristaux = false;
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -185,5 +188,17 @@ public class Initiation : MonoBehaviour {
 			passage = false;
 			etat += 1;
 		}
-	}	
+	}
+    IEnumerator Pioche()
+    {
+        yield return new WaitForSeconds(0.55f);
+        //pioche.transform.position = cam.transform.position + cam.transform.rotation * Vector3.forward * 2.0f;
+        pioche.SetActive(false);
+    }
+
+    IEnumerator FinDestructionCristaux()
+    {
+        yield return new WaitForSeconds(0.55f);
+        destructionCristaux = false;
+    }
 }
