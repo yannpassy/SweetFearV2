@@ -37,6 +37,11 @@ public class MoveTP : MonoBehaviour
     private Vector3 anciennePositionCurseur;
     private Vector3 PositionCube;
 	private Vector3 positionPioche;	
+	private Vector3 directionCurseur;
+
+	private Quaternion quatX;
+	private Quaternion quatZ;
+	private Quaternion quatResultat;
 
     public Camera cam;
 
@@ -83,7 +88,6 @@ public class MoveTP : MonoBehaviour
     void Update()
     {
 		animPioche ["pioche anim"].speed = 6.0f;
-		print (animPioche ["pioche anim"].clip.frameRate);
 		//On acccentue le son creepy au fur et a mesure de l'approche de l'ourson
 		if (Vector3.Distance (this.transform.position, Timmy.transform.position) > 10) {
 			parameterCreepy.setValue (0.0f);
@@ -132,8 +136,11 @@ public class MoveTP : MonoBehaviour
 			} else {
 				curseur.GetComponent<Rigidbody> ().constraints = RigidbodyConstraints.FreezeAll;
 			}
-                tagTouchee = hit.collider.tag;
-                cristauxPowers = hit.collider.gameObject;
+            tagTouchee = hit.collider.tag;
+            cristauxPowers = hit.collider.gameObject;
+			directionCurseur = hit.point - cam.transform.position;
+			directionCurseur.Normalize();
+
         }
 		/*if (Physics.Raycast(new Ray(cam.transform.position, cam.transform.rotation*Vector3.forward), out hit, Mathf.Infinity)
 		{
@@ -157,15 +164,21 @@ public class MoveTP : MonoBehaviour
 				//On calcule la distance entre l'ancienne position du cube et la nouvelle
 				dist = Vector3.Distance (anciennePositionCurseur, curseur.transform.position);
 				if (tagTouchee == "terrain") {
-					curseur.transform.GetChild (0).gameObject.SetActive (true);
-					curseur.transform.GetChild (1).gameObject.SetActive (false);
+					//curseur.transform.GetChild (0).gameObject.SetActive (true);
+					//curseur.transform.GetChild (1).gameObject.SetActive (false);
+					curseur.transform.rotation = Quaternion.AngleAxis(0, Vector3.right);
 					pioche.SetActive (false);
 				} else if (tagTouchee == "obstacle" || tagTouchee == "porte") {
 					curseur.SetActive (false);
 					pioche.SetActive (false);
 				} else if (tagTouchee == "CristauxPowers") {
-					curseur.transform.GetChild (0).gameObject.SetActive (false);
-					curseur.transform.GetChild (1).gameObject.SetActive (true);
+					//curseur.transform.GetChild (0).gameObject.SetActive (false);
+					//curseur.transform.GetChild (1).gameObject.SetActive (true);
+					quatX = Quaternion.AngleAxis (-90, Vector3.right);
+					quatZ = Quaternion.LookRotation (directionCurseur);
+					Debug.Log (quatZ);
+					quatResultat = quatZ * quatX;
+					curseur.transform.rotation = quatResultat;
 					pioche.SetActive (true);
 					pioche.transform.position = cam.transform.position + cam.transform.rotation * new Vector3 (0, 0, 0.4f);
 				} else if (tagTouchee == "serrureRouge" && obtentionClefRouge == true) {
@@ -218,6 +231,7 @@ public class MoveTP : MonoBehaviour
 				color3.Kill ();
 				color4.Kill ();
 				color5.Kill ();
+				pioche.SetActive (false);
 				curseur.transform.GetChild (0).GetComponent<Animation> ().Stop ();
                 chrono = 0;
                 anciennePositionCurseur = nouvellePosition;
