@@ -4,7 +4,26 @@ timeCreated: 1490020472
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    100000: Bouton
+    100002: //RootNode
+    100004: Piquet
+    100006: Signe
+    400000: Bouton
+    400002: //RootNode
+    400004: Piquet
+    400006: Signe
+    2300000: Bouton
+    2300002: Piquet
+    2300004: Signe
+    3300000: Bouton
+    3300002: Piquet
+    3300004: Signe
+    4300000: Piquet
+    4300002: Bouton
+    4300004: Signe
+    7400000: Take 001
+    9500000: //RootNode
   materials:
     importMaterials: 1
     materialName: 0
