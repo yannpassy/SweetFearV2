@@ -6,8 +6,11 @@ using TMPro;
 public class Initiation : MonoBehaviour {
 	public Transform objectReference;
 	public OVRCameraRig cameraOVR;
+
 	public TextMeshProUGUI tmp;
-	private enum Etat {texte1, texte2, texte3, texte4, tp, texte5, demiTour, texte6, destructionFragment };
+
+	private enum Etat {texte1, texte2, texte3, texte4, tp, texte5, demiTour, texte6, destructionFragment, cristauxPowers};
+
 	Etat etat;
 
 	private Vector3 centreCamera;
