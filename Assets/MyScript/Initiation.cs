@@ -54,7 +54,7 @@ public class Initiation : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		etat = 0;
-		duration = 4;
+		duration = 2.5f;
 		
 	}
 	
@@ -79,12 +79,14 @@ public class Initiation : MonoBehaviour {
 			}
 
 			if (tagTouchee == "Canvas" && chronoFadeIn > duration) {
+				Debug.Log ("tu me touches");
 				chronoValidationOld = chronoValidation;
 				chronoValidation += Time.deltaTime;
-				if (chronoValidationOld < 4 && chronoValidation >= 4) {
+				if (chronoValidationOld < 2.5f && chronoValidation >= 2.5f) {
 					Debug.Log ("on arrive a 4");
 					chronoValidation = 0;
 					chronoValidationOld = 0;
+					chronoFadeIn = 0;
 					passage = true;
 				}
 			}
@@ -92,6 +94,7 @@ public class Initiation : MonoBehaviour {
 			if (passage == true) {
 				FadeOutText ();
 			}
+
 		}
 
 		if (etat == Etat.texte2) {
@@ -103,7 +106,52 @@ public class Initiation : MonoBehaviour {
 			if (tagTouchee == "Canvas" && chronoFadeIn > duration) {
 				chronoValidationOld = chronoValidation;
 				chronoValidation += Time.deltaTime;
-				if (chronoValidationOld < 4 && chronoValidation >= 4) {
+				Debug.Log (chronoValidation);
+				if (chronoValidationOld < 2.5f && chronoValidation >= 2.5f) {
+					Debug.Log ("on y est");
+					chronoValidation = 0;
+					chronoValidationOld = 0;
+					chronoFadeIn = 0;
+					passage = true;
+				}
+			}
+
+			if (passage == true) {
+				FadeOutText ();
+			}
+		}
+
+		if (etat == Etat.texte3) {
+			tmp.text = "avant que l'ours ne vous trouve?";
+			if (passage == false) {
+				FadeInText ();
+			}
+
+			if (tagTouchee == "Canvas" && chronoFadeIn > duration) {
+				chronoValidationOld = chronoValidation;
+				chronoValidation += Time.deltaTime;
+				if (chronoValidationOld < 2.5f && chronoValidation >= 2.5f) {
+					chronoValidation = 0;
+					chronoValidationOld = 0;
+					passage = true;
+				}
+			}
+
+			if (passage == true) {
+				FadeOutText ();
+			}
+		}
+
+		if (etat == Etat.texte4) {
+			tmp.text = "Passez par la porte Rouge...";
+			if (passage == false) {
+				FadeInText ();
+			}
+
+			if (tagTouchee == "Canvas" && chronoFadeIn > duration) {
+				chronoValidationOld = chronoValidation;
+				chronoValidation += Time.deltaTime;
+				if (chronoValidationOld < 2.5f && chronoValidation >= 2.5f) {
 					chronoValidation = 0;
 					chronoValidationOld = 0;
 					passage = true;
