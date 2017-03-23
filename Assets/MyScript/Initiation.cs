@@ -10,7 +10,7 @@ public class Initiation : MonoBehaviour {
 
 	public TextMeshProUGUI tmp;
 
-	private enum Etat {texte1, texte2, texte3, texte4, cristauxPowers, texte5, tp, texte6, demiTour,  destructionFragment,  fadeOut, fadeIn };
+	private enum Etat {texte1, texte2, texte3, texte4, cristauxPowers, texte5, tp, fadeOut, texte6, demiTour,  destructionFragment, fadeIn };
 
 	Etat etat;
 
@@ -64,6 +64,8 @@ public class Initiation : MonoBehaviour {
     private float dist;
     private float distZoneTp = 7.0f;
     private double chronoOld;
+    public GameObject cylindreZoneTp;
+    private float chronoFadeOutTp;
 
     // Use this for initialization
     void Start () {
@@ -74,6 +76,8 @@ public class Initiation : MonoBehaviour {
         animPioche = pioche.transform.GetChild(0).gameObject.GetComponent<Animation>();
         anim = curseur.transform.GetChild(0).gameObject.GetComponent<Animation>();
         chrono = 0;
+        cylindreZoneTp.SetActive(false);
+        chronoFadeOut = 0;
 
     }
 	
@@ -86,7 +90,7 @@ public class Initiation : MonoBehaviour {
 
 		if (Physics.Raycast(ray, out hit, Mathf.Infinity))
 		{
-            if (etat == Etat.cristauxPowers)
+            if (etat == Etat.cristauxPowers || etat == Etat.tp)
             {
                 anciennePositionCurseur = curseur.transform.position;
                 if (chrono < 1)
@@ -179,6 +183,7 @@ public class Initiation : MonoBehaviour {
 		}
 
 		if (etat == Etat.texte4) {
+            Debug.Log("on est dans texte 4");
 			tmp.text = "Passez par la porte Rouge...";
 			if (passage == false) {
 				FadeInText ();
@@ -223,13 +228,16 @@ public class Initiation : MonoBehaviour {
                     chrono = 0;
                     curseur.transform.rotation = Quaternion.AngleAxis(0, Vector3.right);
                     resetColorCurseur();
-                    FadeOutText();
+                    //FadeOutText();
+                    etat = Etat.texte5;
+                    curseur.SetActive(false);
                 }
             }
         }
         if (etat == Etat.texte5)
         {
-            tmp.text = "teleporte toi ...";
+            Debug.Log("on est dans texte 5");
+            tmp.text = "teleporte toi en fixant la zone indiqué ...";
             if (passage == false)
             {
                 FadeInText();
@@ -254,7 +262,43 @@ public class Initiation : MonoBehaviour {
         }
         if (etat == Etat.tp)
         {
+            cylindreZoneTp.SetActive(true);
+            curseur.SetActive(true);
+            dist = Vector3.Distance(anciennePositionCurseur, curseur.transform.position);
+            if ( focusCurseur() && tagTouchee == "CylindreZoneTp")
+            {
+                //== fade in
+                curseur.GetComponent<Rigidbody>().isKinematic = true;
+                cam.GetComponent<OVRScreenFadeOut>().enabled = true;
+                //cam.GetComponent<OVRScreenFadeOut>().StarFadeOut();
+                chronoFadeOutTp += Time.deltaTime;
+                Debug.Log(chronoFadeOutTp);
+                if (chronoFadeOutTp > cam.GetComponent<OVRScreenFadeOut>().fadeTime)
+                {
+                    Debug.Log("téléportation o/");
+                    //== téléportation
+                    this.transform.position = new Vector3(nouvellePosition.x, nouvellePosition.y + 0.066f, nouvellePosition.z);
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/instant-teleport", this.transform.position);
+                    cam.GetComponent<OVRScreenFadeOut>().StartFadeIn();
 
+                    //==fade out
+                    curseur.transform.GetChild(0).GetComponent<Animation>().Stop();
+                    chronoFadeIn += Time.deltaTime;
+                    if (chronoFadeIn > cam.GetComponent<OVRScreenFadeOut>().fadeTime)
+                    {
+                        //on part sur un renderer noir pour le curseur
+                        curseur.transform.GetChild(0).gameObject.transform.GetChild(0).GetComponent<Renderer>().material.color = Color.black;
+                        curseur.transform.GetChild(0).gameObject.transform.GetChild(1).GetComponent<Renderer>().material.color = Color.black;
+                        curseur.transform.GetChild(0).gameObject.transform.GetChild(2).GetComponent<Renderer>().material.color = Color.black;
+                        curseur.transform.GetChild(0).gameObject.transform.GetChild(3).GetComponent<Renderer>().material.color = Color.black;
+                        curseur.transform.GetChild(0).gameObject.transform.GetChild(4).GetComponent<Renderer>().material.color = Color.black;
+                        chronoFadeIn = 0;
+                        chrono = 0;
+                        cam.GetComponent<OVRScreenFadeOut>().enabled = false;
+                        resetColorCurseur();
+                    }
+                }
+            }
         }
 
 
@@ -320,12 +364,12 @@ public class Initiation : MonoBehaviour {
             }
         }
         
-        if (Vector3.Distance(this.transform.position, curseur.transform.position) > distZoneTp)
+        if (Vector3.Distance(this.transform.position, curseur.transform.position) > distZoneTp )
         {
             curseur.SetActive(false);
             chrono = 0;
         }
-        if (Vector3.Distance(this.transform.position, curseur.transform.position) < distZoneTp && tagTouchee != "obstacle")
+        if (Vector3.Distance(this.transform.position, curseur.transform.position) < distZoneTp && tagTouchee != "obstacle" )
         {
             curseur.SetActive(true);
         } 
