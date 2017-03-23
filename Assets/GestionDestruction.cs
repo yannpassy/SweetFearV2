@@ -13,26 +13,46 @@ public class GestionDestruction : MonoBehaviour {
 	private bool passage;
 	private float ratio;
 	public float reduction;
+
+	private Color32 couleurBleu;
+	private Color32 couleurRougeClair;
+	private Color32 couleurRouge;
+	private Color32 couleurRougeFonce;
 	// Use this for initialization
 	void Start () {
+		couleurBleu = new Color32 (176, 202, 206, 255);
+		couleurRougeClair = new Color32 (255, 180, 180, 255);
+		couleurRouge = new Color32 (255, 129, 129, 255);
+		couleurRougeFonce = new Color32 (255, 49, 49, 255);
+
 		fade = null;
 		passage = false;
 		compteur = 0;
-		reduction = 1.0f;
+		reduction = 4.0f;
     }
 
     // Update is called once per frame
     void Update() {
         float chronoOld = chrono;
         chrono += Time.deltaTime;
-		if (chrono >= dur[compteur] / 2) {
+		if (chronoOld < dur[compteur] - 20 && chrono >= dur[compteur] - 20) {
+			fade = mesGameObject [compteur].transform.GetChild (30).gameObject.GetComponent<Renderer> ().material.DOColor (couleurRougeClair, reduction);
+			StartCoroutine (CompleteTweenRouge ());
+			reduction -= 2.0f;
+		}
+		if (chronoOld < dur[compteur] - 10 && chrono >= dur[compteur] - 10) {
+			fade = mesGameObject [compteur].transform.GetChild (30).gameObject.GetComponent<Renderer> ().material.DOColor (couleurRouge, reduction);
+			StartCoroutine (CompleteTweenRouge ());
+			reduction -= 1.25f;
+		}
+		if (chrono >= dur[compteur] - 5) {
 			if (passage == false) {
-				fade = mesGameObject [compteur].transform.GetChild (30).gameObject.GetComponent<Renderer> ().material.DOColor (Color.black, reduction);
-				StartCoroutine (CompleteTweenBlack ());
+				fade = mesGameObject [compteur].transform.GetChild (30).gameObject.GetComponent<Renderer> ().material.DOColor (couleurRougeFonce, reduction);
+				StartCoroutine (CompleteSwitchTweenRouge ());
 			}
 			if (passage == true) {
-				fade = mesGameObject [compteur].transform.GetChild (30).gameObject.GetComponent<Renderer> ().material.DOColor (Color.white,  reduction);
-				StartCoroutine (CompleteTweenWhite());
+				fade = mesGameObject [compteur].transform.GetChild (30).gameObject.GetComponent<Renderer> ().material.DOColor (couleurBleu,  reduction);
+				StartCoroutine (CompleteSwitchTweenBleu ());
 			}
 		}
 		if (chronoOld < dur[compteur] && chrono >= dur[compteur])
@@ -40,61 +60,22 @@ public class GestionDestruction : MonoBehaviour {
 			mesGameObject[compteur].GetComponent<ActiveTrueFalse>().enabled = true;
 			compteur++;
 		}
-		if (chronoOld < dur[compteur] && chrono >= dur[compteur])
-        {
-			mesGameObject[compteur].GetComponent<ActiveTrueFalse>().enabled = true;
-			compteur++;
-        }
-		if (chronoOld < dur[compteur] && chrono >= dur[compteur])
-        {
-			mesGameObject[compteur].GetComponent<ActiveTrueFalse>().enabled = true;
-			compteur++;
-        }
-		if (chronoOld < dur[compteur] && chrono >= dur[compteur])
-        {
-			mesGameObject[compteur].GetComponent<ActiveTrueFalse>().enabled = true;
-			compteur++;
-        }
-		if (chronoOld < dur[compteur] && chrono >= dur[compteur])
-        {
-			mesGameObject[compteur].GetComponent<ActiveTrueFalse>().enabled = true;
-			compteur++;
-        }
-		if (chronoOld < dur[compteur] && chrono >= dur[compteur])
-        {
-			mesGameObject[compteur].GetComponent<ActiveTrueFalse>().enabled = true;
-			compteur++;
-        }
-		if (chronoOld < dur[compteur] && chrono >= dur[compteur])
-        {
-			mesGameObject[compteur].GetComponent<ActiveTrueFalse>().enabled = true;
-			compteur++;
-        }
-		if (chronoOld < dur[compteur] && chrono >= dur[compteur])
-        {
-			mesGameObject[compteur].GetComponent<ActiveTrueFalse>().enabled = true;
-			compteur++;
-        }
-		if (chronoOld < dur[compteur] && chrono >= dur[compteur])
-        {
-			mesGameObject[compteur].GetComponent<ActiveTrueFalse>().enabled = true;
-			compteur++;
-        }
-		if (chronoOld < dur[compteur] && chrono >= dur[compteur])
-        {
-			mesGameObject[compteur].GetComponent<ActiveTrueFalse>().enabled = true;
-			compteur++;
-        }
 			
     }
 
-	IEnumerator CompleteTweenBlack(){
+	IEnumerator CompleteTweenRouge(){
 		yield return fade.WaitForCompletion();
-		passage = true;
+		fade = mesGameObject [compteur].transform.GetChild (30).gameObject.GetComponent<Renderer> ().material.DOColor (couleurBleu,  reduction);
 		
 	}
 
-	IEnumerator CompleteTweenWhite(){
+	IEnumerator CompleteSwitchTweenRouge(){
+		yield return fade.WaitForCompletion();
+		passage = true;
+
+	}
+
+	IEnumerator CompleteSwitchTweenBleu(){
 		yield return fade.WaitForCompletion();
 		passage = false;
 	}
