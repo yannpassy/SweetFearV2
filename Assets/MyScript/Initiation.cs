@@ -10,7 +10,7 @@ public class Initiation : MonoBehaviour {
 
 	public TextMeshProUGUI tmp;
 
-	private enum Etat {texte1, texte2, texte3, texte4, cristauxPowers, texte5, tp, demiTour, texte6, destructionFragment,  fadeOut, fadeIn };
+	private enum Etat {texte1, texte2, texte3, texte4, cristauxPowers, texte5, tp, texte6, demiTour,  destructionFragment,  fadeOut, fadeIn };
 
 	Etat etat;
 
@@ -202,12 +202,7 @@ public class Initiation : MonoBehaviour {
         if (etat == Etat.cristauxPowers)
         {
             dist = Vector3.Distance(anciennePositionCurseur, curseur.transform.position);
-           /* if (tagTouchee == "terrain")
-            {
-                curseur.transform.rotation = Quaternion.AngleAxis(0, Vector3.right);
-                pioche.SetActive(false);
-            } 
-            else */ if (destructionCristaux == false && tagTouchee == "CristauxPowers")
+            if (destructionCristaux == false && tagTouchee == "CristauxPowers")
             {
                 quatX = Quaternion.AngleAxis(-90, Vector3.right);
                 quatZ = Quaternion.LookRotation(directionCurseur);
@@ -227,11 +222,40 @@ public class Initiation : MonoBehaviour {
                     cristauxPowers.GetComponent<MeshCollider>().enabled = false;
                     chrono = 0;
                     curseur.transform.rotation = Quaternion.AngleAxis(0, Vector3.right);
-                    resetCurseur();
-                    //FadeOutText();
+                    resetColorCurseur();
+                    FadeOutText();
                 }
             }
-        } 
+        }
+        if (etat == Etat.texte5)
+        {
+            tmp.text = "teleporte toi ...";
+            if (passage == false)
+            {
+                FadeInText();
+            }
+
+            if (tagTouchee == "Canvas" && chronoFadeIn > duration)
+            {
+                chronoValidationOld = chronoValidation;
+                chronoValidation += Time.deltaTime;
+                if (chronoValidationOld < 2.5f && chronoValidation >= 2.5f)
+                {
+                    chronoValidation = 0;
+                    chronoValidationOld = 0;
+                    passage = true;
+                }
+            }
+
+            if (passage == true)
+            {
+                FadeOutText();
+            }
+        }
+        if (etat == Etat.texte5)
+        {
+
+        }
 
 
     }
@@ -313,7 +337,7 @@ public class Initiation : MonoBehaviour {
         return false;
     }
 
-    void resetCurseur()
+    void resetColorCurseur()
     {
         curseur.transform.GetChild(0).gameObject.transform.GetChild(0).GetComponent<Renderer>().material.color = Color.grey;
         curseur.transform.GetChild(0).gameObject.transform.GetChild(1).GetComponent<Renderer>().material.color = Color.grey;
