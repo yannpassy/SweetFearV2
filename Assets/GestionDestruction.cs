@@ -58,6 +58,7 @@ public class GestionDestruction : MonoBehaviour {
 		if (chronoOld < dur[compteur] && chrono >= dur[compteur])
 		{
 			mesGameObject[compteur].GetComponent<ActiveTrueFalse>().enabled = true;
+			reduction = 4.0f;
 			compteur++;
 		}
 			
