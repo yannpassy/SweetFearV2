@@ -252,7 +252,7 @@ public class Initiation : MonoBehaviour {
                 FadeOutText();
             }
         }
-        if (etat == Etat.texte5)
+        if (etat == Etat.tp)
         {
 
         }
