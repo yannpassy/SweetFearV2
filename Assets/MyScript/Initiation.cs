@@ -295,23 +295,6 @@ public class Initiation : MonoBehaviour {
                 anim["Curseur_anim_simple"].speed = (float)(1.5 + ((3 - 1.5) * ((chrono - 0.25) / (1 - 0.25))));
             }
         }
-        /*else
-        {
-            curseur.transform.GetChild(0).gameObject.transform.GetChild(0).GetComponent<Renderer>().material.color = Color.grey;
-            curseur.transform.GetChild(0).gameObject.transform.GetChild(1).GetComponent<Renderer>().material.color = Color.grey;
-            curseur.transform.GetChild(0).gameObject.transform.GetChild(2).GetComponent<Renderer>().material.color = Color.grey;
-            curseur.transform.GetChild(0).gameObject.transform.GetChild(3).GetComponent<Renderer>().material.color = Color.grey;
-            curseur.transform.GetChild(0).gameObject.transform.GetChild(4).GetComponent<Renderer>().material.color = Color.grey;
-            color.Kill();
-            color2.Kill();
-            color3.Kill();
-            color4.Kill();
-            color5.Kill();
-            pioche.SetActive(false);
-            curseur.transform.GetChild(0).GetComponent<Animation>().Stop();
-            chrono = 0;
-            anciennePositionCurseur = nouvellePosition;
-        } */
         
         if (Vector3.Distance(this.transform.position, curseur.transform.position) > distZoneTp)
         {
