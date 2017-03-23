@@ -157,7 +157,7 @@ public class Initiation : MonoBehaviour {
 		}
 
 		if (etat == Etat.texte3) {
-			tmp.text = "avant que l'ours ne vous trouve?";
+			tmp.text = "avant que Timmy ne vous trouve?";
 			if (passage == false) {
 				FadeInText ();
 			}
