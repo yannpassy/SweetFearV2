@@ -10,7 +10,7 @@ public class Initiation : MonoBehaviour {
 
 	public TextMeshProUGUI tmp;
 
-	private enum Etat {texte1, texte2, texte3, texte4, tp, texte5, demiTour, texte6, destructionFragment, cristauxPowers, fadeOut, fadeIn };
+	private enum Etat {texte1, texte2, texte3, texte4, cristauxPowers, texte5, tp, demiTour, texte6, destructionFragment,  fadeOut, fadeIn };
 
 	Etat etat;
 
@@ -52,28 +52,60 @@ public class Initiation : MonoBehaviour {
 	private Color myColor;
 	private float duration;
 	private float ratio;
+
+    Tween color;
+    Tween color2;
+    Tween color3;
+    Tween color4;
+    Tween color5;
     Tween tweenPioche;
+    private bool destructionCristaux;
+    private double chrono;
+    private float dist;
+    private float distZoneTp = 7.0f;
+    private double chronoOld;
+
     // Use this for initialization
     void Start () {
 		etat = 0;
 		duration = 2.5f;
         destructionCristaux = false;
+        Screen.lockCursor = true;
+        animPioche = pioche.transform.GetChild(0).gameObject.GetComponent<Animation>();
+        anim = curseur.transform.GetChild(0).gameObject.GetComponent<Animation>();
+        chrono = 0;
 
     }
 	
 	// Update is called once per frame
 	void Update () {
-
-		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);  // pour l'oculus, mettre centreCamera par Input.mousePosition
+        animPioche["pioche anim"].speed = 6.0f;
+        anim.Play();
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);  // pour l'oculus, mettre centreCamera par Input.mousePosition
 		RaycastHit hit;
 
 		if (Physics.Raycast(ray, out hit, Mathf.Infinity))
 		{
-			tagTouchee = hit.collider.tag;
+            if (etat == Etat.cristauxPowers)
+            {
+                anciennePositionCurseur = curseur.transform.position;
+                if (chrono < 1)
+                {
+                    nouvellePosition = hit.point;
+                    curseur.transform.position = nouvellePosition;
+                }
+                else
+                {
+                    curseur.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+                }
+                cristauxPowers = hit.collider.gameObject;
+            }
+            
+            tagTouchee = hit.collider.tag;
 			directionCurseur = hit.point - cam.transform.position;
 			directionCurseur.Normalize();
-
 		}
+
 
 		if (etat == Etat.texte1) {
 			tmp.text = "Bienvenue dans SWEETFEAR";
@@ -95,7 +127,7 @@ public class Initiation : MonoBehaviour {
 			}
 
 			if (passage == true) {
-				FadeOutText ();
+                FadeOutText ();
 			}
 
 		}
@@ -140,8 +172,9 @@ public class Initiation : MonoBehaviour {
 				}
 			}
 
-			if (passage == true) {
-				FadeOutText ();
+			if (passage == true)
+            {
+                FadeOutText ();
 			}
 		}
 
@@ -165,9 +198,43 @@ public class Initiation : MonoBehaviour {
 				FadeOutText ();
 			}
 		}
+        
+        if (etat == Etat.cristauxPowers)
+        {
+            dist = Vector3.Distance(anciennePositionCurseur, curseur.transform.position);
+           /* if (tagTouchee == "terrain")
+            {
+                curseur.transform.rotation = Quaternion.AngleAxis(0, Vector3.right);
+                pioche.SetActive(false);
+            } 
+            else */ if (destructionCristaux == false && tagTouchee == "CristauxPowers")
+            {
+                quatX = Quaternion.AngleAxis(-90, Vector3.right);
+                quatZ = Quaternion.LookRotation(directionCurseur);
+                Debug.Log(quatZ);
+                quatResultat = quatZ * quatX;
+                curseur.transform.rotation = quatResultat;
+                pioche.SetActive(true);
+                pioche.transform.position = cam.transform.position + cam.transform.rotation * new Vector3(0, 0, 0.4f);
+
+                if (focusCurseur())
+                {
+                    Debug.Log("dans le bloc");
+                    cristauxPowers.transform.GetChild(0).gameObject.transform.GetComponent<Rigidbody>().isKinematic = false;
+                    tweenPioche = pioche.transform.DOMove(cristauxPowers.transform.position, 0.35f);
+                    StartCoroutine(Pioche());
+                    destructionCristaux = true;
+                    cristauxPowers.GetComponent<MeshCollider>().enabled = false;
+                    chrono = 0;
+                    curseur.transform.rotation = Quaternion.AngleAxis(0, Vector3.right);
+                    resetCurseur();
+                    //FadeOutText();
+                }
+            }
+        } 
 
 
-	}
+    }
 	void FadeInText(){
 		chronoFadeIn += Time.deltaTime;
 		myColor = tmp.color;
@@ -200,5 +267,84 @@ public class Initiation : MonoBehaviour {
     {
         yield return new WaitForSeconds(0.55f);
         destructionCristaux = false;
+    }
+
+    bool focusCurseur()
+    {
+        if (dist <= 0.02f && Vector3.Distance(this.transform.position, curseur.transform.position) <= distZoneTp)
+        {
+            
+            //Debug.Log(dist);
+            chronoOld = chrono;
+            chrono += Time.deltaTime;
+            if (chronoOld < 0.25 && chrono >= 0.25)
+            {
+                anim["Curseur_anim_simple"].speed = (float)(1.5 + ((3 - 1.5) * ((chrono - 0.25) / (1 - 0.25))));
+                color = curseur.transform.GetChild(0).gameObject.transform.GetChild(0).GetComponent<Renderer>().material.DOColor(Color.green, 1.25f);
+                color2 = curseur.transform.GetChild(0).gameObject.transform.GetChild(1).GetComponent<Renderer>().material.DOColor(Color.green, 1.25f);
+                color3 = curseur.transform.GetChild(0).gameObject.transform.GetChild(2).GetComponent<Renderer>().material.DOColor(Color.green, 1.25f);
+                color4 = curseur.transform.GetChild(0).gameObject.transform.GetChild(3).GetComponent<Renderer>().material.DOColor(Color.green, 1.25f);
+                color5 = curseur.transform.GetChild(0).gameObject.transform.GetChild(4).GetComponent<Renderer>().material.DOColor(Color.green, 1.25f);
+            }
+            if (chronoOld < 0.5 && chrono >= 0.5)
+            {
+                anim["Curseur_anim_simple"].speed = (float)(1.5 + ((3 - 1.5) * ((chrono - 0.25) / (1 - 0.25))));
+            }
+            if (chronoOld < 0.75 && chrono >= 0.75)
+            {
+                anim["Curseur_anim_simple"].speed = (float)(1.5 + ((3 - 1.5) * ((chrono - 0.25) / (1 - 0.25))));
+            }
+        }
+        /*else
+        {
+            curseur.transform.GetChild(0).gameObject.transform.GetChild(0).GetComponent<Renderer>().material.color = Color.grey;
+            curseur.transform.GetChild(0).gameObject.transform.GetChild(1).GetComponent<Renderer>().material.color = Color.grey;
+            curseur.transform.GetChild(0).gameObject.transform.GetChild(2).GetComponent<Renderer>().material.color = Color.grey;
+            curseur.transform.GetChild(0).gameObject.transform.GetChild(3).GetComponent<Renderer>().material.color = Color.grey;
+            curseur.transform.GetChild(0).gameObject.transform.GetChild(4).GetComponent<Renderer>().material.color = Color.grey;
+            color.Kill();
+            color2.Kill();
+            color3.Kill();
+            color4.Kill();
+            color5.Kill();
+            pioche.SetActive(false);
+            curseur.transform.GetChild(0).GetComponent<Animation>().Stop();
+            chrono = 0;
+            anciennePositionCurseur = nouvellePosition;
+        } */
+        
+        if (Vector3.Distance(this.transform.position, curseur.transform.position) > distZoneTp)
+        {
+            curseur.SetActive(false);
+            chrono = 0;
+        }
+        if (Vector3.Distance(this.transform.position, curseur.transform.position) < distZoneTp && tagTouchee != "obstacle")
+        {
+            curseur.SetActive(true);
+        } 
+        if (chrono > 1)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    void resetCurseur()
+    {
+        curseur.transform.GetChild(0).gameObject.transform.GetChild(0).GetComponent<Renderer>().material.color = Color.grey;
+        curseur.transform.GetChild(0).gameObject.transform.GetChild(1).GetComponent<Renderer>().material.color = Color.grey;
+        curseur.transform.GetChild(0).gameObject.transform.GetChild(2).GetComponent<Renderer>().material.color = Color.grey;
+        curseur.transform.GetChild(0).gameObject.transform.GetChild(3).GetComponent<Renderer>().material.color = Color.grey;
+        curseur.transform.GetChild(0).gameObject.transform.GetChild(4).GetComponent<Renderer>().material.color = Color.grey;
+        color.Kill();
+        color2.Kill();
+        color3.Kill();
+        color4.Kill();
+        color5.Kill();
+        pioche.SetActive(false);
+        curseur.transform.GetChild(0).GetComponent<Animation>().Stop();
+        chrono = 0;
+        anciennePositionCurseur = nouvellePosition;
     }
 }
