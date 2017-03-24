@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.08.00">
+    <object class="AudioFile" id="{8df0f9c5-4b7a-45e4-9f23-0cfd9e55103d}">
+        <property name="assetPath">
+            <value>61837__stamvas__summer-atmosphere.wav</value>
+        </property>
+        <property name="isStreaming">
+            <value>true</value>
+        </property>
+        <property name="frequencyInKHz">
+            <value>48</value>
+        </property>
+        <property name="channelCount">
+            <value>1</value>
+        </property>
+        <property name="length">
+            <value>60</value>
+        </property>
+        <relationship name="masterAssetFolder">
+            <destination>{035ebcf8-90ec-43b8-8af5-f06b05b95bba}</destination>
+        </relationship>
+    </object>
+</objects>

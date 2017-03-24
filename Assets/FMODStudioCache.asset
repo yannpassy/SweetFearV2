@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EditorBanks:
   - {fileID: 114966711031720052}
-  - {fileID: 114068594652991818}
+  - {fileID: 114529733231917690}
   EditorEvents:
   - {fileID: 114227813229860642}
   - {fileID: 114622312210690238}
@@ -24,9 +24,9 @@ MonoBehaviour:
   - {fileID: 114714169775389166}
   - {fileID: 114416458461393762}
   - {fileID: 114417912675570466}
-  MasterBankRef: {fileID: 114068594652991818}
+  MasterBankRef: {fileID: 114529733231917690}
   StringsBankRef: {fileID: 114966711031720052}
-  stringsBankWriteTime: 636250022901971485
+  stringsBankWriteTime: 636250004570653313
   cacheVersion: 2
 --- !u!114 &114028322389341794
 MonoBehaviour:
@@ -42,7 +42,7 @@ MonoBehaviour:
   Path: event:/DestructionIle
   guid: 73f6e909ba3425448969775353814198
   Banks:
-  - {fileID: 114068594652991818}
+  - {fileID: 114529733231917690}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -112,12 +112,12 @@ MonoBehaviour:
   Path: event:/AmbianceCreepy
   guid: 1f89dc8c7790994494f95f44441c9af0
   Banks:
-  - {fileID: 114068594652991818}
+  - {fileID: 114529733231917690}
   IsStream: 1
   Is3D: 1
   IsOneShot: 0
   Parameters:
-  - {fileID: 114061715287160184}
+  - {fileID: 114934536776011668}
   MinDistance: 1
   MaxDistance: 20
 --- !u!114 &114330139825736944
@@ -134,7 +134,7 @@ MonoBehaviour:
   Path: event:/MenuTheme
   guid: 5ead187c11ffe244810ad0327d90fa7f
   Banks:
-  - {fileID: 114068594652991818}
+  - {fileID: 114529733231917690}
   IsStream: 1
   Is3D: 1
   IsOneShot: 1
@@ -155,7 +155,7 @@ MonoBehaviour:
   Path: event:/DestructionCristaux
   guid: 589368d9e4003343a45f876934a33931
   Banks:
-  - {fileID: 114068594652991818}
+  - {fileID: 114529733231917690}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -176,7 +176,7 @@ MonoBehaviour:
   Path: "event:/Rivi\xE8re"
   guid: cb974cbf3dc4bc4aae8391df785db7b7
   Banks:
-  - {fileID: 114068594652991818}
+  - {fileID: 114529733231917690}
   IsStream: 1
   Is3D: 1
   IsOneShot: 0
@@ -197,7 +197,7 @@ MonoBehaviour:
   Path: event:/Effondrement
   guid: f0e530e46d1104439d2fbcd9e323279a
   Banks:
-  - {fileID: 114068594652991818}
+  - {fileID: 114529733231917690}
   IsStream: 1
   Is3D: 1
   IsOneShot: 0
@@ -223,6 +223,25 @@ MonoBehaviour:
   - Name: Desktop
     Value: 7468384
   Exists: 0
+--- !u!114 &114529733231917690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: C:\Users\femY\Documents\GitHub\SweetFearV2\SonSweetFear\Build\Desktop\Master
+    Bank.bank
+  lastModified: 636251747505622517
+  LoadResult: 0
+  FileSizes:
+  - Name: Desktop
+    Value: 7468384
+  Exists: 1
 --- !u!114 &114622312210690238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -237,7 +256,7 @@ MonoBehaviour:
   Path: event:/Fontaine
   guid: 2b84fcf44caa69499fbacc4e8918cec6
   Banks:
-  - {fileID: 114068594652991818}
+  - {fileID: 114529733231917690}
   IsStream: 1
   Is3D: 1
   IsOneShot: 1
@@ -258,7 +277,7 @@ MonoBehaviour:
   Path: event:/instant-teleport
   guid: 9a0f2b83cc399946b4479bc1b523087b
   Banks:
-  - {fileID: 114068594652991818}
+  - {fileID: 114529733231917690}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -279,7 +298,7 @@ MonoBehaviour:
   Path: event:/SonAmbianceHiver
   guid: 6b5fcb2116d0f442af8a3328865ce8a6
   Banks:
-  - {fileID: 114068594652991818}
+  - {fileID: 114529733231917690}
   IsStream: 1
   Is3D: 1
   IsOneShot: 0
@@ -320,6 +339,21 @@ MonoBehaviour:
   - Name: Desktop
     Value: 7468384
   Exists: 1
+--- !u!114 &114934536776011668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: creep
+  Min: 0
+  Max: 10
+  Default: 0
 --- !u!114 &114966711031720052
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -332,7 +366,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Path: SonSweetFear\Build\Desktop\Master Bank.strings.bank
-  lastModified: 636250022901971485
+  lastModified: 636250004570653313
   LoadResult: 0
   FileSizes:
   - Name: Desktop
