@@ -9,6 +9,7 @@ public class Initiation : MonoBehaviour {
 	public OVRCameraRig cameraOVR;
 
 	public TextMeshProUGUI tmp;
+	public int compteur;
 
 	private enum Etat {texte1, texte2, texte3, texte4, cristauxPowers, texte5, tp, fadeOut, texte6, demiTour,  destructionFragment, fadeIn };
 
@@ -69,6 +70,7 @@ public class Initiation : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+		compteur = 1;
 		etat = 0;
 		duration = 2.5f;
         destructionCristaux = false;
@@ -262,6 +264,49 @@ public class Initiation : MonoBehaviour {
         }
         if (etat == Etat.tp)
         {
+			if (compteur == 1) {
+				Debug.Log ("c'est bon");
+				cylindreZoneTp.SetActive(true);
+				curseur.SetActive(true);
+				dist = Vector3.Distance(anciennePositionCurseur, curseur.transform.position);
+				if (focusCurseur () && tagTouchee == "CylindreZoneTp") {
+					compteur += 1;
+				}
+			}
+
+			if (compteur == 2) {
+				curseur.GetComponent<Rigidbody>().isKinematic = true;
+				cam.GetComponent<OVRScreenFadeOut>().enabled = true;
+				cam.GetComponent<OVRScreenFadeOut>().StarFadeOut();
+				compteur += 1;
+			}
+
+			if (compteur == 3) {
+				chronoFadeOutTp += Time.deltaTime;
+				if (chronoFadeOutTp > cam.GetComponent<OVRScreenFadeOut> ().fadeTime) {
+					this.transform.position = new Vector3(nouvellePosition.x, nouvellePosition.y + 0.066f, nouvellePosition.z);
+					FMODUnity.RuntimeManager.PlayOneShot("event:/instant-teleport", this.transform.position);
+					cam.GetComponent<OVRScreenFadeOut>().StartFadeIn();
+					curseur.transform.GetChild(0).GetComponent<Animation>().Stop();
+					compteur += 1;
+				}
+			}
+
+			if (compteur == 4) {
+				chronoFadeIn += Time.deltaTime;
+				if (chronoFadeIn > cam.GetComponent<OVRScreenFadeOut> ().fadeTime) {
+					compteur += 1;
+					curseur.transform.GetChild(0).gameObject.transform.GetChild(0).GetComponent<Renderer>().material.color = Color.black;
+					curseur.transform.GetChild(0).gameObject.transform.GetChild(1).GetComponent<Renderer>().material.color = Color.black;
+					curseur.transform.GetChild(0).gameObject.transform.GetChild(2).GetComponent<Renderer>().material.color = Color.black;
+					curseur.transform.GetChild(0).gameObject.transform.GetChild(3).GetComponent<Renderer>().material.color = Color.black;
+					curseur.transform.GetChild(0).gameObject.transform.GetChild(4).GetComponent<Renderer>().material.color = Color.black;
+					chronoFadeIn = 0;
+					chrono = 0;
+					cam.GetComponent<OVRScreenFadeOut>().enabled = false;
+					etat += 1;
+				}
+			/*
             cylindreZoneTp.SetActive(true);
             curseur.SetActive(true);
             dist = Vector3.Distance(anciennePositionCurseur, curseur.transform.position);
@@ -297,12 +342,13 @@ public class Initiation : MonoBehaviour {
                         cam.GetComponent<OVRScreenFadeOut>().enabled = false;
                         resetColorCurseur();
                     }
-                }
+                }*/
             }
         }
 
 
     }
+
 	void FadeInText(){
 		chronoFadeIn += Time.deltaTime;
 		myColor = tmp.color;
