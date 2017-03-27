@@ -12,7 +12,9 @@ public class Initiation : MonoBehaviour {
 	public TextMeshProUGUI tmpSecondePartie;
 	public int compteur;
 
+
 	private enum Etat {texte1, texte2, texte3, texte4, cristauxPowers, texte5, tp, texte6,rougeClair, texte7, rouge,  texte8, rougeFonce , texte9, texte10, texte11 };
+
 
 	Etat etat;
 
@@ -327,12 +329,14 @@ public class Initiation : MonoBehaviour {
 					cam.GetComponent<OVRScreenFadeOut>().enabled = false;
 					curseur.SetActive (false);
 					etat += 1;
+                    compteur = 1;
 				}
             }
         }
 
 		if (etat == Etat.texte6)
 		{
+
 			tmpSecondePartie.text = "Mais tu n'as pas encore tout vu";
 			if (passage == false)
 			{
@@ -367,6 +371,7 @@ public class Initiation : MonoBehaviour {
 		if (etat == Etat.texte7)
 		{
 			tmpSecondePartie.text = "Ce monde est instable";
+			tmp.text = "Mais tu n'as pas encore tout vu, vise la fleche au centre";
 			if (passage == false)
 			{
 				FadeInTextSecondePartie();
@@ -390,6 +395,7 @@ public class Initiation : MonoBehaviour {
 				FadeOutTextSecondePartie();
 			}
 		}
+
 
 		if (etat == Etat.rouge) {
 			fade = fragment.transform.GetChild (30).gameObject.GetComponent<Renderer> ().material.DOColor (couleurRouge, reduction);
@@ -467,7 +473,55 @@ public class Initiation : MonoBehaviour {
 				FadeOutTextSecondePartie();
 			}
 		}
-		
+
+        if(etat == Etat.demiTour) {
+            if (compteur == 1)
+            {
+                curseur.SetActive(true);
+                dist = Vector3.Distance(anciennePositionCurseur, curseur.transform.position);
+                if (focusCurseur() && tagTouchee == "demi-tour")
+                {
+                    compteur += 1;
+                }
+            }
+            if (compteur == 2)
+            {
+                cam.GetComponent<OVRScreenFadeOut>().enabled = true;
+                cam.GetComponent<OVRScreenFadeOut>().StarFadeOut();
+                compteur += 1;
+            }
+            if(compteur == 3)
+            {
+                chronoFadeOut += Time.deltaTime;
+                if (chronoFadeOut > cam.GetComponent<OVRScreenFadeOut>().fadeTime)
+                {
+                    chronoFadeOut = 0;
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/instant-teleport", this.transform.position);
+                    this.transform.rotation *= Quaternion.AngleAxis(180, Vector3.up);
+                    cam.GetComponent<OVRScreenFadeOut>().StartFadeIn();
+                    curseur.transform.GetChild(0).GetComponent<Animation>().Stop();
+                    compteur += 1;
+                }
+            }
+            if (compteur == 4)
+            {
+                chronoFadeIn += Time.deltaTime;
+                if (chronoFadeIn > cam.GetComponent<OVRScreenFadeOut>().fadeTime)
+                {
+                    curseur.transform.GetChild(0).gameObject.transform.GetChild(0).GetComponent<Renderer>().material.color = Color.black;
+                    curseur.transform.GetChild(0).gameObject.transform.GetChild(1).GetComponent<Renderer>().material.color = Color.black;
+                    curseur.transform.GetChild(0).gameObject.transform.GetChild(2).GetComponent<Renderer>().material.color = Color.black;
+                    curseur.transform.GetChild(0).gameObject.transform.GetChild(3).GetComponent<Renderer>().material.color = Color.black;
+                    curseur.transform.GetChild(0).gameObject.transform.GetChild(4).GetComponent<Renderer>().material.color = Color.black;
+                    chronoFadeIn = 0;
+                    chrono = 0;
+                    curseur.SetActive(false);
+                    cam.GetComponent<OVRScreenFadeOut>().enabled = false;
+                    etat += 1;
+                }
+                
+            }
+        }
 
 
 
