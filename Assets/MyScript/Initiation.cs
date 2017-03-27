@@ -11,7 +11,7 @@ public class Initiation : MonoBehaviour {
 	public TextMeshProUGUI tmp;
 	public int compteur;
 
-	private enum Etat {texte1, texte2, texte3, texte4, cristauxPowers, texte5, tp, fadeOut, texte6, demiTour,  destructionFragment, fadeIn };
+	private enum Etat {texte1, texte2, texte3, texte4, cristauxPowers, texte5, tp, texte6, destructionFragment, texte7 };
 
 	Etat etat;
 
@@ -139,7 +139,7 @@ public class Initiation : MonoBehaviour {
 		}
 
 		if (etat == Etat.texte2) {
-			tmp.text = "Pouvez-vous vous en sortir?";
+			tmp.text = "Peux-tu t'en sortir?";
 			if (passage == false) {
 				FadeInText ();
 			}
@@ -163,7 +163,7 @@ public class Initiation : MonoBehaviour {
 		}
 
 		if (etat == Etat.texte3) {
-			tmp.text = "avant que Timmy ne vous trouve?";
+			tmp.text = "avant que Timmy ne te trouve?";
 			if (passage == false) {
 				FadeInText ();
 			}
@@ -186,7 +186,7 @@ public class Initiation : MonoBehaviour {
 
 		if (etat == Etat.texte4) {
             Debug.Log("on est dans texte 4");
-			tmp.text = "Passez par la porte Rouge...";
+			tmp.text = "Passe par la porte Rouge...";
 			if (passage == false) {
 				FadeInText ();
 			}
@@ -209,37 +209,37 @@ public class Initiation : MonoBehaviour {
         if (etat == Etat.cristauxPowers)
         {
             dist = Vector3.Distance(anciennePositionCurseur, curseur.transform.position);
-            if (destructionCristaux == false && tagTouchee == "CristauxPowers")
-            {
-                quatX = Quaternion.AngleAxis(-90, Vector3.right);
-                quatZ = Quaternion.LookRotation(directionCurseur);
-                Debug.Log(quatZ);
-                quatResultat = quatZ * quatX;
-                curseur.transform.rotation = quatResultat;
-                pioche.SetActive(true);
-                pioche.transform.position = cam.transform.position + cam.transform.rotation * new Vector3(0, 0, 0.4f);
+			if (destructionCristaux == false && tagTouchee == "CristauxPowers") {
+				quatX = Quaternion.AngleAxis (-90, Vector3.right);
+				quatZ = Quaternion.LookRotation (directionCurseur);
+				Debug.Log (quatZ);
+				quatResultat = quatZ * quatX;
+				curseur.transform.rotation = quatResultat;
+				pioche.SetActive (true);
+				pioche.transform.position = cam.transform.position + cam.transform.rotation * new Vector3 (0, 0, 0.4f);
 
-                if (focusCurseur())
-                {
-                    Debug.Log("dans le bloc");
-                    cristauxPowers.transform.GetChild(0).gameObject.transform.GetComponent<Rigidbody>().isKinematic = false;
-                    tweenPioche = pioche.transform.DOMove(cristauxPowers.transform.position, 0.35f);
-                    StartCoroutine(Pioche());
-                    destructionCristaux = true;
-                    cristauxPowers.GetComponent<MeshCollider>().enabled = false;
-                    chrono = 0;
-                    curseur.transform.rotation = Quaternion.AngleAxis(0, Vector3.right);
-                    resetColorCurseur();
-                    //FadeOutText();
-                    etat = Etat.texte5;
-                    curseur.SetActive(false);
-                }
-            }
+				if (focusCurseur ()) {
+					Debug.Log ("dans le bloc");
+					cristauxPowers.transform.GetChild (0).gameObject.transform.GetComponent<Rigidbody> ().isKinematic = false;
+					tweenPioche = pioche.transform.DOMove (cristauxPowers.transform.position, 0.35f);
+					StartCoroutine (Pioche ());
+					destructionCristaux = true;
+					cristauxPowers.GetComponent<MeshCollider> ().enabled = false;
+					chrono = 0;
+					curseur.transform.rotation = Quaternion.AngleAxis (0, Vector3.right);
+					resetColorCurseur ();
+					//FadeOutText();
+					etat = Etat.texte5;
+					curseur.SetActive (false);
+				}
+			} else {
+				curseur.SetActive (false);
+			}
         }
         if (etat == Etat.texte5)
         {
             Debug.Log("on est dans texte 5");
-            tmp.text = "teleporte toi en fixant la zone indiqué ...";
+            tmp.text = "teleporte toi maitenant en fixant la zone indique ...";
             if (passage == false)
             {
                 FadeInText();
@@ -265,7 +265,6 @@ public class Initiation : MonoBehaviour {
         if (etat == Etat.tp)
         {
 			if (compteur == 1) {
-				Debug.Log ("c'est bon");
 				cylindreZoneTp.SetActive(true);
 				curseur.SetActive(true);
 				dist = Vector3.Distance(anciennePositionCurseur, curseur.transform.position);
@@ -304,6 +303,7 @@ public class Initiation : MonoBehaviour {
 					chronoFadeIn = 0;
 					chrono = 0;
 					cam.GetComponent<OVRScreenFadeOut>().enabled = false;
+					curseur.SetActive (false);
 					etat += 1;
 				}
 			/*
@@ -346,6 +346,34 @@ public class Initiation : MonoBehaviour {
             }
         }
 
+		if (etat == Etat.texte6)
+		{
+			tmp.text = "Mais tu n'as pas encore tout vu";
+			if (passage == false)
+			{
+				FadeInText();
+			}
+
+			if (tagTouchee == "Canvas" && chronoFadeIn > duration)
+			{
+				chronoValidationOld = chronoValidation;
+				chronoValidation += Time.deltaTime;
+				if (chronoValidationOld < 2.5f && chronoValidation >= 2.5f)
+				{
+					chronoValidation = 0;
+					chronoValidationOld = 0;
+					passage = true;
+				}
+			}
+
+			if (passage == true)
+			{
+				FadeOutText();
+			}
+		}
+
+
+
 
     }
 
@@ -385,30 +413,28 @@ public class Initiation : MonoBehaviour {
 
     bool focusCurseur()
     {
-        if (dist <= 0.02f && Vector3.Distance(this.transform.position, curseur.transform.position) <= distZoneTp)
-        {
+		if (dist <= 0.02f && Vector3.Distance (this.transform.position, curseur.transform.position) <= distZoneTp) {
             
-            //Debug.Log(dist);
-            chronoOld = chrono;
-            chrono += Time.deltaTime;
-            if (chronoOld < 0.25 && chrono >= 0.25)
-            {
-                anim["Curseur_anim_simple"].speed = (float)(1.5 + ((3 - 1.5) * ((chrono - 0.25) / (1 - 0.25))));
-                color = curseur.transform.GetChild(0).gameObject.transform.GetChild(0).GetComponent<Renderer>().material.DOColor(Color.green, 1.25f);
-                color2 = curseur.transform.GetChild(0).gameObject.transform.GetChild(1).GetComponent<Renderer>().material.DOColor(Color.green, 1.25f);
-                color3 = curseur.transform.GetChild(0).gameObject.transform.GetChild(2).GetComponent<Renderer>().material.DOColor(Color.green, 1.25f);
-                color4 = curseur.transform.GetChild(0).gameObject.transform.GetChild(3).GetComponent<Renderer>().material.DOColor(Color.green, 1.25f);
-                color5 = curseur.transform.GetChild(0).gameObject.transform.GetChild(4).GetComponent<Renderer>().material.DOColor(Color.green, 1.25f);
-            }
-            if (chronoOld < 0.5 && chrono >= 0.5)
-            {
-                anim["Curseur_anim_simple"].speed = (float)(1.5 + ((3 - 1.5) * ((chrono - 0.25) / (1 - 0.25))));
-            }
-            if (chronoOld < 0.75 && chrono >= 0.75)
-            {
-                anim["Curseur_anim_simple"].speed = (float)(1.5 + ((3 - 1.5) * ((chrono - 0.25) / (1 - 0.25))));
-            }
-        }
+			//Debug.Log(dist);
+			chronoOld = chrono;
+			chrono += Time.deltaTime;
+			if (chronoOld < 0.25 && chrono >= 0.25) {
+				anim ["Curseur_anim_simple"].speed = (float)(1.5 + ((3 - 1.5) * ((chrono - 0.25) / (1 - 0.25))));
+				color = curseur.transform.GetChild (0).gameObject.transform.GetChild (0).GetComponent<Renderer> ().material.DOColor (Color.green, 1.25f);
+				color2 = curseur.transform.GetChild (0).gameObject.transform.GetChild (1).GetComponent<Renderer> ().material.DOColor (Color.green, 1.25f);
+				color3 = curseur.transform.GetChild (0).gameObject.transform.GetChild (2).GetComponent<Renderer> ().material.DOColor (Color.green, 1.25f);
+				color4 = curseur.transform.GetChild (0).gameObject.transform.GetChild (3).GetComponent<Renderer> ().material.DOColor (Color.green, 1.25f);
+				color5 = curseur.transform.GetChild (0).gameObject.transform.GetChild (4).GetComponent<Renderer> ().material.DOColor (Color.green, 1.25f);
+			}
+			if (chronoOld < 0.5 && chrono >= 0.5) {
+				anim ["Curseur_anim_simple"].speed = (float)(1.5 + ((3 - 1.5) * ((chrono - 0.25) / (1 - 0.25))));
+			}
+			if (chronoOld < 0.75 && chrono >= 0.75) {
+				anim ["Curseur_anim_simple"].speed = (float)(1.5 + ((3 - 1.5) * ((chrono - 0.25) / (1 - 0.25))));
+			}
+		} else {
+			resetColorCurseur ();
+		}
         
         if (Vector3.Distance(this.transform.position, curseur.transform.position) > distZoneTp )
         {
@@ -439,9 +465,10 @@ public class Initiation : MonoBehaviour {
         color3.Kill();
         color4.Kill();
         color5.Kill();
-        pioche.SetActive(false);
         curseur.transform.GetChild(0).GetComponent<Animation>().Stop();
         chrono = 0;
         anciennePositionCurseur = nouvellePosition;
     }
+
+
 }
