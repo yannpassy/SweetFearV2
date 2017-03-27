@@ -27,7 +27,7 @@ public class GestionDestruction : MonoBehaviour {
 
 		fade = null;
 		passage = false;
-		compteur = 0;
+		compteur = 1;
 		reduction = 4.0f;
     }
 

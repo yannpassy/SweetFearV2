@@ -9,9 +9,10 @@ public class Initiation : MonoBehaviour {
 	public OVRCameraRig cameraOVR;
 
 	public TextMeshProUGUI tmp;
+	public TextMeshProUGUI tmpSecondePartie;
 	public int compteur;
 
-	private enum Etat {texte1, texte2, texte3, texte4, cristauxPowers, texte5, tp, texte6, destructionFragment, texte7 };
+	private enum Etat {texte1, texte2, texte3, texte4, cristauxPowers, texte5, tp, texte6,rougeClair, texte7, rouge,  texte8, rougeFonce , texte9, texte10, texte11 };
 
 	Etat etat;
 
@@ -44,6 +45,7 @@ public class Initiation : MonoBehaviour {
 	public GameObject clefOuverture;
 	public GameObject pioche;
 	public GameObject Timmy;
+	public GameObject fragment;
 
 	private Rigidbody rb;
 	private float vitesseAnimation;
@@ -54,6 +56,14 @@ public class Initiation : MonoBehaviour {
 	private float duration;
 	private float ratio;
 
+	private Color32 couleurBleu;
+	private Color32 couleurRougeClair;
+	private Color32 couleurRouge;
+	private Color32 couleurRougeFonce;
+
+	public float reduction;
+
+	Tween fade;
     Tween color;
     Tween color2;
     Tween color3;
@@ -80,6 +90,11 @@ public class Initiation : MonoBehaviour {
         chrono = 0;
         cylindreZoneTp.SetActive(false);
         chronoFadeOut = 0;
+		couleurBleu = new Color32 (176, 202, 206, 255);
+		couleurRougeClair = new Color32 (255, 180, 180, 255);
+		couleurRouge = new Color32 (255, 129, 129, 255);
+		couleurRougeFonce = new Color32 (255, 49, 49, 255);
+		reduction = 4.0f;
 
     }
 	
@@ -197,6 +212,7 @@ public class Initiation : MonoBehaviour {
 				if (chronoValidationOld < 2.5f && chronoValidation >= 2.5f) {
 					chronoValidation = 0;
 					chronoValidationOld = 0;
+					chronoFadeIn = 0;
 					passage = true;
 				}
 			}
@@ -253,6 +269,7 @@ public class Initiation : MonoBehaviour {
                 {
                     chronoValidation = 0;
                     chronoValidationOld = 0;
+					chronoFadeIn = 0;
                     passage = true;
                 }
             }
@@ -268,7 +285,12 @@ public class Initiation : MonoBehaviour {
 				cylindreZoneTp.SetActive(true);
 				curseur.SetActive(true);
 				dist = Vector3.Distance(anciennePositionCurseur, curseur.transform.position);
-				if (focusCurseur () && tagTouchee == "CylindreZoneTp") {
+				if (tagTouchee == "CylindreZoneTp") {
+					curseur.SetActive (true);
+				} else {
+					curseur.SetActive (false);
+				}
+				if (focusCurseur ()) {
 					compteur += 1;
 				}
 			}
@@ -306,52 +328,15 @@ public class Initiation : MonoBehaviour {
 					curseur.SetActive (false);
 					etat += 1;
 				}
-			/*
-            cylindreZoneTp.SetActive(true);
-            curseur.SetActive(true);
-            dist = Vector3.Distance(anciennePositionCurseur, curseur.transform.position);
-            if ( focusCurseur() && tagTouchee == "CylindreZoneTp")
-            {
-                //== fade in
-                curseur.GetComponent<Rigidbody>().isKinematic = true;
-                cam.GetComponent<OVRScreenFadeOut>().enabled = true;
-                //cam.GetComponent<OVRScreenFadeOut>().StarFadeOut();
-                chronoFadeOutTp += Time.deltaTime;
-                Debug.Log(chronoFadeOutTp);
-                if (chronoFadeOutTp > cam.GetComponent<OVRScreenFadeOut>().fadeTime)
-                {
-                    Debug.Log("téléportation o/");
-                    //== téléportation
-                    this.transform.position = new Vector3(nouvellePosition.x, nouvellePosition.y + 0.066f, nouvellePosition.z);
-                    FMODUnity.RuntimeManager.PlayOneShot("event:/instant-teleport", this.transform.position);
-                    cam.GetComponent<OVRScreenFadeOut>().StartFadeIn();
-
-                    //==fade out
-                    curseur.transform.GetChild(0).GetComponent<Animation>().Stop();
-                    chronoFadeIn += Time.deltaTime;
-                    if (chronoFadeIn > cam.GetComponent<OVRScreenFadeOut>().fadeTime)
-                    {
-                        //on part sur un renderer noir pour le curseur
-                        curseur.transform.GetChild(0).gameObject.transform.GetChild(0).GetComponent<Renderer>().material.color = Color.black;
-                        curseur.transform.GetChild(0).gameObject.transform.GetChild(1).GetComponent<Renderer>().material.color = Color.black;
-                        curseur.transform.GetChild(0).gameObject.transform.GetChild(2).GetComponent<Renderer>().material.color = Color.black;
-                        curseur.transform.GetChild(0).gameObject.transform.GetChild(3).GetComponent<Renderer>().material.color = Color.black;
-                        curseur.transform.GetChild(0).gameObject.transform.GetChild(4).GetComponent<Renderer>().material.color = Color.black;
-                        chronoFadeIn = 0;
-                        chrono = 0;
-                        cam.GetComponent<OVRScreenFadeOut>().enabled = false;
-                        resetColorCurseur();
-                    }
-                }*/
             }
         }
 
 		if (etat == Etat.texte6)
 		{
-			tmp.text = "Mais tu n'as pas encore tout vu";
+			tmpSecondePartie.text = "Mais tu n'as pas encore tout vu";
 			if (passage == false)
 			{
-				FadeInText();
+				FadeInTextSecondePartie();
 			}
 
 			if (tagTouchee == "Canvas" && chronoFadeIn > duration)
@@ -362,15 +347,127 @@ public class Initiation : MonoBehaviour {
 				{
 					chronoValidation = 0;
 					chronoValidationOld = 0;
+					chronoFadeIn = 0;
 					passage = true;
 				}
 			}
 
 			if (passage == true)
 			{
-				FadeOutText();
+				FadeOutTextSecondePartie();
 			}
 		}
+
+		if (etat == Etat.rougeClair) {
+			fade = fragment.transform.GetChild (30).gameObject.GetComponent<Renderer> ().material.DOColor (couleurRougeClair, reduction);
+			StartCoroutine (CompleteTweenRouge ());
+			etat += 1;
+		}
+
+		if (etat == Etat.texte7)
+		{
+			tmpSecondePartie.text = "Ce monde est instable";
+			if (passage == false)
+			{
+				FadeInTextSecondePartie();
+			}
+
+			if (tagTouchee == "Canvas" && chronoFadeIn > duration)
+			{
+				chronoValidationOld = chronoValidation;
+				chronoValidation += Time.deltaTime;
+				if (chronoValidationOld < 2.5f && chronoValidation >= 2.5f)
+				{
+					chronoValidation = 0;
+					chronoValidationOld = 0;
+					chronoFadeIn = 0;
+					passage = true;
+				}
+			}
+
+			if (passage == true)
+			{
+				FadeOutTextSecondePartie();
+			}
+		}
+
+		if (etat == Etat.rouge) {
+			fade = fragment.transform.GetChild (30).gameObject.GetComponent<Renderer> ().material.DOColor (couleurRouge, reduction);
+			StartCoroutine (CompleteTweenRouge ());
+			etat += 1;
+		}
+
+		if (etat == Etat.texte8)
+		{
+			tmpSecondePartie.text = "A tout moment..";
+			if (passage == false)
+			{
+				FadeInTextSecondePartie();
+			}
+
+			if (tagTouchee == "Canvas" && chronoFadeIn > duration)
+			{
+				chronoValidationOld = chronoValidation;
+				chronoValidation += Time.deltaTime;
+				if (chronoValidationOld < 2.5f && chronoValidation >= 2.5f)
+				{
+					chronoValidation = 0;
+					chronoValidationOld = 0;
+					chronoFadeIn = 0;
+					passage = true;
+				}
+			}
+
+			if (passage == true)
+			{
+				FadeOutTextSecondePartie();
+			}
+		}
+
+		if (etat == Etat.rougeFonce) {
+			chrono += Time.deltaTime;
+			if (passage == false) {
+				fade = fragment.transform.GetChild (30).gameObject.GetComponent<Renderer> ().material.DOColor (couleurRougeFonce, reduction);
+				StartCoroutine (CompleteSwitchTweenRouge ());
+			}
+			if (passage == true) {
+				fade = fragment.transform.GetChild (30).gameObject.GetComponent<Renderer> ().material.DOColor (couleurBleu,  reduction);
+				StartCoroutine (CompleteSwitchTweenBleu ());
+			}
+
+			if (chrono > 1.5f) {
+				fragment.GetComponent<ActiveTrueFalse>().enabled = true;
+				etat += 1;
+			}
+		}
+
+		if (etat == Etat.texte9)
+		{
+			tmpSecondePartie.text = "Tu peux tout perdre...";
+			if (passage == false)
+			{
+				FadeInTextSecondePartie();
+			}
+
+			if (tagTouchee == "Canvas" && chronoFadeIn > duration)
+			{
+				chronoValidationOld = chronoValidation;
+				chronoValidation += Time.deltaTime;
+				if (chronoValidationOld < 2.5f && chronoValidation >= 2.5f)
+				{
+					chronoValidation = 0;
+					chronoValidationOld = 0;
+					chronoFadeIn = 0;
+					passage = true;
+				}
+			}
+
+			if (passage == true)
+			{
+				FadeOutTextSecondePartie();
+			}
+		}
+		
 
 
 
@@ -385,12 +482,34 @@ public class Initiation : MonoBehaviour {
 		tmp.color = myColor;
 	}
 
+	void FadeInTextSecondePartie(){
+		chronoFadeIn += Time.deltaTime;
+		myColor = tmpSecondePartie.color;
+		float ratio = chronoFadeIn / duration;
+		myColor.a = Mathf.Lerp (0, 1, ratio);
+		tmpSecondePartie.color = myColor;
+	}
+
 	void FadeOutText(){
 		chronoFadeOut += Time.deltaTime;
 		myColor = tmp.color;
 		float ratio = chronoFadeOut / duration;
 		myColor.a = Mathf.Lerp (1, 0, ratio);
 		tmp.color = myColor;
+		if (chronoFadeOut > duration) {
+			chronoFadeIn = 0;
+			chronoFadeOut = 0;
+			passage = false;
+			etat += 1;
+
+		}
+	}
+	void FadeOutTextSecondePartie(){
+		chronoFadeOut += Time.deltaTime;
+		myColor = tmpSecondePartie.color;
+		float ratio = chronoFadeOut / duration;
+		myColor.a = Mathf.Lerp (1, 0, ratio);
+		tmpSecondePartie.color = myColor;
 		if (chronoFadeOut > duration) {
 			chronoFadeIn 	= 0;
 			chronoFadeOut 	= 0;
@@ -470,5 +589,20 @@ public class Initiation : MonoBehaviour {
         anciennePositionCurseur = nouvellePosition;
     }
 
+	IEnumerator CompleteTweenRouge(){
+		yield return fade.WaitForCompletion();
+		fade = fragment.transform.GetChild (30).gameObject.GetComponent<Renderer> ().material.DOColor (couleurBleu,  reduction);
+		reduction -= 2.0f;
+	}
 
+	IEnumerator CompleteSwitchTweenRouge(){
+		yield return fade.WaitForCompletion();
+		passage = true;
+
+	}
+
+	IEnumerator CompleteSwitchTweenBleu(){
+		yield return fade.WaitForCompletion();
+		passage = false;
+	}
 }
