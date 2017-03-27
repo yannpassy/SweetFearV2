@@ -92,7 +92,7 @@ public class Initiation : MonoBehaviour {
 
 		if (Physics.Raycast(ray, out hit, Mathf.Infinity))
 		{
-            if (etat == Etat.cristauxPowers || etat == Etat.tp)
+            if (etat == Etat.cristauxPowers || etat == Etat.tp || etat == Etat.demiTour)
             {
                 anciennePositionCurseur = curseur.transform.position;
                 if (chrono < 1)
