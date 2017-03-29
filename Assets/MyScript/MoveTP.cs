@@ -55,6 +55,12 @@ public class MoveTP : MonoBehaviour
 	public GameObject pioche;
     private GameObject vide;
     public GameObject Timmy;
+	public GameObject porteTriangle;
+	public GameObject porteLosange;
+	public GameObject porteCarre;
+	public GameObject porteCroix;
+	public GameObject porteRond;
+
 
     private Rigidbody rb;
     private float dist;
@@ -161,6 +167,8 @@ public class MoveTP : MonoBehaviour
         //affiche ou affiche pas le curseur
 
 
+
+
         if (etat == Etat.Look)
         {
 			if (destructionCristaux == false) {
@@ -169,7 +177,7 @@ public class MoveTP : MonoBehaviour
 				if (tagTouchee == "terrain") {
 					//curseur.transform.GetChild (0).gameObject.SetActive (true);
 					//curseur.transform.GetChild (1).gameObject.SetActive (false);
-					curseur.transform.rotation = Quaternion.AngleAxis(0, Vector3.right);
+					curseur.transform.rotation = Quaternion.AngleAxis (0, Vector3.right);
 					pioche.SetActive (false);
 				} else if (tagTouchee == "obstacle" || tagTouchee == "porte") {
 					curseur.SetActive (false);
@@ -179,7 +187,6 @@ public class MoveTP : MonoBehaviour
 					//curseur.transform.GetChild (1).gameObject.SetActive (true);
 					quatX = Quaternion.AngleAxis (-90, Vector3.right);
 					quatZ = Quaternion.LookRotation (directionCurseur);
-					Debug.Log (quatZ);
 					quatResultat = quatZ * quatX;
 					curseur.transform.rotation = quatResultat;
 					pioche.SetActive (true);
@@ -192,6 +199,35 @@ public class MoveTP : MonoBehaviour
 				} else if (tagTouchee == "serrureRouge" && obtentionClefRouge == false) {
 					canvasPorte.SetActive (true);
 					pioche.SetActive (false);
+				} else if (tagTouchee == "InterrupteurLosange") {
+					//curseur.transform.GetChild (0).gameObject.SetActive (false);
+					//curseur.transform.GetChild (1).gameObject.SetActive (true);
+					quatX = Quaternion.AngleAxis (-90, Vector3.right);
+					quatZ = Quaternion.LookRotation (directionCurseur);
+					Debug.Log (quatZ);
+					quatResultat = quatZ * quatX;
+					curseur.transform.rotation = quatResultat;
+				} else if (tagTouchee == "InterrupteurTriangle") {
+					//curseur.transform.GetChild (0).gameObject.SetActive (false);
+					//curseur.transform.GetChild (1).gameObject.SetActive (true);
+					quatX = Quaternion.AngleAxis (-90, Vector3.right);
+					quatZ = Quaternion.LookRotation (directionCurseur);
+					quatResultat = quatZ * quatX;
+					curseur.transform.rotation = quatResultat;
+				} else if (tagTouchee == "InterrupteurCarre") {
+					//curseur.transform.GetChild (0).gameObject.SetActive (false);
+					//curseur.transform.GetChild (1).gameObject.SetActive (true);
+					quatX = Quaternion.AngleAxis (-90, Vector3.right);
+					quatZ = Quaternion.LookRotation (directionCurseur);
+					quatResultat = quatZ * quatX;
+					curseur.transform.rotation = quatResultat;
+				} else if (tagTouchee == "InterrupteurCroix") {
+					//curseur.transform.GetChild (0).gameObject.SetActive (false);
+					//curseur.transform.GetChild (1).gameObject.SetActive (true);
+					quatX = Quaternion.AngleAxis (-90, Vector3.right);
+					quatZ = Quaternion.LookRotation (directionCurseur);
+					quatResultat = quatZ * quatX;
+					curseur.transform.rotation = quatResultat;
 				} else {
 					//curseur.SetActive(true);
 					clefOuverture.SetActive (false);
@@ -257,6 +293,9 @@ public class MoveTP : MonoBehaviour
                 etat = Etat.AnalyseCommande;
             }
         }
+
+
+
         else if (etat == Etat.AnalyseCommande)
         {
             
@@ -304,19 +343,45 @@ public class MoveTP : MonoBehaviour
                 //curseur.GetComponent<MeshRenderer>().material.color = Color.green;
             }
 
+			if (tagTouchee == "InterrupteurTriangle") {
+				porteTriangle.GetComponent<Animation> ().Play ();
+			}
+
+			if (tagTouchee == "InterrupteurLosange") {
+				porteLosange.GetComponent<Animation> ().Play ();
+			}
+
+			if (tagTouchee == "InterrupteurCarre") {
+				porteCarre.GetComponent<Animation> ().Play ();
+			}
+
+			if (tagTouchee == "InterrupteurCroix") {
+				porteCroix.GetComponent<Animation> ().Play ();
+			}
+
+
+
 			if (tagTouchee == "portail") {
 				cam.GetComponent<OVRScreenFadeOut>().enabled = true;
 				cam.GetComponent<OVRScreenFadeOut> ().StarFadeOut ();
 				StartCoroutine (ChangerScene ());
 			}
-        } else if (etat == Etat.fadeOut) {
+
+	 	} 
+
+
+		else if (etat == Etat.fadeOut) {
             chronoFadeOut += Time.deltaTime;
             if (chronoFadeOut > cam.GetComponent<OVRScreenFadeOut>().fadeTime)
 			{
                 etat = Etat.teleportation;
                 chronoFadeOut = 0;
             }
-        } else if (etat == Etat.teleportation) {
+        } 
+
+
+
+		else if (etat == Etat.teleportation) {
 
             this.transform.position = new Vector3(nouvellePosition.x, nouvellePosition.y + 0.066f, nouvellePosition.z);
 
@@ -329,7 +394,10 @@ public class MoveTP : MonoBehaviour
             //cameraOVR.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + 0.066f + 2.5f, this.transform.position.z);
 
             etat = Etat.fadeIn;
-        } else if (etat == Etat.fadeIn) {
+        } 
+
+
+		else if (etat == Etat.fadeIn) {
 			curseur.transform.GetChild (0).GetComponent<Animation> ().Stop ();
             chronoFadeIn += Time.deltaTime;
             if (chronoFadeIn > cam.GetComponent<OVRScreenFadeOut>().fadeTime)
@@ -346,7 +414,10 @@ public class MoveTP : MonoBehaviour
                 etat = Etat.Look;
             }
 
-        }else if (etat == Etat.demiTour){
+        }
+
+
+		else if (etat == Etat.demiTour){
             cam.GetComponent<OVRScreenFadeOut>().enabled = true;
             cam.GetComponent<OVRScreenFadeOut>().StarFadeOut();
             chronoFadeOut += Time.deltaTime;
@@ -360,6 +431,9 @@ public class MoveTP : MonoBehaviour
             }
 
         }
+
+
+
         else if (etat == Etat.QuartGauche)
         {
             cam.GetComponent<OVRScreenFadeOut>().enabled = true;
@@ -375,6 +449,9 @@ public class MoveTP : MonoBehaviour
             }
 
         }
+
+
+
         else if (etat == Etat.QuartDroite)
         {
             cam.GetComponent<OVRScreenFadeOut>().enabled = true;
@@ -390,6 +467,9 @@ public class MoveTP : MonoBehaviour
             }
 
         }
+
+
+
         else if(etat == Etat.cristauxPowers) {
             
             cristauxPowers.transform.GetChild(0).gameObject.transform.GetComponent<Rigidbody>().isKinematic = false;
@@ -411,6 +491,10 @@ public class MoveTP : MonoBehaviour
             chrono = 0;
             etat = Etat.Look;
         } 
+
+
+
+
 		else if(etat == Etat.ouvertureRouge) 	{
             StartCoroutine(DeplacementPorte());
             chrono = 0;
