@@ -8,6 +8,7 @@ public class MoveTP : MonoBehaviour
 	public string myAmbiance = "event:/AmbianceCreepy";
 	FMOD.Studio.EventInstance eventCreepy;
 	FMOD.Studio.ParameterInstance parameterCreepy;
+	FMOD.Studio.STOP_MODE stopMusic;
 	Tween color;
 	Tween color2;
 	Tween color3;
@@ -154,7 +155,7 @@ public class MoveTP : MonoBehaviour
 
         if(Vector3.Distance(this.transform.position, Timmy.transform.position) < 0.2f)
         {
-			eventCreepy.release ();
+			eventCreepy.stop (FMOD.Studio.STOP_MODE.IMMEDIATE);
             SceneManager.LoadScene("EcranGameOver");
         }
         //affiche ou affiche pas le curseur
@@ -449,6 +450,8 @@ public class MoveTP : MonoBehaviour
 
 	IEnumerator ChangerScene(){
 		yield return new WaitForSeconds (1.0f);
+		eventCreepy.stop (FMOD.Studio.STOP_MODE.IMMEDIATE);
+		eventCreepy.release ();
 		SceneManager.LoadScene ("NiveauEte");
 	}
 }
