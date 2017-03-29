@@ -5,7 +5,7 @@
             <value>SonAmbianceHiver</value>
         </property>
         <property name="outputFormat">
-            <value>2</value>
+            <value>1</value>
         </property>
         <relationship name="mixer">
             <destination>{787fc5a0-3ce4-4abb-a0eb-73ca8a295c04}</destination>
@@ -136,7 +136,6 @@
     <object class="MixerBusEffectChain" id="{7ea64513-3a5b-40a2-a02a-c86d60d37e4d}">
         <relationship name="effects">
             <destination>{c7e2352e-7d70-413d-b3db-095eff30b19b}</destination>
-            <destination>{26f2d8ed-c1a0-4e29-be44-762548264914}</destination>
         </relationship>
     </object>
     <object class="MixerBusPanner" id="{6c336790-ca25-4b41-bd20-2f46fe6167f6}"/>
@@ -148,10 +147,5 @@
     </object>
     <object class="MixerBusPanner" id="{90d91caa-d89a-489a-a5af-c6e201151ef4}"/>
     <object class="MixerBusFader" id="{c7e2352e-7d70-413d-b3db-095eff30b19b}"/>
-    <object class="SpatialiserEffect" id="{26f2d8ed-c1a0-4e29-be44-762548264914}">
-        <property name="distanceRolloffType">
-            <value>4</value>
-        </property>
-    </object>
     <object class="MixerBusFader" id="{26c1ab0d-972d-48b2-8684-89818d90175b}"/>
 </objects>

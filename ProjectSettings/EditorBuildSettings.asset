@@ -11,3 +11,5 @@ EditorBuildSettings:
     path: Assets/MyScene/NiveauHiver.unity
   - enabled: 1
     path: Assets/MyScene/EcranGameOver.unity
+  - enabled: 1
+    path: Assets/MyScene/NiveauEte.unity

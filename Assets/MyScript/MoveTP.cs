@@ -15,6 +15,7 @@ public class MoveTP : MonoBehaviour
 	Tween color5;
 	Tween tweenPioche;
 
+	private bool timmyActive;
 
     public Transform objectReference;
     public OVRCameraRig cameraOVR;
@@ -67,17 +68,19 @@ public class MoveTP : MonoBehaviour
     public GameObject canvasClef;
     public GameObject canvasPorte;
 
+
     void Start()
     {
 		destructionCristaux = false;
-		Application.targetFrameRate = 60;
-        Screen.lockCursor = true;
+		timmyActive = false;
+		Screen.lockCursor = true;
+		obtentionClefRouge = false;
+
         centreCamera = new Vector3(Screen.width / 2.0f, Screen.height / 2.0f, cameraOVR.transform.forward.z);
 		anim = curseur.transform.GetChild (0).gameObject.GetComponent<Animation> ();
 		animPioche = pioche.transform.GetChild (0).gameObject.GetComponent<Animation> ();
         vide = GameObject.Find("Vide");
         etat = Etat.Look;
-        obtentionClefRouge = false;
 		eventCreepy = FMODUnity.RuntimeManager.CreateInstance (myAmbiance);
 		eventCreepy.start ();
 		eventCreepy.getParameter ("creep", out parameterCreepy);
@@ -89,37 +92,35 @@ public class MoveTP : MonoBehaviour
     {
 		animPioche ["pioche anim"].speed = 6.0f;
 		//On acccentue le son creepy au fur et a mesure de l'approche de l'ourson
-		if (Vector3.Distance (this.transform.position, Timmy.transform.position) > 10) {
-			parameterCreepy.setValue (0.0f);
+		if (timmyActive == true) {
+			if (Vector3.Distance (this.transform.position, Timmy.transform.position) > 10) {
+				parameterCreepy.setValue (0.0f);
+			}
+			if (Vector3.Distance (this.transform.position, Timmy.transform.position) > 9 && Vector3.Distance (this.transform.position, Timmy.transform.position) < 10) {
+				parameterCreepy.setValue (2.0f);
+			}
+			if (Vector3.Distance (this.transform.position, Timmy.transform.position) > 7 && Vector3.Distance (this.transform.position, Timmy.transform.position) < 8) {
+				parameterCreepy.setValue (4.0f);
+			}
+			if (Vector3.Distance (this.transform.position, Timmy.transform.position) > 6 && Vector3.Distance (this.transform.position, Timmy.transform.position) < 7) {
+				parameterCreepy.setValue (5.0f);
+			}
+			if (Vector3.Distance (this.transform.position, Timmy.transform.position) > 5 && Vector3.Distance (this.transform.position, Timmy.transform.position) < 6) {
+				parameterCreepy.setValue (6.0f);
+			}
+			if (Vector3.Distance (this.transform.position, Timmy.transform.position) > 4 && Vector3.Distance (this.transform.position, Timmy.transform.position) < 5) {
+				parameterCreepy.setValue (7.0f);
+			}
+			if (Vector3.Distance (this.transform.position, Timmy.transform.position) > 3 && Vector3.Distance (this.transform.position, Timmy.transform.position) < 4) {
+				parameterCreepy.setValue (8.0f);
+			}
+			if (Vector3.Distance (this.transform.position, Timmy.transform.position) > 2 && Vector3.Distance (this.transform.position, Timmy.transform.position) < 3) {
+				parameterCreepy.setValue (9.0f);
+			}
+			if (Vector3.Distance (this.transform.position, Timmy.transform.position) > 1 && Vector3.Distance (this.transform.position, Timmy.transform.position) < 2) {
+				parameterCreepy.setValue (10.0f);
+			}
 		}
-		if (Vector3.Distance (this.transform.position, Timmy.transform.position) > 9 && Vector3.Distance(this.transform.position, Timmy.transform.position) < 10) {
-			parameterCreepy.setValue (2.0f);
-		}
-		if (Vector3.Distance (this.transform.position, Timmy.transform.position) > 7 && Vector3.Distance(this.transform.position, Timmy.transform.position) < 8) {
-			parameterCreepy.setValue (4.0f);
-		}
-		if (Vector3.Distance (this.transform.position, Timmy.transform.position) > 6 && Vector3.Distance(this.transform.position, Timmy.transform.position) < 7) {
-			parameterCreepy.setValue (5.0f);
-		}
-		if (Vector3.Distance (this.transform.position, Timmy.transform.position) > 5 &&  Vector3.Distance(this.transform.position, Timmy.transform.position) < 6) {
-			parameterCreepy.setValue (6.0f);
-		}
-		if (Vector3.Distance (this.transform.position, Timmy.transform.position) > 4 &&  Vector3.Distance(this.transform.position, Timmy.transform.position) < 5) {
-			parameterCreepy.setValue (7.0f);
-		}
-		if (Vector3.Distance (this.transform.position, Timmy.transform.position) > 3 &&  Vector3.Distance(this.transform.position, Timmy.transform.position) < 4) {
-			parameterCreepy.setValue (8.0f);
-		}
-		if (Vector3.Distance (this.transform.position, Timmy.transform.position) > 2 &&  Vector3.Distance(this.transform.position, Timmy.transform.position) < 3) {
-			parameterCreepy.setValue (9.0f);
-		}
-		if (Vector3.Distance (this.transform.position, Timmy.transform.position) > 1 &&  Vector3.Distance(this.transform.position, Timmy.transform.position) < 2) {
-			parameterCreepy.setValue (10.0f);
-		}
-		if (Vector3.Distance (this.transform.position, Timmy.transform.position) < 1.0f) {
-			eventCreepy.release ();
-		}
-
         //affiche la souris
         /*if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Escape))
             Screen.lockCursor = false;*/
@@ -153,6 +154,7 @@ public class MoveTP : MonoBehaviour
 
         if(Vector3.Distance(this.transform.position, Timmy.transform.position) < 0.2f)
         {
+			eventCreepy.release ();
             SceneManager.LoadScene("EcranGameOver");
         }
         //affiche ou affiche pas le curseur
@@ -188,7 +190,6 @@ public class MoveTP : MonoBehaviour
                 
 				} else if (tagTouchee == "serrureRouge" && obtentionClefRouge == false) {
 					canvasPorte.SetActive (true);
-					curseur.SetActive (true);
 					pioche.SetActive (false);
 				} else {
 					//curseur.SetActive(true);
@@ -301,6 +302,12 @@ public class MoveTP : MonoBehaviour
                 etat = Etat.cristauxPowers;
                 //curseur.GetComponent<MeshRenderer>().material.color = Color.green;
             }
+
+			if (tagTouchee == "portail") {
+				cam.GetComponent<OVRScreenFadeOut>().enabled = true;
+				cam.GetComponent<OVRScreenFadeOut> ().StarFadeOut ();
+				StartCoroutine (ChangerScene ());
+			}
         } else if (etat == Etat.fadeOut) {
             chronoFadeOut += Time.deltaTime;
             if (chronoFadeOut > cam.GetComponent<OVRScreenFadeOut>().fadeTime)
@@ -392,13 +399,18 @@ public class MoveTP : MonoBehaviour
             if (cristauxPowers.transform.FindChild("Clef"))
             {
                 clef = cristauxPowers.transform.GetChild(1).gameObject;
-                clef.transform.DOMoveY(6, 2);
+				clef.transform.DOMoveY(6, 2);
                 obtentionClefRouge = true;
-                StartCoroutine(AffichageText());    
+                StartCoroutine(AffichageText()); 
+				Timmy.SetActive (true);
+				timmyActive = true;
+				Timmy.GetComponent<TimmyMove>().enabled = true;
+				FMODUnity.RuntimeManager.PlayOneShot ("event:/Rugissement Timmy", this.transform.position);
             }
             chrono = 0;
             etat = Etat.Look;
-        } else if(etat == Etat.ouvertureRouge) 	{
+        } 
+		else if(etat == Etat.ouvertureRouge) 	{
             StartCoroutine(DeplacementPorte());
             chrono = 0;
             etat = Etat.Look;
@@ -410,8 +422,8 @@ public class MoveTP : MonoBehaviour
     IEnumerator DeplacementPorte()
     {
         yield return new WaitForSeconds(1);
-
-        porte.GetComponent<Animation>().Play();
+		FMODUnity.RuntimeManager.PlayOneShot ("event:/grincement porte", porte.transform.position);
+		porte.GetComponent<Animation>().Play();
 
     }
 
@@ -435,4 +447,8 @@ public class MoveTP : MonoBehaviour
 		destructionCristaux = false;
 	}
 
+	IEnumerator ChangerScene(){
+		yield return new WaitForSeconds (1.0f);
+		SceneManager.LoadScene ("NiveauEte");
+	}
 }

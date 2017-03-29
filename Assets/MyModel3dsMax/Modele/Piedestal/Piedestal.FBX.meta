@@ -8,15 +8,40 @@ ModelImporter:
     100000: Box001
     100002: Clef
     100004: //RootNode
+    100006: Piedestal
+    100008: Vitre
+    100010: Vitre 1
+    100012: Vitre 2
+    100014: Vitre 3
     400000: Box001
     400002: Clef
     400004: //RootNode
+    400006: Piedestal
+    400008: Vitre
+    400010: Vitre 1
+    400012: Vitre 2
+    400014: Vitre 3
     2300000: Box001
     2300002: Clef
+    2300004: Piedestal
+    2300006: Vitre
+    2300008: Vitre 1
+    2300010: Vitre 2
+    2300012: Vitre 3
     3300000: Box001
     3300002: Clef
+    3300004: Piedestal
+    3300006: Vitre
+    3300008: Vitre 1
+    3300010: Vitre 2
+    3300012: Vitre 3
     4300000: Box001
     4300002: Clef
+    4300004: Piedestal
+    4300006: Vitre
+    4300008: Vitre
+    4300010: Vitre
+    4300012: Vitre
   materials:
     importMaterials: 1
     materialName: 0
