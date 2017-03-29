@@ -20,7 +20,7 @@ public class MoveTP : MonoBehaviour
 
     public Transform objectReference;
     public OVRCameraRig cameraOVR;
-    private enum Etat { Look, AnalyseCommande, fadeOut, teleportation, fadeIn, demiTour, cristauxPowers, ouvertureRouge, QuartGauche, QuartDroite };
+	private enum Etat { Look, AnalyseCommande, fadeOut, teleportation, fadeIn, demiTour, cristauxPowers, ouvertureRouge, QuartGauche, QuartDroite, InterrupteurTriangle, InterrupteurLosange, InterrupteurCarre, InterrupteurCroix, InterrupteurRond};
     Etat etat;
 
     private Vector3 centreCamera;
@@ -53,13 +53,21 @@ public class MoveTP : MonoBehaviour
     public GameObject porte;
     public GameObject clefOuverture;
 	public GameObject pioche;
-    private GameObject vide;
     public GameObject Timmy;
 	public GameObject porteTriangle;
 	public GameObject porteLosange;
 	public GameObject porteCarre;
 	public GameObject porteCroix;
-	public GameObject porteRond;
+	public GameObject porteRondePremiere;
+	public GameObject porteRondeSeconde;
+	public GameObject InterrupteurTriangle;
+	public GameObject InterrupteurLosange;
+	public GameObject InterrupteurCarre;
+	public GameObject InterrupteurCroix;
+	public GameObject InterrupteurRond;
+
+	private GameObject vide;
+	private GameObject objetTouche;
 
 
     private Rigidbody rb;
@@ -146,6 +154,7 @@ public class MoveTP : MonoBehaviour
 			}
             tagTouchee = hit.collider.tag;
             cristauxPowers = hit.collider.gameObject;
+			objetTouche = hit.collider.gameObject;
 			directionCurseur = hit.point - cam.transform.position;
 			directionCurseur.Normalize();
 
@@ -169,20 +178,26 @@ public class MoveTP : MonoBehaviour
 
 
 
-        if (etat == Etat.Look)
-        {
+		if (etat == Etat.Look) {
 			if (destructionCristaux == false) {
 				//On calcule la distance entre l'ancienne position du cube et la nouvelle
 				dist = Vector3.Distance (anciennePositionCurseur, curseur.transform.position);
-				if (tagTouchee == "terrain") {
+				if (tagTouchee == "terrain") { 
+					if (Vector3.Distance (this.transform.position, curseur.transform.position) < distZoneTp && tagTouchee != "obstacle") {
+						curseur.SetActive (true);
+					}
+					curseur.transform.rotation = Quaternion.AngleAxis (0, Vector3.right);
+					pioche.SetActive (false);
+				} else if (tagTouchee == "demi-tour") {
 					//curseur.transform.GetChild (0).gameObject.SetActive (true);
 					//curseur.transform.GetChild (1).gameObject.SetActive (false);
 					curseur.transform.rotation = Quaternion.AngleAxis (0, Vector3.right);
 					pioche.SetActive (false);
-				} else if (tagTouchee == "obstacle" || tagTouchee == "porte") {
+				} else if (tagTouchee == "obstacle") {
 					curseur.SetActive (false);
-					pioche.SetActive (false);
-				} else if (tagTouchee == "CristauxPowers") {
+				}
+
+				else if (tagTouchee == "CristauxPowers") {
 					//curseur.transform.GetChild (0).gameObject.SetActive (false);
 					//curseur.transform.GetChild (1).gameObject.SetActive (true);
 					quatX = Quaternion.AngleAxis (-90, Vector3.right);
@@ -200,30 +215,27 @@ public class MoveTP : MonoBehaviour
 					canvasPorte.SetActive (true);
 					pioche.SetActive (false);
 				} else if (tagTouchee == "InterrupteurLosange") {
-					//curseur.transform.GetChild (0).gameObject.SetActive (false);
-					//curseur.transform.GetChild (1).gameObject.SetActive (true);
 					quatX = Quaternion.AngleAxis (-90, Vector3.right);
 					quatZ = Quaternion.LookRotation (directionCurseur);
 					Debug.Log (quatZ);
 					quatResultat = quatZ * quatX;
 					curseur.transform.rotation = quatResultat;
 				} else if (tagTouchee == "InterrupteurTriangle") {
-					//curseur.transform.GetChild (0).gameObject.SetActive (false);
-					//curseur.transform.GetChild (1).gameObject.SetActive (true);
 					quatX = Quaternion.AngleAxis (-90, Vector3.right);
 					quatZ = Quaternion.LookRotation (directionCurseur);
 					quatResultat = quatZ * quatX;
 					curseur.transform.rotation = quatResultat;
 				} else if (tagTouchee == "InterrupteurCarre") {
-					//curseur.transform.GetChild (0).gameObject.SetActive (false);
-					//curseur.transform.GetChild (1).gameObject.SetActive (true);
 					quatX = Quaternion.AngleAxis (-90, Vector3.right);
 					quatZ = Quaternion.LookRotation (directionCurseur);
 					quatResultat = quatZ * quatX;
 					curseur.transform.rotation = quatResultat;
 				} else if (tagTouchee == "InterrupteurCroix") {
-					//curseur.transform.GetChild (0).gameObject.SetActive (false);
-					//curseur.transform.GetChild (1).gameObject.SetActive (true);
+					quatX = Quaternion.AngleAxis (-90, Vector3.right);
+					quatZ = Quaternion.LookRotation (directionCurseur);
+					quatResultat = quatZ * quatX;
+					curseur.transform.rotation = quatResultat;
+				} else if (tagTouchee == "InterrupteurRond") {
 					quatX = Quaternion.AngleAxis (-90, Vector3.right);
 					quatZ = Quaternion.LookRotation (directionCurseur);
 					quatResultat = quatZ * quatX;
@@ -234,7 +246,7 @@ public class MoveTP : MonoBehaviour
 					canvasPorte.SetActive (false);
 				}
 			} else {
-				StartCoroutine (FinDestructionCristaux());
+				StartCoroutine (FinDestructionCristaux ());
 			}
 				
 			if (dist <= 0.02f && Vector3.Distance (this.transform.position, curseur.transform.position) <= distZoneTp) {
@@ -243,27 +255,25 @@ public class MoveTP : MonoBehaviour
 				chronoOld = chrono;
 				chrono += Time.deltaTime;
 				if (chronoOld < 0.25 && chrono >= 0.25) {
-					anim ["Curseur_anim_simple"].speed = (float)(1.5+((3-1.5)*((chrono-0.25)/(1-0.25))));
+					anim ["Curseur_anim_simple"].speed = (float)(1.5 + ((3 - 1.5) * ((chrono - 0.25) / (1 - 0.25))));
 					color = curseur.transform.GetChild (0).gameObject.transform.GetChild (0).GetComponent<Renderer> ().material.DOColor (Color.green, 1.25f);
-					color2 = curseur.transform.GetChild (0).gameObject.transform.GetChild (1).GetComponent<Renderer> ().material.DOColor (Color.green,1.25f);
-					color3 = curseur.transform.GetChild (0).gameObject.transform.GetChild (2).GetComponent<Renderer> ().material.DOColor (Color.green,1.25f);
-					color4 = curseur.transform.GetChild (0).gameObject.transform.GetChild (3).GetComponent<Renderer> ().material.DOColor (Color.green,1.25f);
-					color5 = curseur.transform.GetChild (0).gameObject.transform.GetChild (4).GetComponent<Renderer> ().material.DOColor (Color.green,1.25f);
+					color2 = curseur.transform.GetChild (0).gameObject.transform.GetChild (1).GetComponent<Renderer> ().material.DOColor (Color.green, 1.25f);
+					color3 = curseur.transform.GetChild (0).gameObject.transform.GetChild (2).GetComponent<Renderer> ().material.DOColor (Color.green, 1.25f);
+					color4 = curseur.transform.GetChild (0).gameObject.transform.GetChild (3).GetComponent<Renderer> ().material.DOColor (Color.green, 1.25f);
+					color5 = curseur.transform.GetChild (0).gameObject.transform.GetChild (4).GetComponent<Renderer> ().material.DOColor (Color.green, 1.25f);
 				}
 				if (chronoOld < 0.5 && chrono >= 0.5) {
-					anim ["Curseur_anim_simple"].speed = (float)(1.5+((3-1.5)*((chrono-0.25)/(1-0.25))));
+					anim ["Curseur_anim_simple"].speed = (float)(1.5 + ((3 - 1.5) * ((chrono - 0.25) / (1 - 0.25))));
 				}
 				if (chronoOld < 0.75 && chrono >= 0.75) {
-					anim ["Curseur_anim_simple"].speed = (float)(1.5+((3-1.5)*((chrono-0.25)/(1-0.25))));
+					anim ["Curseur_anim_simple"].speed = (float)(1.5 + ((3 - 1.5) * ((chrono - 0.25) / (1 - 0.25))));
 				}
-			}
-            else 
-            {
-				curseur.transform.GetChild (0).gameObject.transform.GetChild (0).GetComponent<Renderer>().material.color = Color.grey;
-				curseur.transform.GetChild (0).gameObject.transform.GetChild (1).GetComponent<Renderer>().material.color = Color.grey;
-				curseur.transform.GetChild (0).gameObject.transform.GetChild (2).GetComponent<Renderer>().material.color = Color.grey;
-				curseur.transform.GetChild (0).gameObject.transform.GetChild (3).GetComponent<Renderer>().material.color = Color.grey;
-				curseur.transform.GetChild (0).gameObject.transform.GetChild (4).GetComponent<Renderer>().material.color = Color.grey;
+			} else {
+				curseur.transform.GetChild (0).gameObject.transform.GetChild (0).GetComponent<Renderer> ().material.color = Color.grey;
+				curseur.transform.GetChild (0).gameObject.transform.GetChild (1).GetComponent<Renderer> ().material.color = Color.grey;
+				curseur.transform.GetChild (0).gameObject.transform.GetChild (2).GetComponent<Renderer> ().material.color = Color.grey;
+				curseur.transform.GetChild (0).gameObject.transform.GetChild (3).GetComponent<Renderer> ().material.color = Color.grey;
+				curseur.transform.GetChild (0).gameObject.transform.GetChild (4).GetComponent<Renderer> ().material.color = Color.grey;
 				color.Kill ();
 				color2.Kill ();
 				color3.Kill ();
@@ -271,237 +281,208 @@ public class MoveTP : MonoBehaviour
 				color5.Kill ();
 				pioche.SetActive (false);
 				curseur.transform.GetChild (0).GetComponent<Animation> ().Stop ();
-                chrono = 0;
-                anciennePositionCurseur = nouvellePosition;
-            }
-
-			if(Vector3.Distance(this.transform.position, curseur.transform.position) > distZoneTp)
-			{
-				curseur.SetActive(false);
 				chrono = 0;
+				anciennePositionCurseur = nouvellePosition;
+			}
+
+			if (Vector3.Distance (this.transform.position, curseur.transform.position) > distZoneTp) {
+				curseur.SetActive (false);
+				chrono = 0;
+			}	
+
+
+			if (Vector3.Distance (this.transform.position, curseur.transform.position) < distZoneTp && tagTouchee != "obstacle") {
+				curseur.SetActive (true);
 			}
 
 
-			if(Vector3.Distance(this.transform.position, curseur.transform.position) < distZoneTp && tagTouchee != "obstacle"){
-				curseur.SetActive(true);
+			if (chrono > 1) {
+				//etat = Etat.teleportation;
+				etat = Etat.AnalyseCommande;
 			}
-
-
-            if (chrono > 1)
-            {
-                //etat = Etat.teleportation;
-                etat = Etat.AnalyseCommande;
-            }
-        }
-
-
-
-        else if (etat == Etat.AnalyseCommande)
-        {
+		} else if (etat == Etat.AnalyseCommande) {
             
-           if (tagTouchee == "terrain")
-            {
+			if (tagTouchee == "terrain") {
 				curseur.GetComponent<Rigidbody> ().isKinematic = true;
-				cam.GetComponent<OVRScreenFadeOut>().enabled = true;
+				cam.GetComponent<OVRScreenFadeOut> ().enabled = true;
 				cam.GetComponent<OVRScreenFadeOut> ().StarFadeOut ();
-                etat = Etat.fadeOut;
-                //curseur.GetComponent<MeshRenderer>().material.color = Color.green;
-            }
+				etat = Etat.fadeOut;
+				//curseur.GetComponent<MeshRenderer>().material.color = Color.green;
+			}
 
 
-            if (tagTouchee == "obstacle" || tagTouchee == "porte")
-            {
-                //curseur.GetComponent<MeshRenderer>().material.color = Color.red;
-                chrono = 0;
-                etat = Etat.Look;
-            }
+			if (tagTouchee == "obstacle" || tagTouchee == "porte") {
+				//curseur.GetComponent<MeshRenderer>().material.color = Color.red;
+				chrono = 0;
+				etat = Etat.Look;
+			}
 
 
-            if(tagTouchee == "serrureRouge" && obtentionClefRouge == true)
-            {
-                clefOuverture.transform.DORotate(new Vector3(90, 0, 90), 1, 0);
-                etat = Etat.ouvertureRouge;
-            }
+			if (tagTouchee == "serrureRouge" && obtentionClefRouge == true) {
+				clefOuverture.transform.DORotate (new Vector3 (90, 0, 90), 1, 0);
+				etat = Etat.ouvertureRouge;
+			}
 
 
-            if (tagTouchee == "demi-tour")
-            {
-                etat = Etat.demiTour;
-            }
-            if (tagTouchee == "gauche")
-            {
-                etat = Etat.QuartGauche;
-            }
-            if (tagTouchee == "droite")
-            {
-                etat = Etat.QuartDroite;
-            }
+			if (tagTouchee == "demi-tour") {
+				etat = Etat.demiTour;
+			}
+			if (tagTouchee == "gauche") {
+				etat = Etat.QuartGauche;
+			}
+			if (tagTouchee == "droite") {
+				etat = Etat.QuartDroite;
+			}
 
-            if (tagTouchee == "CristauxPowers")
-            {
-                etat = Etat.cristauxPowers;
-                //curseur.GetComponent<MeshRenderer>().material.color = Color.green;
-            }
+			if (tagTouchee == "CristauxPowers") {
+				etat = Etat.cristauxPowers;
+				//curseur.GetComponent<MeshRenderer>().material.color = Color.green;
+			}
 
 			if (tagTouchee == "InterrupteurTriangle") {
-				porteTriangle.GetComponent<Animation> ().Play ();
+				etat = Etat.InterrupteurTriangle;
 			}
 
 			if (tagTouchee == "InterrupteurLosange") {
-				porteLosange.GetComponent<Animation> ().Play ();
+				etat = Etat.InterrupteurLosange;
 			}
 
 			if (tagTouchee == "InterrupteurCarre") {
-				porteCarre.GetComponent<Animation> ().Play ();
+				etat = Etat.InterrupteurCarre;
 			}
 
 			if (tagTouchee == "InterrupteurCroix") {
-				porteCroix.GetComponent<Animation> ().Play ();
+				etat = Etat.InterrupteurCroix;
 			}
 
-
-
+			if (tagTouchee == "InterrupteurRond") {
+				etat = Etat.InterrupteurRond;
+			}
+				
 			if (tagTouchee == "portail") {
-				cam.GetComponent<OVRScreenFadeOut>().enabled = true;
+				cam.GetComponent<OVRScreenFadeOut> ().enabled = true;
 				cam.GetComponent<OVRScreenFadeOut> ().StarFadeOut ();
 				StartCoroutine (ChangerScene ());
 			}
 
-	 	} 
+		} else if (etat == Etat.fadeOut) {
+			chronoFadeOut += Time.deltaTime;
+			if (chronoFadeOut > cam.GetComponent<OVRScreenFadeOut> ().fadeTime) {
+				etat = Etat.teleportation;
+				chronoFadeOut = 0;
+			}
+		} else if (etat == Etat.teleportation) {
 
-
-		else if (etat == Etat.fadeOut) {
-            chronoFadeOut += Time.deltaTime;
-            if (chronoFadeOut > cam.GetComponent<OVRScreenFadeOut>().fadeTime)
-			{
-                etat = Etat.teleportation;
-                chronoFadeOut = 0;
-            }
-        } 
-
-
-
-		else if (etat == Etat.teleportation) {
-
-            this.transform.position = new Vector3(nouvellePosition.x, nouvellePosition.y + 0.066f, nouvellePosition.z);
+			this.transform.position = new Vector3 (nouvellePosition.x, nouvellePosition.y + 0.066f, nouvellePosition.z);
 
 			FMODUnity.RuntimeManager.PlayOneShot ("event:/instant-teleport", this.transform.position);	
 
 			cam.GetComponent<OVRScreenFadeOut> ().StartFadeIn ();
 
-            //cameraOVR.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + 0.066f + 0.7f, this.transform.position.z);
+			//cameraOVR.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + 0.066f + 0.7f, this.transform.position.z);
 
-            //cameraOVR.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + 0.066f + 2.5f, this.transform.position.z);
+			//cameraOVR.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + 0.066f + 2.5f, this.transform.position.z);
 
-            etat = Etat.fadeIn;
-        } 
-
-
-		else if (etat == Etat.fadeIn) {
+			etat = Etat.fadeIn;
+		} else if (etat == Etat.fadeIn) {
 			curseur.transform.GetChild (0).GetComponent<Animation> ().Stop ();
-            chronoFadeIn += Time.deltaTime;
-            if (chronoFadeIn > cam.GetComponent<OVRScreenFadeOut>().fadeTime)
-            {
+			chronoFadeIn += Time.deltaTime;
+			if (chronoFadeIn > cam.GetComponent<OVRScreenFadeOut> ().fadeTime) {
 				//on part sur un renderer noir pour le curseur
-				curseur.transform.GetChild (0).gameObject.transform.GetChild (0).GetComponent<Renderer>().material.color = Color.black;
-				curseur.transform.GetChild (0).gameObject.transform.GetChild (1).GetComponent<Renderer>().material.color = Color.black;
-				curseur.transform.GetChild (0).gameObject.transform.GetChild (2).GetComponent<Renderer>().material.color = Color.black;
-				curseur.transform.GetChild (0).gameObject.transform.GetChild (3).GetComponent<Renderer>().material.color = Color.black;
-				curseur.transform.GetChild (0).gameObject.transform.GetChild (4).GetComponent<Renderer>().material.color = Color.black;
-                chronoFadeIn = 0;
-                chrono = 0;
+				curseur.transform.GetChild (0).gameObject.transform.GetChild (0).GetComponent<Renderer> ().material.color = Color.black;
+				curseur.transform.GetChild (0).gameObject.transform.GetChild (1).GetComponent<Renderer> ().material.color = Color.black;
+				curseur.transform.GetChild (0).gameObject.transform.GetChild (2).GetComponent<Renderer> ().material.color = Color.black;
+				curseur.transform.GetChild (0).gameObject.transform.GetChild (3).GetComponent<Renderer> ().material.color = Color.black;
+				curseur.transform.GetChild (0).gameObject.transform.GetChild (4).GetComponent<Renderer> ().material.color = Color.black;
+				chronoFadeIn = 0;
+				chrono = 0;
 				cam.GetComponent<OVRScreenFadeOut> ().enabled = false;
-                etat = Etat.Look;
-            }
+				etat = Etat.Look;
+			}
 
-        }
+		} else if (etat == Etat.demiTour) {
+			cam.GetComponent<OVRScreenFadeOut> ().enabled = true;
+			cam.GetComponent<OVRScreenFadeOut> ().StarFadeOut ();
+			chronoFadeOut += Time.deltaTime;
+			if (chronoFadeOut > cam.GetComponent<OVRScreenFadeOut> ().fadeTime) {
+				chronoFadeOut = 0;
+				FMODUnity.RuntimeManager.PlayOneShot ("event:/instant-teleport", this.transform.position);
+				this.transform.rotation *= Quaternion.AngleAxis (180, Vector3.up);
+				cam.GetComponent<OVRScreenFadeOut> ().StartFadeIn ();
+				etat = Etat.fadeIn;
+			}
 
+		} else if (etat == Etat.QuartGauche) {
+			cam.GetComponent<OVRScreenFadeOut> ().enabled = true;
+			cam.GetComponent<OVRScreenFadeOut> ().StarFadeOut ();
+			chronoFadeOut += Time.deltaTime;
+			if (chronoFadeOut > cam.GetComponent<OVRScreenFadeOut> ().fadeTime) {
+				chronoFadeOut = 0;
+				FMODUnity.RuntimeManager.PlayOneShot ("event:/instant-teleport", this.transform.position);
+				this.transform.rotation *= Quaternion.AngleAxis (-90, Vector3.up);
+				cam.GetComponent<OVRScreenFadeOut> ().StartFadeIn ();
+				etat = Etat.fadeIn;
+			}
 
-		else if (etat == Etat.demiTour){
-            cam.GetComponent<OVRScreenFadeOut>().enabled = true;
-            cam.GetComponent<OVRScreenFadeOut>().StarFadeOut();
-            chronoFadeOut += Time.deltaTime;
-            if (chronoFadeOut > cam.GetComponent<OVRScreenFadeOut>().fadeTime)
-            {
-                chronoFadeOut = 0;
-                FMODUnity.RuntimeManager.PlayOneShot("event:/instant-teleport", this.transform.position);
-                this.transform.rotation *= Quaternion.AngleAxis(180, Vector3.up);
-                cam.GetComponent<OVRScreenFadeOut>().StartFadeIn();
-                etat = Etat.fadeIn;
-            }
+		} else if (etat == Etat.QuartDroite) {
+			cam.GetComponent<OVRScreenFadeOut> ().enabled = true;
+			cam.GetComponent<OVRScreenFadeOut> ().StarFadeOut ();
+			chronoFadeOut += Time.deltaTime;
+			if (chronoFadeOut > cam.GetComponent<OVRScreenFadeOut> ().fadeTime) {
+				chronoFadeOut = 0;
+				FMODUnity.RuntimeManager.PlayOneShot ("event:/instant-teleport", this.transform.position);
+				this.transform.rotation *= Quaternion.AngleAxis (90, Vector3.up);
+				cam.GetComponent<OVRScreenFadeOut> ().StartFadeIn ();
+				etat = Etat.fadeIn;
+			}
 
-        }
-
-
-
-        else if (etat == Etat.QuartGauche)
-        {
-            cam.GetComponent<OVRScreenFadeOut>().enabled = true;
-            cam.GetComponent<OVRScreenFadeOut>().StarFadeOut();
-            chronoFadeOut += Time.deltaTime;
-            if (chronoFadeOut > cam.GetComponent<OVRScreenFadeOut>().fadeTime)
-            {
-                chronoFadeOut = 0;
-                FMODUnity.RuntimeManager.PlayOneShot("event:/instant-teleport", this.transform.position);
-                this.transform.rotation *= Quaternion.AngleAxis(-90, Vector3.up);
-                cam.GetComponent<OVRScreenFadeOut>().StartFadeIn();
-                etat = Etat.fadeIn;
-            }
-
-        }
-
-
-
-        else if (etat == Etat.QuartDroite)
-        {
-            cam.GetComponent<OVRScreenFadeOut>().enabled = true;
-            cam.GetComponent<OVRScreenFadeOut>().StarFadeOut();
-            chronoFadeOut += Time.deltaTime;
-            if (chronoFadeOut > cam.GetComponent<OVRScreenFadeOut>().fadeTime)
-            {
-                chronoFadeOut = 0;
-                FMODUnity.RuntimeManager.PlayOneShot("event:/instant-teleport", this.transform.position);
-                this.transform.rotation *= Quaternion.AngleAxis(90, Vector3.up);
-                cam.GetComponent<OVRScreenFadeOut>().StartFadeIn();
-                etat = Etat.fadeIn;
-            }
-
-        }
-
-
-
-        else if(etat == Etat.cristauxPowers) {
+		} else if (etat == Etat.cristauxPowers) {
             
-            cristauxPowers.transform.GetChild(0).gameObject.transform.GetComponent<Rigidbody>().isKinematic = false;
+			cristauxPowers.transform.GetChild (0).gameObject.transform.GetComponent<Rigidbody> ().isKinematic = false;
 			tweenPioche = pioche.transform.DOMove (cristauxPowers.transform.position, 0.35f);
 			StartCoroutine (Pioche ());
 			destructionCristaux = true;
-            cristauxPowers.GetComponent<MeshCollider>().enabled = false;
-            if (cristauxPowers.transform.FindChild("Clef"))
-            {
-                clef = cristauxPowers.transform.GetChild(1).gameObject;
-				clef.transform.DOMoveY(6, 2);
-                obtentionClefRouge = true;
-                StartCoroutine(AffichageText()); 
+			cristauxPowers.GetComponent<MeshCollider> ().enabled = false;
+			if (cristauxPowers.transform.FindChild ("Clef")) {
+				clef = cristauxPowers.transform.GetChild (1).gameObject;
+				clef.transform.DOMoveY (6, 2);
+				obtentionClefRouge = true;
+				StartCoroutine (AffichageText ()); 
 				Timmy.SetActive (true);
 				timmyActive = true;
-				Timmy.GetComponent<TimmyMove>().enabled = true;
+				Timmy.GetComponent<TimmyMove> ().enabled = true;
 				FMODUnity.RuntimeManager.PlayOneShot ("event:/Rugissement Timmy", this.transform.position);
-            }
-            chrono = 0;
-            etat = Etat.Look;
-        } 
+			}
+			chrono = 0;
+			etat = Etat.Look;
+		} else if (etat == Etat.ouvertureRouge) {
+			StartCoroutine (DeplacementPorte ());
+			chrono = 0;
+			etat = Etat.Look;
+		} else if (etat == Etat.InterrupteurTriangle) {
+			porteTriangle.GetComponent<Animation>().Play ();
+			objetTouche.transform.tag = "obstacle";
+			etat = Etat.Look;
+		} else if (etat == Etat.InterrupteurLosange) {
+			porteLosange.GetComponent<Animation>().Play ();
+			objetTouche.transform.tag = "obstacle";
+			etat = Etat.Look;
+		} else if (etat == Etat.InterrupteurCarre) {
+			porteCarre.GetComponent<Animation>().Play ();
+			objetTouche.transform.tag = "obstacle";
+			etat = Etat.Look;
+		} else if (etat == Etat.InterrupteurCroix) {
+			porteCroix.GetComponent<Animation>().Play ();
+			objetTouche.transform.tag = "obstacle";
+			etat = Etat.Look;
+		} else if (etat == Etat.InterrupteurRond) {
+			porteRondePremiere.GetComponent<Animation>().Play ();
+			porteRondeSeconde.GetComponent<Animation>().Play ();
+			objetTouche.transform.tag = "obstacle";
+			etat = Etat.Look;
+		}
 
-
-
-
-		else if(etat == Etat.ouvertureRouge) 	{
-            StartCoroutine(DeplacementPorte());
-            chrono = 0;
-            etat = Etat.Look;
-        }
-
-
+		
     }
 
     IEnumerator DeplacementPorte()
