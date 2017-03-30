@@ -56,7 +56,7 @@ public class TimmyAstar : MonoBehaviour {
          listNoeud.Add(new Noeud (cheminTimmy.transform.GetChild(0).transform.position , new List<Vector3>(input))); */
 
         //-- test
-        Debug.Log(" le noeud 1 est il voisin du noeud 0? réponse: " + cheminTimmy.transform.GetChild(0).GetComponent(typeof(Noeud)));
+        Debug.Log(" le noeud 1 est il voisin du noeud 0? réponse: " + cheminTimmy.transform.GetChild(0).GetComponent<Noeud>().isNoeudVoisin(cheminTimmy.transform.GetChild(3).transform.position));
     }
 
     // Update is called once per frame
