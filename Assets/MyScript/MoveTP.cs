@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
+using TMPro;
 
 public class MoveTP : MonoBehaviour
 {
@@ -20,16 +21,18 @@ public class MoveTP : MonoBehaviour
 
     public Transform objectReference;
     public OVRCameraRig cameraOVR;
-	private enum Etat { Look, AnalyseCommande, fadeOut, teleportation, fadeIn, demiTour, cristauxPowers, ouvertureRouge, QuartGauche, QuartDroite, InterrupteurTriangle, InterrupteurLosange, InterrupteurCarre, InterrupteurCroix, InterrupteurRond};
+	private enum Etat { Look, AnalyseCommande, fadeOut, teleportation, fadeIn, demiTour, cristauxPowers, ouvertureRouge, QuartGauche, QuartDroite, InterrupteurTriangle, InterrupteurLosange, InterrupteurCarre, InterrupteurCroix, InterrupteurRond, texteCle};
     Etat etat;
 
     private Vector3 centreCamera;
     private Vector3 nouvellePosition;
 
-    private double chrono;
-	private double chronoOld;
-    private double chronoFadeOut;
-    private double chronoFadeIn;
+    private float chrono;
+	private float chronoOld;
+    private float chronoFadeOut;
+    private float chronoFadeIn;
+	private float chronoValidation;
+	private float chronoValidationOld;
 
     private string tagTouchee;
 
@@ -40,6 +43,7 @@ public class MoveTP : MonoBehaviour
     private Vector3 PositionCube;
 	private Vector3 positionPioche;	
 	private Vector3 directionCurseur;
+	private Vector3 positionCanvas;
 
 	private Quaternion quatX;
 	private Quaternion quatZ;
@@ -65,10 +69,15 @@ public class MoveTP : MonoBehaviour
 	public GameObject InterrupteurCarre;
 	public GameObject InterrupteurCroix;
 	public GameObject InterrupteurRond;
+	public GameObject CanvasCle;
 
 	private GameObject vide;
 	private GameObject objetTouche;
 
+	public TextMeshProUGUI tmpClef;
+	private Color myColor;
+	private float duration;
+	private float ratio;
 
     private Rigidbody rb;
     private float dist;
@@ -79,6 +88,7 @@ public class MoveTP : MonoBehaviour
 
     private bool obtentionClefRouge;
 	private bool destructionCristaux;
+	private bool passage;
 
     public GameObject canvasClef;
     public GameObject canvasPorte;
@@ -170,7 +180,7 @@ public class MoveTP : MonoBehaviour
 
         if(Vector3.Distance(this.transform.position, Timmy.transform.position) < 0.2f)
         {
-			eventCreepy.stop (FMOD.Studio.STOP_MODE.IMMEDIATE);
+			parameterCreepy.setValue (0.0f);
             SceneManager.LoadScene("EcranGameOver");
         }
         //affiche ou affiche pas le curseur
@@ -496,9 +506,12 @@ public class MoveTP : MonoBehaviour
     IEnumerator AffichageText()
     {
         yield return new WaitForSeconds(2);
-
+		CanvasCle.SetActive (true);
+		positionCanvas = CanvasCle.transform.position;
+		cam.transform.DetachChildren ();
+		CanvasCle.transform.position = positionCanvas;
         Destroy(clef);
-        canvasClef.SetActive(true);
+		StartCoroutine (destructionCanvas ());
     }
 
 	IEnumerator Pioche ()
@@ -515,8 +528,13 @@ public class MoveTP : MonoBehaviour
 
 	IEnumerator ChangerScene(){
 		yield return new WaitForSeconds (1.0f);
-		eventCreepy.stop (FMOD.Studio.STOP_MODE.IMMEDIATE);
-		eventCreepy.release ();
+		parameterCreepy.setValue (0.0f);
 		SceneManager.LoadScene ("NiveauEte");
 	}
+
+	IEnumerator destructionCanvas(){
+		yield return new WaitForSeconds(4);
+		Destroy (CanvasCle);
+	}
+
 }
