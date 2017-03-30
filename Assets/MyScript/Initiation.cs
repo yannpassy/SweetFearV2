@@ -15,7 +15,7 @@ public class Initiation : MonoBehaviour {
 	public int compteur;
 
 
-	private enum Etat {texte1, texte2, texte3, texte4, texteDestructionCristaux, cristauxPowers, texte5, tp, texteGauche, gauche, texte6, rougeClair, texte7, rouge,  texte8, rougeFonce , texte9, texte10, texte11, demiTour, texte12, fin };
+	private enum Etat {texte1, texte2, texte3, texte4, texteDestructionCristaux, cristauxPowers, texte5, tp, texteGauche, gauche, texte6, rougeClair, texte7, rouge,  texte8, rougeFonce , texte9, texte12, fin };
 
 
 	Etat etat;
@@ -207,7 +207,7 @@ public class Initiation : MonoBehaviour {
 
 		if (etat == Etat.texte4) {
             Debug.Log("on est dans texte 4");
-			tmp.text = "trouve la clef pour passer la porte Rouge...";
+			tmp.text = "trouve la clef pour passer la porte Rouge, elle se trouve dans l'un des cristaux violet...";
 			if (passage == false) {
 				FadeInText ();
 			}
@@ -229,7 +229,7 @@ public class Initiation : MonoBehaviour {
 		}
 
 		if (etat == Etat.texteDestructionCristaux) {
-			tmp.text = "fixe le cristaux a ta droite quand le texte disparaitra...";
+			tmp.text = "fixe le cristaux a ta droite quand le texte disparaitra, seul ces derniers peuvent être détruit";
 			if (passage == false) {
 				FadeInText ();
 			}
@@ -361,7 +361,7 @@ public class Initiation : MonoBehaviour {
 
 		if (etat == Etat.texteGauche)
 		{
-			tmp.text = "Fixe a présent la fleche de gauche";
+			tmp.text = "Fixe a present la fleche de gauche";
 			if (passage == false)
 			{
 				FadeInText();
@@ -578,7 +578,7 @@ public class Initiation : MonoBehaviour {
 			}
 		}
 
-		if (etat == Etat.texte10)
+		/*if (etat == Etat.texte10)
 		{
 			tmpSecondePartie.text = "il te reste un dernier pouvoir";
 			if (passage == false)
@@ -603,9 +603,9 @@ public class Initiation : MonoBehaviour {
 			{
 				FadeOutTextSecondePartie();
 			}
-		}
+		}*/
 
-		if (etat == Etat.texte11)
+		/*if (etat == Etat.texte11)
 		{
 			tmpSecondePartie.text = "Fixe le symbole au sol pour faire demi-tour";
 			if (passage == false)
@@ -679,7 +679,7 @@ public class Initiation : MonoBehaviour {
 				}
 
 			}
-		}
+		}*/
 
 
 		if (etat == Etat.texte12)
@@ -804,13 +804,12 @@ public class Initiation : MonoBehaviour {
 		if (Vector3.Distance (this.transform.position, curseur.transform.position) > distZoneTp) {
 			curseur.SetActive (false);
 			chrono = 0;
-		} else {
-			curseur.SetActive (true);
 		}
-        /*if (Vector3.Distance(this.transform.position, curseur.transform.position) < distZoneTp && tagTouchee != "obstacle" )
-        {
-            curseur.SetActive(true);
-        }*/
+		if (etat == Etat.tp || etat == Etat.cristauxPowers) {
+			if (Vector3.Distance (this.transform.position, curseur.transform.position) < distZoneTp && tagTouchee == "CylinderZoneTp" || tagTouchee == "CristauxPowers") {
+				curseur.SetActive (true);
+			}
+		}
         if (chrono > 1)
         {
             return true;
