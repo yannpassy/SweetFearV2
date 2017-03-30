@@ -4,25 +4,25 @@ using UnityEngine;
 
 public class TimmyAstar : MonoBehaviour {
 
-    public class Noeud
+    /*public class Noeud
     {
-        public GameObject capsule;
-        public List<GameObject> noeudVoisin;
+        public Vector3 position;
+        public List<Vector3> noeudVoisin;
         
-        public Noeud(GameObject _capsule, List<GameObject> _noeudVoisin)
+        public Noeud(Vector3 _position, List<Vector3> _noeudVoisin)
         {
-            this.capsule = _capsule;
+            this.position = _position;
             this.noeudVoisin = _noeudVoisin;
         }
 
-        public bool isNoeudVoisin(GameObject _capsule)
+        public bool isNoeudVoisin(Vector3 _position)
         {
             bool result = false;
-            GameObject[] listNoeud = noeudVoisin.ToArray();
+            Vector3[] listNoeud = noeudVoisin.ToArray();
             int index = 0;
             do
             {
-                if (listNoeud[index].transform.position == _capsule.transform.position)
+                if (listNoeud[index] == _position)
                 {
                     result = true;
                 }
@@ -31,26 +31,32 @@ public class TimmyAstar : MonoBehaviour {
             return result;
         }
 
-        public float distance(GameObject _capsule)
+        public float distance(Vector3 _position)
         {
-            return Vector3.Distance(this.capsule.transform.position, _capsule.transform.position);
+            return Vector3.Distance(this.position, _position);
         }
 
-    }
+    } */
 
 
     public GameObject timmy;
     public GameObject cheminTimmy;
-    private List<Vector3> listNoeud;
-    // Use this for initialization
-    void Start () {
-        //-- le chemin A* de Timmy
-        listNoeud = new List<Vector3>();
-        foreach (Transform pointChemin in cheminTimmy.transform)
-        {
-            listNoeud.Add(pointChemin.position);
-        }
+   // public List<Noeud> listNoeud;
 
+    // Use this for initialization
+    void Start ()
+    {
+        // listNoeud = new List<Noeud>();
+        //-- le chemin A* de Timmy
+        //-- noeud 0
+        /* Vector3[] input = {cheminTimmy.transform.GetChild(1).transform.position,
+             cheminTimmy.transform.GetChild(2).transform.position,
+             cheminTimmy.transform.GetChild(3).transform.position};
+
+         listNoeud.Add(new Noeud (cheminTimmy.transform.GetChild(0).transform.position , new List<Vector3>(input))); */
+
+        //-- test
+        Debug.Log(" le noeud 1 est il voisin du noeud 0? réponse: " + cheminTimmy.transform.GetChild(0).GetComponent(typeof(Noeud)));
     }
 
     // Update is called once per frame
