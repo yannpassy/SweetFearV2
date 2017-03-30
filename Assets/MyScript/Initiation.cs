@@ -229,7 +229,7 @@ public class Initiation : MonoBehaviour {
 		}
 
 		if (etat == Etat.texteDestructionCristaux) {
-			tmp.text = "fixe le cristaux a ta droite quand le texte disparaitra, seul ces derniers peuvent être détruit";
+			tmp.text = "fixe le cristaux devant la porte quand le texte disparaitra, seul ces derniers peuvent être détruit";
 			if (passage == false) {
 				FadeInText ();
 			}
@@ -757,7 +757,7 @@ public class Initiation : MonoBehaviour {
 		if (etat == Etat.fin) {
 			this.GetComponent<Initiation> ().enabled = false;
 			this.GetComponent<MoveTP> ().enabled = true;
-			levelManager.GetComponent<GestionDestruction> ().enabled = false;
+			levelManager.GetComponent<GestionDestruction> ().enabled = true;
 			canvasPremierePartie.SetActive (false);
 			canvasSecondePartie.SetActive (false);
 
@@ -838,7 +838,7 @@ public class Initiation : MonoBehaviour {
 	IEnumerator CompleteTweenRouge(){
 		yield return fade.WaitForCompletion();
 		fade = fragment.transform.GetChild (30).gameObject.GetComponent<Renderer> ().material.DOColor (couleurBleu,  reduction);
-		reduction -= 2.0f;
+		reduction -= 1.5f;
 	}
 
 	IEnumerator CompleteSwitchTweenRouge(){
