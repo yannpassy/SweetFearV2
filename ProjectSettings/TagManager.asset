@@ -14,7 +14,6 @@ TagManager:
   - CristauxPowers
   - obstacle
   - curseur
-  - Fire
   - EcranTitre
   - porte
   - serrureRouge
@@ -25,6 +24,11 @@ TagManager:
   - Canvas
   - CylindreZoneTp
   - portail
+  - InterrupteurLosange
+  - InterrupteurCarre
+  - InterrupteurTriangle
+  - InterrupteurCroix
+  - InterrupteurRond
   layers:
   - Default
   - TransparentFX
