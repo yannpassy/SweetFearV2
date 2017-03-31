@@ -29,6 +29,8 @@ TagManager:
   - InterrupteurTriangle
   - InterrupteurCroix
   - InterrupteurRond
+  - Piedestal
+  - serrureJaune
   layers:
   - Default
   - TransparentFX

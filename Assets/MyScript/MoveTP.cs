@@ -21,7 +21,7 @@ public class MoveTP : MonoBehaviour
 
     public Transform objectReference;
     public OVRCameraRig cameraOVR;
-	private enum Etat { Look, AnalyseCommande, fadeOut, teleportation, fadeIn, demiTour, cristauxPowers, ouvertureRouge, QuartGauche, QuartDroite, InterrupteurTriangle, InterrupteurLosange, InterrupteurCarre, InterrupteurCroix, InterrupteurRond, texteCle};
+	private enum Etat { Look, AnalyseCommande, fadeOut, teleportation, fadeIn, demiTour, cristauxPowers, ouvertureRouge, QuartGauche, QuartDroite, InterrupteurTriangle, InterrupteurLosange, InterrupteurCarre, InterrupteurCroix, InterrupteurRond, texteCle, piedestal};
     Etat etat;
 
     private Vector3 centreCamera;
@@ -70,6 +70,7 @@ public class MoveTP : MonoBehaviour
 	public GameObject InterrupteurCroix;
 	public GameObject InterrupteurRond;
 	public GameObject CanvasCle;
+	public GameObject Sphere;
 
 	private GameObject vide;
 	private GameObject objetTouche;
@@ -205,9 +206,13 @@ public class MoveTP : MonoBehaviour
 					pioche.SetActive (false);
 				} else if (tagTouchee == "obstacle") {
 					curseur.SetActive (false);
-				}
-
-				else if (tagTouchee == "CristauxPowers") {
+				} else if (tagTouchee == "Piedestal") {
+					Debug.Log("touché");
+					quatX = Quaternion.AngleAxis (-90, Vector3.right);
+					quatZ = Quaternion.LookRotation (directionCurseur);
+					quatResultat = quatZ * quatX;
+					curseur.transform.rotation = quatResultat;
+				} else if (tagTouchee == "CristauxPowers") {
 					//curseur.transform.GetChild (0).gameObject.SetActive (false);
 					//curseur.transform.GetChild (1).gameObject.SetActive (true);
 					quatX = Quaternion.AngleAxis (-90, Vector3.right);
@@ -327,6 +332,9 @@ public class MoveTP : MonoBehaviour
 				etat = Etat.Look;
 			}
 
+			if (tagTouchee == "Piedestal") {
+				etat = Etat.piedestal;
+			}
 
 			if (tagTouchee == "serrureRouge" && obtentionClefRouge == true) {
 				clefOuverture.transform.DORotate (new Vector3 (90, 0, 90), 1, 0);
@@ -470,25 +478,31 @@ public class MoveTP : MonoBehaviour
 			chrono = 0;
 			etat = Etat.Look;
 		} else if (etat == Etat.InterrupteurTriangle) {
-			porteTriangle.GetComponent<Animation>().Play ();
+			InterrupteurTriangle.GetComponent<Animation> ().Play ();
 			objetTouche.transform.tag = "obstacle";
-			etat = Etat.Look;
+			StartCoroutine (OuverturePorteTriangle ());
 		} else if (etat == Etat.InterrupteurLosange) {
-			porteLosange.GetComponent<Animation>().Play ();
+			InterrupteurLosange.GetComponent<Animation> ().Play ();
 			objetTouche.transform.tag = "obstacle";
-			etat = Etat.Look;
+			StartCoroutine (OuverturePorteLosange ());
 		} else if (etat == Etat.InterrupteurCarre) {
-			porteCarre.GetComponent<Animation>().Play ();
+			InterrupteurCarre.GetComponent<Animation> ().Play ();
 			objetTouche.transform.tag = "obstacle";
-			etat = Etat.Look;
+			StartCoroutine (OuverturePorteCarre ());
 		} else if (etat == Etat.InterrupteurCroix) {
-			porteCroix.GetComponent<Animation>().Play ();
+			InterrupteurCroix.GetComponent<Animation> ().Play ();
 			objetTouche.transform.tag = "obstacle";
-			etat = Etat.Look;
+			StartCoroutine (OuverturePorteCroix ());
 		} else if (etat == Etat.InterrupteurRond) {
-			porteRondePremiere.GetComponent<Animation>().Play ();
-			porteRondeSeconde.GetComponent<Animation>().Play ();
+			InterrupteurRond.GetComponent<Animation> ().Play ();
 			objetTouche.transform.tag = "obstacle";
+			StartCoroutine (OuverturePorteRond ());
+		} else if (etat == Etat.piedestal) {
+			Sphere.GetComponent<Rigidbody> ().isKinematic = false;
+			objetTouche.transform.tag = "obstacle";
+			Timmy.GetComponent<TimmyMove> ().enabled = true;
+			Timmy.SetActive (true);
+			FMODUnity.RuntimeManager.PlayOneShot ("event:/Rugissement Timmy", this.transform.position);
 			etat = Etat.Look;
 		}
 
@@ -535,6 +549,37 @@ public class MoveTP : MonoBehaviour
 	IEnumerator destructionCanvas(){
 		yield return new WaitForSeconds(4);
 		Destroy (CanvasCle);
+	}
+
+	IEnumerator OuverturePorteTriangle(){
+		yield return new WaitForSeconds (1.0f);
+		porteTriangle.GetComponent<Animation>().Play ();
+		etat = Etat.Look;
+	}
+
+	IEnumerator OuverturePorteLosange(){
+		yield return new WaitForSeconds (1.0f);
+		porteLosange.GetComponent<Animation>().Play ();
+		etat = Etat.Look;
+	}
+
+	IEnumerator OuverturePorteCarre(){
+		yield return new WaitForSeconds (1.0f);
+		porteCarre.GetComponent<Animation>().Play ();
+		etat = Etat.Look;
+	}
+
+	IEnumerator OuverturePorteCroix(){
+		yield return new WaitForSeconds (1.0f);
+		porteCroix.GetComponent<Animation>().Play ();
+		etat = Etat.Look;
+	}
+
+	IEnumerator OuverturePorteRond(){
+		yield return new WaitForSeconds (1.0f);
+		porteRondePremiere.GetComponent<Animation>().Play ();
+		porteRondeSeconde.GetComponent<Animation>().Play ();
+		etat = Etat.Look;
 	}
 
 }
