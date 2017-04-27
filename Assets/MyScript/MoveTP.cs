@@ -582,4 +582,10 @@ public class MoveTP : MonoBehaviour
 		etat = Etat.Look;
 	}
 
+	void OnCollisionEnter(Collision col){
+		if (col.gameObject.name == "Plane") {
+			SceneManager.LoadScene("EcranGameOver");
+		}
+	}
+
 }
