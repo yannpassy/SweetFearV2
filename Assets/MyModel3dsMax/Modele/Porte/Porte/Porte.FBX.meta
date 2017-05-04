@@ -10,23 +10,38 @@ ModelImporter:
     100004: PorteD
     100006: PorteG
     100008: Serrure
+    100010: flagD
+    100012: FlagG
+    100014: Pillier
     400000: PillierG
     400002: //RootNode
     400004: PorteD
     400006: PorteG
     400008: Serrure
+    400010: flagD
+    400012: FlagG
+    400014: Pillier
     2300000: PillierG
     2300002: PorteD
     2300004: PorteG
     2300006: Serrure
+    2300008: flagD
+    2300010: FlagG
+    2300012: Pillier
     3300000: PillierG
     3300002: PorteD
     3300004: PorteG
     3300006: Serrure
+    3300008: flagD
+    3300010: FlagG
+    3300012: Pillier
     4300000: PillierG
     4300002: PorteD
     4300004: Serrure
     4300006: PorteG
+    4300008: Pillier
+    4300010: flagD
+    4300012: FlagG
     7400000: ouverture_porte
     9500000: //RootNode
     11100000: //RootNode
