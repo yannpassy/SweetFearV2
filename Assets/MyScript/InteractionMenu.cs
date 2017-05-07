@@ -20,12 +20,15 @@ public class InteractionMenu : MonoBehaviour
     private float dist;
     private double chrono;
     public GameObject progressBar;
+    private GameObject particleStart;
     // Use this for initialization
     void Start()
     {
         Screen.lockCursor = true;
         centreCamera = new Vector3(Screen.width / 2.0f, Screen.height / 2.0f, cameraOVR.transform.forward.z);
         etat = Etat.Look;
+        particleStart = GameObject.Find("ParticleStart");
+        particleStart.SetActive(false);
     }
 
     // Update is called once per frame
@@ -62,17 +65,19 @@ public class InteractionMenu : MonoBehaviour
             if (tagTouchee == "EcranTitre")
             {
                 progressBar.GetComponent<Image>().fillAmount += Time.deltaTime;
+                particleStart.SetActive(true);
+                particleStart.GetComponent<ParticleSystem>().startLifetime = 0.5f;
             }
             else
             {
                 anciennePositionCurseur = nouvellePosition;
                 progressBar.GetComponent<Image>().fillAmount = 0;
+                particleStart.GetComponent<ParticleSystem>().startLifetime=0f;
             }
 
             if (progressBar.GetComponent<Image>().fillAmount >= 1)
             {
                 SceneManager.LoadScene("NiveauHiver");
-                //etat = Etat.EcranTitre;
             }
         }
     }
