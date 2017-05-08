@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
 
@@ -84,6 +85,9 @@ public class Initiation : MonoBehaviour {
     public GameObject cylindreZoneTp;
     private float chronoFadeOutTp;
 
+    private GameObject tutoProgressBar;
+    private GameObject tutoProgressBar2;
+
     // Use this for initialization
     void Start () {
 		compteur = 1;
@@ -101,7 +105,7 @@ public class Initiation : MonoBehaviour {
 		couleurRouge = new Color32 (255, 129, 129, 255);
 		couleurRougeFonce = new Color32 (255, 49, 49, 255);
 		reduction = 4.0f;
-
+        tutoProgressBar = GameObject.Find("tutoProgressBar");
     }
 	
 	// Update is called once per frame
@@ -144,14 +148,16 @@ public class Initiation : MonoBehaviour {
 				Debug.Log ("tu me touches");
 				chronoValidationOld = chronoValidation;
 				chronoValidation += Time.deltaTime;
-				if (chronoValidationOld < 2.5f && chronoValidation >= 2.5f) {
+                tutoProgressBar.GetComponent<Image>().fillAmount += Time.deltaTime / 2.5f;
+                if (chronoValidationOld < 2.5f && chronoValidation >= 2.5f) {
 					Debug.Log ("on arrive a 4");
 					chronoValidation = 0;
 					chronoValidationOld = 0;
 					chronoFadeIn = 0;
 					passage = true;
-				}
-			}
+                    tutoProgressBar.GetComponent<Image>().fillAmount = 0;
+                }
+            }
 
 			if (passage == true) {
                 FadeOutText ();
@@ -168,14 +174,16 @@ public class Initiation : MonoBehaviour {
 			if (tagTouchee == "Canvas" && chronoFadeIn > duration) {
 				chronoValidationOld = chronoValidation;
 				chronoValidation += Time.deltaTime;
-				Debug.Log (chronoValidation);
+                tutoProgressBar.GetComponent<Image>().fillAmount += Time.deltaTime / 2.5f;
+                Debug.Log (chronoValidation);
 				if (chronoValidationOld < 2.5f && chronoValidation >= 2.5f) {
 					Debug.Log ("on y est");
 					chronoValidation = 0;
 					chronoValidationOld = 0;
 					chronoFadeIn = 0;
 					passage = true;
-				}
+                    tutoProgressBar.GetComponent<Image>().fillAmount = 0;
+                }
 			}
 
 			if (passage == true) {
@@ -192,11 +200,15 @@ public class Initiation : MonoBehaviour {
 			if (tagTouchee == "Canvas" && chronoFadeIn > duration) {
 				chronoValidationOld = chronoValidation;
 				chronoValidation += Time.deltaTime;
-				if (chronoValidationOld < 2.5f && chronoValidation >= 2.5f) {
+                tutoProgressBar.GetComponent<Image>().fillAmount += Time.deltaTime / 2.5f;
+                if (chronoValidationOld < 2.5f && chronoValidation >= 2.5f) {
 					chronoValidation = 0;
 					chronoValidationOld = 0;
-					passage = true;
-				}
+                    chronoFadeIn = 0;
+                    passage = true;
+                    tutoProgressBar.GetComponent<Image>().fillAmount = 0;
+                    tutoProgressBar.transform.position += new Vector3(0, -1, 0) ;
+                }
 			}
 
 			if (passage == true)
@@ -215,12 +227,14 @@ public class Initiation : MonoBehaviour {
 			if (tagTouchee == "Canvas" && chronoFadeIn > duration) {
 				chronoValidationOld = chronoValidation;
 				chronoValidation += Time.deltaTime;
-				if (chronoValidationOld < 2.5f && chronoValidation >= 2.5f) {
+                tutoProgressBar.GetComponent<Image>().fillAmount += Time.deltaTime / 2.5f;
+                if (chronoValidationOld < 2.5f && chronoValidation >= 2.5f) {
 					chronoValidation = 0;
 					chronoValidationOld = 0;
 					chronoFadeIn = 0;
 					passage = true;
-				}
+                    tutoProgressBar.GetComponent<Image>().fillAmount = 0;
+                }
 			}
 
 			if (passage == true) {
@@ -237,12 +251,15 @@ public class Initiation : MonoBehaviour {
 			if (tagTouchee == "Canvas" && chronoFadeIn > duration) {
 				chronoValidationOld = chronoValidation;
 				chronoValidation += Time.deltaTime;
-				if (chronoValidationOld < 2.5f && chronoValidation >= 2.5f) {
+                tutoProgressBar.GetComponent<Image>().fillAmount += Time.deltaTime / 2.5f;
+                if (chronoValidationOld < 2.5f && chronoValidation >= 2.5f) {
 					chronoValidation = 0;
 					chronoValidationOld = 0;
 					chronoFadeIn = 0;
 					passage = true;
-				}
+                    tutoProgressBar.GetComponent<Image>().fillAmount = 0;
+                    tutoProgressBar.transform.position += new Vector3(0, 1, 0);
+                }
 			}
 
 			if (passage == true) {
@@ -293,12 +310,14 @@ public class Initiation : MonoBehaviour {
             {
                 chronoValidationOld = chronoValidation;
                 chronoValidation += Time.deltaTime;
+                tutoProgressBar.GetComponent<Image>().fillAmount += Time.deltaTime / 2.5f;
                 if (chronoValidationOld < 2.5f && chronoValidation >= 2.5f)
                 {
                     chronoValidation = 0;
                     chronoValidationOld = 0;
 					chronoFadeIn = 0;
                     passage = true;
+                    tutoProgressBar.GetComponent<Image>().fillAmount = 0;
                 }
             }
 
@@ -371,13 +390,17 @@ public class Initiation : MonoBehaviour {
 			{
 				chronoValidationOld = chronoValidation;
 				chronoValidation += Time.deltaTime;
-				if (chronoValidationOld < 2.5f && chronoValidation >= 2.5f)
+                tutoProgressBar.GetComponent<Image>().fillAmount += Time.deltaTime / 2.5f;
+                if (chronoValidationOld < 2.5f && chronoValidation >= 2.5f)
 				{
 					chronoValidation = 0;
 					chronoValidationOld = 0;
 					chronoFadeIn = 0;
 					passage = true;
-				}
+                    tutoProgressBar.GetComponent<Image>().fillAmount = 0;
+                    tutoProgressBar.transform.position = new Vector3(-20, 7, -3);
+                    tutoProgressBar.transform .rotation *= Quaternion.AngleAxis(-90, Vector3.up);
+                }
 			}
 
 			if (passage == true)
@@ -447,13 +470,15 @@ public class Initiation : MonoBehaviour {
 			{
 				chronoValidationOld = chronoValidation;
 				chronoValidation += Time.deltaTime;
-				if (chronoValidationOld < 2.5f && chronoValidation >= 2.5f)
+                tutoProgressBar.GetComponent<Image>().fillAmount += Time.deltaTime / 2.5f;
+                if (chronoValidationOld < 2.5f && chronoValidation >= 2.5f)
 				{
 					chronoValidation = 0;
 					chronoValidationOld = 0;
 					chronoFadeIn = 0;
 					passage = true;
-				}
+                    tutoProgressBar.GetComponent<Image>().fillAmount = 0;
+                }
 			}
 
 			if (passage == true)
@@ -482,13 +507,15 @@ public class Initiation : MonoBehaviour {
 			{
 				chronoValidationOld = chronoValidation;
 				chronoValidation += Time.deltaTime;
-				if (chronoValidationOld < 2.5f && chronoValidation >= 2.5f)
+                tutoProgressBar.GetComponent<Image>().fillAmount += Time.deltaTime / 2.5f;
+                if (chronoValidationOld < 2.5f && chronoValidation >= 2.5f)
 				{
 					chronoValidation = 0;
 					chronoValidationOld = 0;
 					chronoFadeIn = 0;
 					passage = true;
-				}
+                    tutoProgressBar.GetComponent<Image>().fillAmount = 0;
+                }
 			}
 
 			if (passage == true)
@@ -517,13 +544,15 @@ public class Initiation : MonoBehaviour {
 			{
 				chronoValidationOld = chronoValidation;
 				chronoValidation += Time.deltaTime;
-				if (chronoValidationOld < 2.5f && chronoValidation >= 2.5f)
+                tutoProgressBar.GetComponent<Image>().fillAmount += Time.deltaTime / 2.5f;
+                if (chronoValidationOld < 2.5f && chronoValidation >= 2.5f)
 				{
 					chronoValidation = 0;
 					chronoValidationOld = 0;
 					chronoFadeIn = 0;
 					passage = true;
-				}
+                    tutoProgressBar.GetComponent<Image>().fillAmount = 0;
+                }
 			}
 
 			if (passage == true)
@@ -563,13 +592,16 @@ public class Initiation : MonoBehaviour {
 			{
 				chronoValidationOld = chronoValidation;
 				chronoValidation += Time.deltaTime;
-				if (chronoValidationOld < 2.5f && chronoValidation >= 2.5f)
+                tutoProgressBar.GetComponent<Image>().fillAmount += Time.deltaTime / 2.5f;
+                if (chronoValidationOld < 2.5f && chronoValidation >= 2.5f)
 				{
 					chronoValidation = 0;
 					chronoValidationOld = 0;
 					chronoFadeIn = 0;
 					passage = true;
-				}
+                    tutoProgressBar.GetComponent<Image>().fillAmount = 0;
+                    tutoProgressBar.transform.position += new Vector3(0, -0.5f, 0);
+                }
 			}
 
 			if (passage == true)
@@ -694,13 +726,15 @@ public class Initiation : MonoBehaviour {
 			{
 				chronoValidationOld = chronoValidation;
 				chronoValidation += Time.deltaTime;
-				if (chronoValidationOld < 2.5f && chronoValidation >= 2.5f)
+                tutoProgressBar.GetComponent<Image>().fillAmount += Time.deltaTime / 2.5f;
+                if (chronoValidationOld < 2.5f && chronoValidation >= 2.5f)
 				{
 					chronoValidation = 0;
 					chronoValidationOld = 0;
 					chronoFadeIn = 0;
 					passage = true;
-				}
+                    tutoProgressBar.GetComponent<Image>().fillAmount = 0;
+                }
 			}
 
 			if (passage == true)
