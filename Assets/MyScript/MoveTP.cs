@@ -97,6 +97,7 @@ public class MoveTP : MonoBehaviour
     private bool cleActiverEffet;
     private float chronoCle;
     private GameObject particleCle;
+    private GameObject MauvaisPortail;
 
     void Start()
     {
@@ -117,6 +118,7 @@ public class MoveTP : MonoBehaviour
         chronoCle=0;
         particleCle= GameObject.Find("ParticleCle");
         particleCle.SetActive(false);
+        MauvaisPortail= GameObject.Find("ScriptMauvaisPortail");
     }
 
     // Update is called once per frame
@@ -199,69 +201,71 @@ public class MoveTP : MonoBehaviour
 			if (destructionCristaux == false) {
 				//On calcule la distance entre l'ancienne position du cube et la nouvelle
 				dist = Vector3.Distance (anciennePositionCurseur, curseur.transform.position);
-				if (tagTouchee == "terrain") { 
-					if (Vector3.Distance (this.transform.position, curseur.transform.position) < distZoneTp && tagTouchee != "obstacle") {
-						curseur.SetActive (true);
-					}
-					curseur.transform.rotation = Quaternion.AngleAxis (0, Vector3.right);
-					pioche.SetActive (false);
-				} else if (tagTouchee == "demi-tour") {
-					//curseur.transform.GetChild (0).gameObject.SetActive (true);
-					//curseur.transform.GetChild (1).gameObject.SetActive (false);
-					curseur.transform.rotation = Quaternion.AngleAxis (0, Vector3.right);
-					pioche.SetActive (false);
-				} else if (tagTouchee == "obstacle") {
-					curseur.SetActive (false);
-				} else if (tagTouchee == "Piedestal") {
-					Debug.Log("touché");
-					quatX = Quaternion.AngleAxis (-90, Vector3.right);
-					quatZ = Quaternion.LookRotation (directionCurseur);
-					quatResultat = quatZ * quatX;
-					curseur.transform.rotation = quatResultat;
-				} else if (tagTouchee == "CristauxPowers") {
-					//curseur.transform.GetChild (0).gameObject.SetActive (false);
-					//curseur.transform.GetChild (1).gameObject.SetActive (true);
-					quatX = Quaternion.AngleAxis (-90, Vector3.right);
-					quatZ = Quaternion.LookRotation (directionCurseur);
-					quatResultat = quatZ * quatX;
-					curseur.transform.rotation = quatResultat;
-					pioche.SetActive (true);
-					pioche.transform.position = cam.transform.position + cam.transform.rotation * new Vector3 (0, 0, 0.4f);
-				} else if (tagTouchee == "serrureRouge" && obtentionClefRouge == true) {
-					curseur.SetActive (false);
-					clefOuverture.SetActive (true);
-					pioche.SetActive (false);
-                
-				} else if (tagTouchee == "serrureRouge" && obtentionClefRouge == false) {
-					canvasPorte.SetActive (true);
-					pioche.SetActive (false);
-				} else if (tagTouchee == "InterrupteurLosange") {
-					quatX = Quaternion.AngleAxis (-90, Vector3.right);
-					quatZ = Quaternion.LookRotation (directionCurseur);
-					Debug.Log (quatZ);
-					quatResultat = quatZ * quatX;
-					curseur.transform.rotation = quatResultat;
-				} else if (tagTouchee == "InterrupteurTriangle") {
-					quatX = Quaternion.AngleAxis (-90, Vector3.right);
-					quatZ = Quaternion.LookRotation (directionCurseur);
-					quatResultat = quatZ * quatX;
-					curseur.transform.rotation = quatResultat;
-				} else if (tagTouchee == "InterrupteurCarre") {
-					quatX = Quaternion.AngleAxis (-90, Vector3.right);
-					quatZ = Quaternion.LookRotation (directionCurseur);
-					quatResultat = quatZ * quatX;
-					curseur.transform.rotation = quatResultat;
-				} else if (tagTouchee == "InterrupteurCroix") {
-					quatX = Quaternion.AngleAxis (-90, Vector3.right);
-					quatZ = Quaternion.LookRotation (directionCurseur);
-					quatResultat = quatZ * quatX;
-					curseur.transform.rotation = quatResultat;
-				} else if (tagTouchee == "InterrupteurRond") {
-					quatX = Quaternion.AngleAxis (-90, Vector3.right);
-					quatZ = Quaternion.LookRotation (directionCurseur);
-					quatResultat = quatZ * quatX;
-					curseur.transform.rotation = quatResultat;
-				} else {
+                if (tagTouchee == "terrain") {
+                    if (Vector3.Distance(this.transform.position, curseur.transform.position) < distZoneTp && tagTouchee != "obstacle") {
+                        curseur.SetActive(true);
+                    }
+                    curseur.transform.rotation = Quaternion.AngleAxis(0, Vector3.right);
+                    pioche.SetActive(false);
+                } else if (tagTouchee == "demi-tour") {
+                    //curseur.transform.GetChild (0).gameObject.SetActive (true);
+                    //curseur.transform.GetChild (1).gameObject.SetActive (false);
+                    curseur.transform.rotation = Quaternion.AngleAxis(0, Vector3.right);
+                    pioche.SetActive(false);
+                } else if (tagTouchee == "obstacle") {
+                    curseur.SetActive(false);
+                } else if (tagTouchee == "Piedestal") {
+                    Debug.Log("touché");
+                    quatX = Quaternion.AngleAxis(-90, Vector3.right);
+                    quatZ = Quaternion.LookRotation(directionCurseur);
+                    quatResultat = quatZ * quatX;
+                    curseur.transform.rotation = quatResultat;
+                } else if (tagTouchee == "CristauxPowers") {
+                    //curseur.transform.GetChild (0).gameObject.SetActive (false);
+                    //curseur.transform.GetChild (1).gameObject.SetActive (true);
+                    quatX = Quaternion.AngleAxis(-90, Vector3.right);
+                    quatZ = Quaternion.LookRotation(directionCurseur);
+                    quatResultat = quatZ * quatX;
+                    curseur.transform.rotation = quatResultat;
+                    pioche.SetActive(true);
+                    pioche.transform.position = cam.transform.position + cam.transform.rotation * new Vector3(0, 0, 0.4f);
+                } else if (tagTouchee == "serrureRouge" && obtentionClefRouge == true) {
+                    curseur.SetActive(false);
+                    clefOuverture.SetActive(true);
+                    pioche.SetActive(false);
+
+                } else if (tagTouchee == "serrureRouge" && obtentionClefRouge == false) {
+                    canvasPorte.SetActive(true);
+                    pioche.SetActive(false);
+                } else if (tagTouchee == "InterrupteurLosange") {
+                    quatX = Quaternion.AngleAxis(-90, Vector3.right);
+                    quatZ = Quaternion.LookRotation(directionCurseur);
+                    Debug.Log(quatZ);
+                    quatResultat = quatZ * quatX;
+                    curseur.transform.rotation = quatResultat;
+                } else if (tagTouchee == "InterrupteurTriangle") {
+                    quatX = Quaternion.AngleAxis(-90, Vector3.right);
+                    quatZ = Quaternion.LookRotation(directionCurseur);
+                    quatResultat = quatZ * quatX;
+                    curseur.transform.rotation = quatResultat;
+                } else if (tagTouchee == "InterrupteurCarre") {
+                    quatX = Quaternion.AngleAxis(-90, Vector3.right);
+                    quatZ = Quaternion.LookRotation(directionCurseur);
+                    quatResultat = quatZ * quatX;
+                    curseur.transform.rotation = quatResultat;
+                } else if (tagTouchee == "InterrupteurCroix") {
+                    quatX = Quaternion.AngleAxis(-90, Vector3.right);
+                    quatZ = Quaternion.LookRotation(directionCurseur);
+                    quatResultat = quatZ * quatX;
+                    curseur.transform.rotation = quatResultat;
+                } else if (tagTouchee == "InterrupteurRond") {
+                    quatX = Quaternion.AngleAxis(-90, Vector3.right);
+                    quatZ = Quaternion.LookRotation(directionCurseur);
+                    quatResultat = quatZ * quatX;
+                    curseur.transform.rotation = quatResultat;
+                } else if (tagTouchee == "serrureJaune" && obtentionClefRouge== true) {
+                    MauvaisPortail.GetComponent<MauvaisPortail>().activerScript = true;
+                }else {
 					//curseur.SetActive(true);
 					clefOuverture.SetActive (false);
 					canvasPorte.SetActive (false);
