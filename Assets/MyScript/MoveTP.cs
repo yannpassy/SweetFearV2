@@ -94,6 +94,9 @@ public class MoveTP : MonoBehaviour
     public GameObject canvasClef;
     public GameObject canvasPorte;
 
+    private bool cleActiverEffet;
+    private float chronoCle;
+    private GameObject particleCle;
 
     void Start()
     {
@@ -110,7 +113,10 @@ public class MoveTP : MonoBehaviour
 		eventCreepy = FMODUnity.RuntimeManager.CreateInstance (myAmbiance);
 		eventCreepy.start ();
 		eventCreepy.getParameter ("creep", out parameterCreepy);
-       
+        cleActiverEffet = false;
+        chronoCle=0;
+        particleCle= GameObject.Find("ParticleCle");
+        particleCle.SetActive(false);
     }
 
     // Update is called once per frame
@@ -464,7 +470,11 @@ public class MoveTP : MonoBehaviour
 			if (cristauxPowers.transform.FindChild ("Clef")) {
 				clef = cristauxPowers.transform.GetChild (1).gameObject;
 				clef.transform.DOMoveY (6, 2);
-				obtentionClefRouge = true;
+                clef.transform.rotation *= Quaternion.AngleAxis(-45, Vector3.right);
+                cleActiverEffet = true;
+                particleCle.SetActive(true);
+                particleCle.transform.position = clef.transform.position+ new Vector3(0,1.5f,0);
+                obtentionClefRouge = true;
 				StartCoroutine (AffichageText ()); 
 				Timmy.SetActive (true);
 				timmyActive = true;
@@ -506,7 +516,20 @@ public class MoveTP : MonoBehaviour
 			etat = Etat.Look;
 		}
 
-		
+        //== affiche les effets quand on récupère la clé
+        if (cleActiverEffet)
+        {
+            chronoCle += Time.deltaTime;
+            clef.transform.rotation *= Quaternion.AngleAxis(-45 * Time.deltaTime, new Vector3(0,0.75f, 0.5f));
+            particleCle.GetComponent<ParticleSystem>().startColor+= new Color(0, -Time.deltaTime / 3, Time.deltaTime/3, 0);
+
+            if (chronoCle > 5)
+            {
+                cleActiverEffet = false;
+                clef.SetActive(false);
+                particleCle.SetActive(false);
+            }
+        }
     }
 
     IEnumerator DeplacementPorte()
