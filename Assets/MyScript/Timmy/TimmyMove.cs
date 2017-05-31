@@ -135,7 +135,7 @@ public class TimmyMove : MonoBehaviour
     // si Timmy tombe sur un obstacle
     void OnCollisionEnter(Collision hit)
     {
-        if (hit.gameObject.tag != "terrain" && hit.gameObject.tag != "Player" && hit.gameObject.tag != "Untagged")
+        if (hit.gameObject.tag != "terrain" && hit.gameObject.tag != "Player" && hit.gameObject.tag != "Untagged" && hit.gameObject.tag != "obstacle")
         {
             indexCheminRetour = cheminRetour.Count - 1;
             timmy.transform.LookAt(cheminRetour[indexCheminRetour]);

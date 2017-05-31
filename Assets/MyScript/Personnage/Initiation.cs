@@ -243,7 +243,7 @@ public class Initiation : MonoBehaviour {
 		}
 
 		if (etat == Etat.texteDestructionCristaux) {
-			tmp.text = "fixe le cristaux devant la porte quand le texte disparaitra, seul ces derniers peuvent être détruit";
+			tmp.text = "fixe le cristaux devant la porte quand le texte disparaitra, seul ces derniers peuvent etre detruit";
 			if (passage == false) {
 				FadeInText ();
 			}
@@ -336,7 +336,7 @@ public class Initiation : MonoBehaviour {
 			if (compteur == 1) {
 				cylindreZoneTp.SetActive(true);
 				dist = Vector3.Distance(anciennePositionCurseur, curseur.transform.position);
-				if (focusCurseur ()) {
+				if (focusCurseur () && tagTouchee == "CylindreZoneTp") {
 					compteur += 1;
 				}
 			}
@@ -609,109 +609,6 @@ public class Initiation : MonoBehaviour {
 				FadeOutTextSecondePartie();
 			}
 		}
-
-		/*if (etat == Etat.texte10)
-		{
-			tmpSecondePartie.text = "il te reste un dernier pouvoir";
-			if (passage == false)
-			{
-				FadeInTextSecondePartie();
-			}
-
-			if (tagTouchee == "Canvas" && chronoFadeIn > duration)
-			{
-				chronoValidationOld = chronoValidation;
-				chronoValidation += Time.deltaTime;
-				if (chronoValidationOld < 2.5f && chronoValidation >= 2.5f)
-				{
-					chronoValidation = 0;
-					chronoValidationOld = 0;
-					chronoFadeIn = 0;
-					passage = true;
-				}
-			}
-
-			if (passage == true)
-			{
-				FadeOutTextSecondePartie();
-			}
-		}*/
-
-		/*if (etat == Etat.texte11)
-		{
-			tmpSecondePartie.text = "Fixe le symbole au sol pour faire demi-tour";
-			if (passage == false)
-			{
-				FadeInTextSecondePartie();
-			}
-
-			if (tagTouchee == "Canvas" && chronoFadeIn > duration)
-			{
-				chronoValidationOld = chronoValidation;
-				chronoValidation += Time.deltaTime;
-				if (chronoValidationOld < 2.5f && chronoValidation >= 2.5f)
-				{
-					chronoValidation = 0;
-					chronoValidationOld = 0;
-					chronoFadeIn = 0;
-					passage = true;
-				}
-			}
-
-			if (passage == true)
-			{
-				FadeOutTextSecondePartie();
-			}
-		}
-
-
-		if (etat == Etat.demiTour) {
-			if (tagTouchee == "demi-tour") {
-				curseur.SetActive (true);
-			} else {
-				curseur.SetActive (false);
-			}
-
-			if (compteur == 1) {
-				dist = Vector3.Distance (anciennePositionCurseur, curseur.transform.position);
-				if (focusCurseur () && tagTouchee == "demi-tour") {
-					compteur += 1;
-				}
-			}
-			if (compteur == 2) {
-				cam.GetComponent<OVRScreenFadeOut> ().enabled = true;
-				cam.GetComponent<OVRScreenFadeOut> ().StarFadeOut ();
-				compteur += 1;
-			}
-			if (compteur == 3) {
-				chronoFadeOut += Time.deltaTime;
-				if (chronoFadeOut > cam.GetComponent<OVRScreenFadeOut> ().fadeTime) {
-					chronoFadeOut = 0;
-					FMODUnity.RuntimeManager.PlayOneShot ("event:/instant-teleport", this.transform.position);
-					this.transform.rotation *= Quaternion.AngleAxis (180, Vector3.up);
-					cam.GetComponent<OVRScreenFadeOut> ().StartFadeIn ();
-					curseur.transform.GetChild (0).GetComponent<Animation> ().Stop ();
-					compteur += 1;
-				}
-			}
-
-			if (compteur == 4) {
-				chronoFadeIn += Time.deltaTime;
-				if (chronoFadeIn > cam.GetComponent<OVRScreenFadeOut> ().fadeTime) {
-					curseur.transform.GetChild (0).gameObject.transform.GetChild (0).GetComponent<Renderer> ().material.color = Color.black;
-					curseur.transform.GetChild (0).gameObject.transform.GetChild (1).GetComponent<Renderer> ().material.color = Color.black;
-					curseur.transform.GetChild (0).gameObject.transform.GetChild (2).GetComponent<Renderer> ().material.color = Color.black;
-					curseur.transform.GetChild (0).gameObject.transform.GetChild (3).GetComponent<Renderer> ().material.color = Color.black;
-					curseur.transform.GetChild (0).gameObject.transform.GetChild (4).GetComponent<Renderer> ().material.color = Color.black;
-					chronoFadeIn = 0;
-					chrono = 0;
-					curseur.SetActive (false);
-					cam.GetComponent<OVRScreenFadeOut> ().enabled = false;
-					etat += 1;
-				}
-
-			}
-		}*/
 
 
 		if (etat == Etat.texte12)
