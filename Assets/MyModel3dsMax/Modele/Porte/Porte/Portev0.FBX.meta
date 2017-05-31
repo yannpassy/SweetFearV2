@@ -27,7 +27,7 @@ ModelImporter:
     4300002: PorteD
     4300004: Serrure
     4300006: PorteG
-    7400000: rotation
+    7400000: anim_porte2
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -51,7 +51,7 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: rotation
+      name: anim_porte2
       takeName: Take 001
       firstFrame: 0
       lastFrame: 60
