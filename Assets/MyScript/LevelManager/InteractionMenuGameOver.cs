@@ -20,12 +20,18 @@ public class InteractionMenuGameOver : MonoBehaviour {
     private double chrono;
     public GameObject progressBarRecommencer;
     public GameObject progressBarQuitter;
+    private GameObject particleRecommencer;
+    private GameObject particleQuitter;
     // Use this for initialization
     void Start()
     {
         Screen.lockCursor = true;
         centreCamera = new Vector3(Screen.width / 2.0f, Screen.height / 2.0f, cameraOVR.transform.forward.z);
         etat = Etat.Look;
+        particleRecommencer = GameObject.Find("ParticleRecommencer");
+        particleRecommencer.SetActive(false);
+        particleQuitter = GameObject.Find("ParticleQuitter");
+        particleQuitter.SetActive(false);
     }
 
     // Update is called once per frame
@@ -73,14 +79,26 @@ public class InteractionMenuGameOver : MonoBehaviour {
         {
             if (tagSelectionnee == tagTouchee)
             {
-                if(tagSelectionnee=="Recommencer")
+                if (tagSelectionnee == "Recommencer")
+                {
                     progressBarRecommencer.GetComponent<Image>().fillAmount += Time.deltaTime;
+                    particleQuitter.GetComponent<ParticleSystem>().startLifetime = 0f;
+                    particleRecommencer.SetActive(true);
+                    particleRecommencer.GetComponent<ParticleSystem>().startLifetime = 0.5f;
+                }
                 else
+                {
                     progressBarQuitter.GetComponent<Image>().fillAmount += Time.deltaTime;
+                    particleRecommencer.GetComponent<ParticleSystem>().startLifetime = 0f;
+                    particleQuitter.SetActive(true);
+                    particleQuitter.GetComponent<ParticleSystem>().startLifetime = 0.5f;
+                }
             }
             else
             {
                 anciennePositionCurseur = nouvellePosition;
+                particleRecommencer.GetComponent<ParticleSystem>().startLifetime = 0f;
+                particleQuitter.GetComponent<ParticleSystem>().startLifetime = 0f;
                 etat = Etat.Look;
             }
 
