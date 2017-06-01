@@ -160,12 +160,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 522f4c742db59a24088dd88cf1cf0e41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myAmbiance: event:/Musique intro
   chrono: 0
   duration:
-  - 3
   - 6
-  - 9
-  - 12
+  - 11
+  - 15
+  - 22
+  transition:
+  - 0.25
+  - 0.35
+  - 0.55
+  - 0.65
   lightScene:
   - {fileID: 857438021}
   - {fileID: 1242684681}
@@ -247,6 +253,21 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 478108, guid: 14691c451e07ff94cb94be3f44e72ab7, type: 2}
   m_PrefabInternal: {fileID: 275794503}
+--- !u!1 &350476271 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100004, guid: 126d619cf4daa52469682f85c1378b4a, type: 2}
+  m_PrefabInternal: {fileID: 226573991}
+--- !u!114 &350476272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 350476271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &364753490
 Prefab:
   m_ObjectHideFlags: 0
