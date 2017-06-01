@@ -570,7 +570,7 @@ public class MoveTP : MonoBehaviour
 		yield return new WaitForSeconds (1.0f);
 		parameterCreepy.setValue (0.0f);
 		ApplicationMode.passlevel = 2;
-		SceneManager.LoadScene ("NiveauEte");
+		SceneManager.LoadScene ("EcranChangementNiveau");
 	}
 
 	IEnumerator destructionCanvas(){
