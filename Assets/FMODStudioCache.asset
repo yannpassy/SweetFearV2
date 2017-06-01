@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EditorBanks:
   - {fileID: 114966711031720052}
-  - {fileID: 114841319802414178}
+  - {fileID: 114816741286157940}
   EditorEvents:
   - {fileID: 114227813229860642}
   - {fileID: 114622312210690238}
@@ -28,14 +28,17 @@ MonoBehaviour:
   - {fileID: 114863995710834122}
   - {fileID: 114466162675995252}
   - {fileID: 114334613559067372}
-  - {fileID: 114019356546222446}
   - {fileID: 114830220814727502}
   - {fileID: 114204586543540938}
   - {fileID: 114940698743978900}
   - {fileID: 114203072461392588}
-  MasterBankRef: {fileID: 114841319802414178}
+  - {fileID: 114128847305917072}
+  - {fileID: 114518658610142312}
+  - {fileID: 114999016344915050}
+  - {fileID: 114645822577216748}
+  MasterBankRef: {fileID: 114816741286157940}
   StringsBankRef: {fileID: 114966711031720052}
-  stringsBankWriteTime: 636314106830624513
+  stringsBankWriteTime: 636318460226841930
   cacheVersion: 2
 --- !u!114 &114019356546222446
 MonoBehaviour:
@@ -51,7 +54,7 @@ MonoBehaviour:
   Path: event:/pioche
   guid: bf62e4c58765b7469338daa523ca0fe4
   Banks:
-  - {fileID: 114841319802414178}
+  - {fileID: 114816741286157940}
   IsStream: 0
   Is3D: 1
   IsOneShot: 0
@@ -72,7 +75,7 @@ MonoBehaviour:
   Path: event:/DestructionIle
   guid: 73f6e909ba3425448969775353814198
   Banks:
-  - {fileID: 114841319802414178}
+  - {fileID: 114816741286157940}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -162,6 +165,27 @@ MonoBehaviour:
   Min: 0
   Max: 10
   Default: 0
+--- !u!114 &114128847305917072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Halo de lumier
+  guid: 42c949ea6c820c498746635f58428e8b
+  Banks:
+  - {fileID: 114816741286157940}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
 --- !u!114 &114181448300403970
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -195,7 +219,7 @@ MonoBehaviour:
   Path: event:/Rugissement Timmy
   guid: fdd4703a30957541bc2854e3db100366
   Banks:
-  - {fileID: 114841319802414178}
+  - {fileID: 114816741286157940}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -216,7 +240,7 @@ MonoBehaviour:
   Path: event:/jet de pioche
   guid: d5512e663079b6448d656f1b17c31a03
   Banks:
-  - {fileID: 114841319802414178}
+  - {fileID: 114816741286157940}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -237,14 +261,44 @@ MonoBehaviour:
   Path: event:/AmbianceCreepy
   guid: 1f89dc8c7790994494f95f44441c9af0
   Banks:
-  - {fileID: 114841319802414178}
+  - {fileID: 114816741286157940}
   IsStream: 1
   Is3D: 1
   IsOneShot: 0
   Parameters:
-  - {fileID: 114337966019252576}
+  - {fileID: 114235332808404104}
   MinDistance: 1
   MaxDistance: 20
+--- !u!114 &114235332808404104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: creep
+  Min: 0
+  Max: 10
+  Default: 0
+--- !u!114 &114236895938725538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Transition
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114240682225986002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -259,7 +313,7 @@ MonoBehaviour:
   Path: event:/SonAmbianceETE
   guid: 180028d7633c314a90acc31829fa88c2
   Banks:
-  - {fileID: 114841319802414178}
+  - {fileID: 114816741286157940}
   IsStream: 1
   Is3D: 1
   IsOneShot: 0
@@ -314,7 +368,7 @@ MonoBehaviour:
   Path: event:/MenuTheme
   guid: 5ead187c11ffe244810ad0327d90fa7f
   Banks:
-  - {fileID: 114841319802414178}
+  - {fileID: 114816741286157940}
   IsStream: 1
   Is3D: 1
   IsOneShot: 0
@@ -335,7 +389,7 @@ MonoBehaviour:
   Path: event:/Validation
   guid: 79e772ff598d5e4eb238716be2261125
   Banks:
-  - {fileID: 114841319802414178}
+  - {fileID: 114816741286157940}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -386,7 +440,7 @@ MonoBehaviour:
   Path: event:/DestructionCristaux
   guid: 589368d9e4003343a45f876934a33931
   Banks:
-  - {fileID: 114841319802414178}
+  - {fileID: 114816741286157940}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -407,7 +461,7 @@ MonoBehaviour:
   Path: "event:/Rivi\xE8re"
   guid: cb974cbf3dc4bc4aae8391df785db7b7
   Banks:
-  - {fileID: 114841319802414178}
+  - {fileID: 114816741286157940}
   IsStream: 1
   Is3D: 1
   IsOneShot: 0
@@ -428,7 +482,7 @@ MonoBehaviour:
   Path: event:/Effondrement
   guid: f0e530e46d1104439d2fbcd9e323279a
   Banks:
-  - {fileID: 114841319802414178}
+  - {fileID: 114816741286157940}
   IsStream: 1
   Is3D: 1
   IsOneShot: 0
@@ -468,7 +522,7 @@ MonoBehaviour:
   Path: event:/girl-scream
   guid: 545fccf3d3f3e84fa3cc2e6a0545eaab
   Banks:
-  - {fileID: 114841319802414178}
+  - {fileID: 114816741286157940}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -494,6 +548,27 @@ MonoBehaviour:
   - Name: Desktop
     Value: 8202464
   Exists: 0
+--- !u!114 &114518658610142312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Pas de Timmy
+  guid: 57e6253f31635342bd2bc9c4450ac928
+  Banks:
+  - {fileID: 114816741286157940}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
 --- !u!114 &114527091096487592
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -542,10 +617,31 @@ MonoBehaviour:
   Path: event:/Fontaine
   guid: 2b84fcf44caa69499fbacc4e8918cec6
   Banks:
-  - {fileID: 114841319802414178}
+  - {fileID: 114816741286157940}
   IsStream: 1
   Is3D: 1
   IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+--- !u!114 &114645822577216748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Pioche
+  guid: bf62e4c58765b7469338daa523ca0fe4
+  Banks:
+  - {fileID: 114816741286157940}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
@@ -563,7 +659,7 @@ MonoBehaviour:
   Path: event:/instant-teleport
   guid: 9a0f2b83cc399946b4479bc1b523087b
   Banks:
-  - {fileID: 114841319802414178}
+  - {fileID: 114816741286157940}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -599,7 +695,7 @@ MonoBehaviour:
   Path: event:/SonAmbianceHiver
   guid: 6b5fcb2116d0f442af8a3328865ce8a6
   Banks:
-  - {fileID: 114841319802414178}
+  - {fileID: 114816741286157940}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -607,6 +703,21 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
 --- !u!114 &114748359663478132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: creep
+  Min: 0
+  Max: 10
+  Default: 0
+--- !u!114 &114794942699862112
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -651,6 +762,24 @@ MonoBehaviour:
   Min: 0
   Max: 10
   Default: 0
+--- !u!114 &114816741286157940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: D:\SweetFearV2\SonSweetFear\SonSweetFear\Build\Desktop\Master Bank.bank
+  lastModified: 636318460226831921
+  LoadResult: 0
+  FileSizes:
+  - Name: Desktop
+    Value: 10372704
+  Exists: 1
 --- !u!114 &114830220814727502
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -665,7 +794,7 @@ MonoBehaviour:
   Path: event:/Victory
   guid: cdd743f6c908d64485a1acf4c309785b
   Banks:
-  - {fileID: 114841319802414178}
+  - {fileID: 114816741286157940}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -738,7 +867,7 @@ MonoBehaviour:
   Path: event:/crystaux incassable
   guid: 270749b092d79b4e834e5fb15c230a6a
   Banks:
-  - {fileID: 114841319802414178}
+  - {fileID: 114816741286157940}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -827,7 +956,7 @@ MonoBehaviour:
   Path: event:/grincement porte
   guid: dd08fee422f95b48a13399e9ca4788d2
   Banks:
-  - {fileID: 114841319802414178}
+  - {fileID: 114816741286157940}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -845,10 +974,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Path: SonSweetFear\Build\Desktop\Master Bank.strings.bank
-  lastModified: 636314106830624513
+  Path: SonSweetFear\SonSweetFear\Build\Desktop\Master Bank.strings.bank
+  lastModified: 636318460226841930
   LoadResult: 0
   FileSizes:
   - Name: Desktop
-    Value: 1596
+    Value: 1750
   Exists: 1
+--- !u!114 &114999016344915050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Musique intro
+  guid: 88a59d068dc92a4781ea163cb409cf05
+  Banks:
+  - {fileID: 114816741286157940}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 114236895938725538}
+  MinDistance: 1
+  MaxDistance: 20
