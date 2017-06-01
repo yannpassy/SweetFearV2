@@ -352,7 +352,9 @@ public class MoveTP : MonoBehaviour
 
 
 			if (tagTouchee == "demi-tour") {
-				etat = Etat.demiTour;
+                cam.GetComponent<OVRScreenFadeOut>().enabled = true;
+                cam.GetComponent<OVRScreenFadeOut>().StarFadeOut();
+                etat = Etat.demiTour;
 			}
 			if (tagTouchee == "gauche") {
 				etat = Etat.QuartGauche;
@@ -428,8 +430,8 @@ public class MoveTP : MonoBehaviour
 			}
 
 		} else if (etat == Etat.demiTour) {
-			cam.GetComponent<OVRScreenFadeOut> ().enabled = true;
-			cam.GetComponent<OVRScreenFadeOut> ().StarFadeOut ();
+			//cam.GetComponent<OVRScreenFadeOut> ().enabled = true;
+			//cam.GetComponent<OVRScreenFadeOut> ().StarFadeOut ();
 			chronoFadeOut += Time.deltaTime;
 			if (chronoFadeOut > cam.GetComponent<OVRScreenFadeOut> ().fadeTime) {
 				chronoFadeOut = 0;
@@ -570,7 +572,7 @@ public class MoveTP : MonoBehaviour
 		yield return new WaitForSeconds (1.0f);
 		parameterCreepy.setValue (0.0f);
 		ApplicationMode.passlevel = 2;
-		SceneManager.LoadScene ("NiveauEte");
+		SceneManager.LoadScene ("EcranChangementNiveau");
 	}
 
 	IEnumerator destructionCanvas(){
