@@ -5,7 +5,7 @@
             <value>SonAmbianceETE</value>
         </property>
         <property name="outputFormat">
-            <value>2</value>
+            <value>0</value>
         </property>
         <relationship name="mixer">
             <destination>{126f967a-4fa8-4eab-bf9c-127eddbfd0de}</destination>
@@ -144,10 +144,13 @@
     </object>
     <object class="LoopRegion" id="{4ea32305-146a-4d21-8965-a1a234bec0b9}">
         <property name="position">
-            <value>0</value>
+            <value>9</value>
         </property>
         <property name="length">
-            <value>54</value>
+            <value>12</value>
+        </property>
+        <property name="triggerProbabilityEnabled">
+            <value>true</value>
         </property>
         <relationship name="timeline">
             <destination>{883eac4f-3a14-4464-90ee-dd01e2abd2a2}</destination>
@@ -159,7 +162,6 @@
     <object class="MixerBusEffectChain" id="{a5ef339c-e263-4667-8f5e-e20a098f3440}">
         <relationship name="effects">
             <destination>{c2578cd3-1bc4-45ea-b7db-058daef37343}</destination>
-            <destination>{3f2e2b25-e3be-441f-8381-d4beb11f3c21}</destination>
         </relationship>
     </object>
     <object class="MixerBusPanner" id="{c43f00f5-f09b-4b71-93af-1eb94a8671b6}"/>
@@ -175,7 +177,7 @@
             <value>0.50943396226415094</value>
         </property>
         <property name="value">
-            <value>-64.0231857</value>
+            <value>-52.3071022</value>
         </property>
         <property name="curveShape">
             <value>-0.308729708</value>
@@ -186,7 +188,7 @@
             <value>13.641509433962264</value>
         </property>
         <property name="value">
-            <value>6.40521908</value>
+            <value>-17.8711205</value>
         </property>
     </object>
     <object class="AutomationPoint" id="{77906cb8-3024-4f5f-b7cc-442a155034a6}">
@@ -194,7 +196,7 @@
             <value>19.811320754716981</value>
         </property>
         <property name="value">
-            <value>7.0043478</value>
+            <value>-17.2719917</value>
         </property>
         <property name="curveShape">
             <value>1</value>
@@ -205,7 +207,7 @@
             <value>54.96226415094339</value>
         </property>
         <property name="value">
-            <value>-80</value>
+            <value>-52.3071022</value>
         </property>
     </object>
     <object class="AutomationPoint" id="{4ec338d3-0cc9-4e7e-bfe2-acb6712ac9a7}">
@@ -213,13 +215,12 @@
             <value>39.962264063284309</value>
         </property>
         <property name="value">
-            <value>5.20695782</value>
+            <value>-19.0693817</value>
         </property>
         <property name="curveShape">
             <value>1</value>
         </property>
     </object>
     <object class="MixerBusFader" id="{c2578cd3-1bc4-45ea-b7db-058daef37343}"/>
-    <object class="SpatialiserEffect" id="{3f2e2b25-e3be-441f-8381-d4beb11f3c21}"/>
     <object class="MixerBusFader" id="{82565e55-a681-4a2c-93cf-6b1ecc75214f}"/>
 </objects>
