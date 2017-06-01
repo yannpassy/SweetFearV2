@@ -9,7 +9,7 @@ public class InteractionMenu : MonoBehaviour
 {
     public OVRCameraRig cameraOVR;
     public Camera cam;
-    private enum Etat { Look, EcranTitre };
+    private enum Etat { Look, EcranTitre};
     Etat etat;
     private Vector3 centreCamera;
     private Vector3 nouvellePosition;
@@ -20,7 +20,9 @@ public class InteractionMenu : MonoBehaviour
     private float dist;
     private double chrono;
     public GameObject progressBar;
+    public GameObject progressBarQuitter;
     private GameObject particleStart;
+    private GameObject particleQuitter;
     // Use this for initialization
     void Start()
     {
@@ -28,7 +30,9 @@ public class InteractionMenu : MonoBehaviour
         centreCamera = new Vector3(Screen.width / 2.0f, Screen.height / 2.0f, cameraOVR.transform.forward.z);
         etat = Etat.Look;
         particleStart = GameObject.Find("ParticleStart");
+        particleQuitter = GameObject.Find("ParticleQuitter");
         particleStart.SetActive(false);
+        particleQuitter.SetActive(false);
     }
 
     // Update is called once per frame
@@ -68,16 +72,29 @@ public class InteractionMenu : MonoBehaviour
                 particleStart.SetActive(true);
                 particleStart.GetComponent<ParticleSystem>().startLifetime = 0.5f;
             }
+            else if (tagTouchee == "Quitter")
+            {
+                progressBarQuitter.GetComponent<Image>().fillAmount += Time.deltaTime;
+                particleQuitter.SetActive(true);
+                particleQuitter.GetComponent<ParticleSystem>().startLifetime = 0.5f;
+            }
             else
             {
                 anciennePositionCurseur = nouvellePosition;
                 progressBar.GetComponent<Image>().fillAmount = 0;
-                particleStart.GetComponent<ParticleSystem>().startLifetime=0f;
+                progressBarQuitter.GetComponent<Image>().fillAmount = 0;
+                particleStart.GetComponent<ParticleSystem>().startLifetime= 0f;
+                particleQuitter.GetComponent<ParticleSystem>().startLifetime = 0f;
             }
 
             if (progressBar.GetComponent<Image>().fillAmount >= 1)
             {
                 SceneManager.LoadScene("NiveauHiver");
+            }
+
+            if (progressBarQuitter.GetComponent<Image>().fillAmount >= 1)
+            {
+                Application.Quit();
             }
         }
     }
