@@ -13,8 +13,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HasSourceProject: 1
   HasPlatforms: 1
-  SourceProjectPath: SonSweetFear\SonSweetFear.fspro
-  SourceBankPath: SonSweetFear\Build
+  SourceProjectPath: SonSweetFear\SonSweetFear\SonSweetFear.fspro
+  SourceBankPath: SonSweetFear\SonSweetFear\Build
   AutomaticEventLoading: 1
   AutomaticSampleLoading: 0
   ImportType: 0

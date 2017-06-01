@@ -329,15 +329,23 @@ public class Initiation : MonoBehaviour {
         if (etat == Etat.tp)
         {
 			if (tagTouchee == "CylindreZoneTp") {
+				chrono += Time.deltaTime;
 				curseur.SetActive (true);
 			} else {
+				chrono = 0;
 				curseur.SetActive (false);
+			
 			}
-			if (compteur == 1) {
+
+			if (compteur == 1) { 
 				cylindreZoneTp.SetActive(true);
 				dist = Vector3.Distance(anciennePositionCurseur, curseur.transform.position);
-				if (focusCurseur () && tagTouchee == "CylindreZoneTp") {
-					compteur += 1;
+				if (tagTouchee == "CylindreZoneTp") {
+					if (focusCurseur ()) {
+						compteur += 1;
+					}
+				} else {
+					chrono = 0;
 				}
 			}
 
