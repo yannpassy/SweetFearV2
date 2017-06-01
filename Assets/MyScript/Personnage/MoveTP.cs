@@ -357,10 +357,14 @@ public class MoveTP : MonoBehaviour
                 etat = Etat.demiTour;
 			}
 			if (tagTouchee == "gauche") {
-				etat = Etat.QuartGauche;
+                cam.GetComponent<OVRScreenFadeOut>().enabled = true;
+                cam.GetComponent<OVRScreenFadeOut>().StarFadeOut();
+                etat = Etat.QuartGauche;
 			}
 			if (tagTouchee == "droite") {
-				etat = Etat.QuartDroite;
+                cam.GetComponent<OVRScreenFadeOut>().enabled = true;
+                cam.GetComponent<OVRScreenFadeOut>().StarFadeOut();
+                etat = Etat.QuartDroite;
 			}
 
 			if (tagTouchee == "CristauxPowers") {
@@ -430,8 +434,6 @@ public class MoveTP : MonoBehaviour
 			}
 
 		} else if (etat == Etat.demiTour) {
-			//cam.GetComponent<OVRScreenFadeOut> ().enabled = true;
-			//cam.GetComponent<OVRScreenFadeOut> ().StarFadeOut ();
 			chronoFadeOut += Time.deltaTime;
 			if (chronoFadeOut > cam.GetComponent<OVRScreenFadeOut> ().fadeTime) {
 				chronoFadeOut = 0;
@@ -442,8 +444,6 @@ public class MoveTP : MonoBehaviour
 			}
 
 		} else if (etat == Etat.QuartGauche) {
-			cam.GetComponent<OVRScreenFadeOut> ().enabled = true;
-			cam.GetComponent<OVRScreenFadeOut> ().StarFadeOut ();
 			chronoFadeOut += Time.deltaTime;
 			if (chronoFadeOut > cam.GetComponent<OVRScreenFadeOut> ().fadeTime) {
 				chronoFadeOut = 0;
@@ -454,8 +454,6 @@ public class MoveTP : MonoBehaviour
 			}
 
 		} else if (etat == Etat.QuartDroite) {
-			cam.GetComponent<OVRScreenFadeOut> ().enabled = true;
-			cam.GetComponent<OVRScreenFadeOut> ().StarFadeOut ();
 			chronoFadeOut += Time.deltaTime;
 			if (chronoFadeOut > cam.GetComponent<OVRScreenFadeOut> ().fadeTime) {
 				chronoFadeOut = 0;
