@@ -395,6 +395,7 @@ public class MoveTP : MonoBehaviour
 			if (tagTouchee == "portail") {
 				cam.GetComponent<OVRScreenFadeOut> ().enabled = true;
 				cam.GetComponent<OVRScreenFadeOut> ().StarFadeOut ();
+                Debug.Log("touche le portail");
 				StartCoroutine (ChangerScene ());
 			}
 
