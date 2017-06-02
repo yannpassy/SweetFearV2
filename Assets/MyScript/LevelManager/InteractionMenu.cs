@@ -68,14 +68,14 @@ public class InteractionMenu : MonoBehaviour
         {
             if (tagTouchee == "EcranTitre")
             {
-                progressBar.GetComponent<Image>().fillAmount += Time.deltaTime;
+                progressBar.GetComponent<Image>().fillAmount += Time.deltaTime/1.75f;
                 particleQuitter.GetComponent<ParticleSystem>().startLifetime = 0f;
                 particleStart.SetActive(true);
                 particleStart.GetComponent<ParticleSystem>().startLifetime = 0.5f;
             }
             else if (tagTouchee == "Quitter")
             {
-                progressBarQuitter.GetComponent<Image>().fillAmount += Time.deltaTime;
+                progressBarQuitter.GetComponent<Image>().fillAmount += Time.deltaTime / 1.75f;
                 particleStart.GetComponent<ParticleSystem>().startLifetime = 0f;
                 particleQuitter.SetActive(true);
                 particleQuitter.GetComponent<ParticleSystem>().startLifetime = 0.5f;
