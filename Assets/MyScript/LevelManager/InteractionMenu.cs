@@ -91,7 +91,7 @@ public class InteractionMenu : MonoBehaviour
 
             if (progressBar.GetComponent<Image>().fillAmount >= 1)
             {
-                SceneManager.LoadScene("NiveauHiver");
+                SceneManager.LoadScene("Introduction");
             }
 
             if (progressBarQuitter.GetComponent<Image>().fillAmount >= 1)

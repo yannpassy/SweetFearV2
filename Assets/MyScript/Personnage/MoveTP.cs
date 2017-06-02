@@ -472,7 +472,7 @@ public class MoveTP : MonoBehaviour
 			destructionCristaux = true;
 			cristauxPowers.GetComponent<MeshCollider> ().enabled = false;
 			if (cristauxPowers.transform.FindChild ("Clef")) {
-				clef = cristauxPowers.transform.GetChild (1).gameObject;
+				clef = cristauxPowers.transform.GetChild (2).gameObject;
 				clef.transform.DOMoveY (6, 2);
                 clef.transform.rotation *= Quaternion.AngleAxis(-45, Vector3.right);
                 cleActiverEffet = true;

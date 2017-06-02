@@ -53,6 +53,7 @@ public class Initiation : MonoBehaviour {
 	public GameObject fragment;
 	public GameObject levelManager;
 	public GameObject fragmentMesh;
+	public GameObject cylindreZoneTp;
 
 	private Rigidbody rb;
 	private float vitesseAnimation;
@@ -82,7 +83,6 @@ public class Initiation : MonoBehaviour {
     private float dist;
     private float distZoneTp = 7.0f;
     private double chronoOld;
-    public GameObject cylindreZoneTp;
     private float chronoFadeOutTp;
 
     private GameObject tutoProgressBar;
@@ -700,6 +700,7 @@ public class Initiation : MonoBehaviour {
 			levelManager.GetComponent<GestionDestruction> ().enabled = true;
 			canvasPremierePartie.SetActive (false);
 			canvasSecondePartie.SetActive (false);
+			cylindreZoneTp.SetActive (false);
 
 		}
 	}
