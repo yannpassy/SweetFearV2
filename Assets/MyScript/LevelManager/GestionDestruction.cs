@@ -4,9 +4,9 @@ using UnityEngine;
 using DG.Tweening;
 
 public class GestionDestruction : MonoBehaviour {
-    public float[] dur = new float[10];
-	public float[] durationAvantFade = new float[10];
+	public float[] dur = new float[10];
     public GameObject[] mesGameObject = new GameObject[10];
+	public GameObject clef;
 	public float chrono;
 	private int compteur;
 	private Tween fade;

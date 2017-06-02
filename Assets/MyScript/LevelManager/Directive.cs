@@ -5,6 +5,10 @@ using UnityEngine;
 public class Directive : MonoBehaviour {
 
 	public GameObject Suzie;
+	public GameObject cylinderZoneTp;
+	public GameObject canvasPorteInitiation;
+	public GameObject canvasFractureInitiation;
+	public GameObject barreProgression;
 
 	// Use this for initialization
 	void Start () {
@@ -16,6 +20,9 @@ public class Directive : MonoBehaviour {
 		if (ApplicationMode.passlevel == 1) {
 			Suzie.GetComponent<MoveTP> ().enabled = true;
 			Suzie.GetComponent<Initiation> ().enabled = false;
+			cylinderZoneTp.SetActive (false);
+			canvasPorteInitiation.SetActive (false);
+			canvasFractureInitiation.SetActive (false);
 		}
 	}
 }

@@ -53,6 +53,7 @@ public class Initiation : MonoBehaviour {
 	public GameObject fragment;
 	public GameObject levelManager;
 	public GameObject fragmentMesh;
+	public GameObject cylindreZoneTp;
 
 	private Rigidbody rb;
 	private float vitesseAnimation;
@@ -82,11 +83,11 @@ public class Initiation : MonoBehaviour {
     private float dist;
     private float distZoneTp = 7.0f;
     private double chronoOld;
-    public GameObject cylindreZoneTp;
     private float chronoFadeOutTp;
 
     private GameObject tutoProgressBar;
     private GameObject tutoProgressBar2;
+	private GameObject particleCle;
 
     // Use this for initialization
     void Start () {
@@ -105,6 +106,8 @@ public class Initiation : MonoBehaviour {
 		couleurRouge = new Color32 (255, 129, 129, 255);
 		couleurRougeFonce = new Color32 (255, 49, 49, 255);
 		reduction = 4.0f;
+		particleCle= GameObject.Find("ParticleCle");
+		particleCle.SetActive(false);
         tutoProgressBar = GameObject.Find("tutoProgressBar");
     }
 	
@@ -277,7 +280,7 @@ public class Initiation : MonoBehaviour {
 				quatResultat = quatZ * quatX;
 				curseur.transform.rotation = quatResultat;
 				pioche.SetActive (true);
-				pioche.transform.position = cam.transform.position + cam.transform.rotation * new Vector3 (0, 0, 0.4f);
+				pioche.transform.position = cam.transform.position + cam.transform.rotation * new Vector3 (-0.2f, 0, 0.4f);
 
 				if (focusCurseur ()) {
 					Debug.Log ("dans le bloc");
@@ -419,8 +422,10 @@ public class Initiation : MonoBehaviour {
 
 		if (etat == Etat.gauche) {
 			if (tagTouchee == "gauche") {
+				chrono += Time.deltaTime;
 				curseur.SetActive (true);
 			} else {
+				chrono = 0;
 				curseur.SetActive (false);
 			}
 
@@ -700,6 +705,7 @@ public class Initiation : MonoBehaviour {
 			levelManager.GetComponent<GestionDestruction> ().enabled = true;
 			canvasPremierePartie.SetActive (false);
 			canvasSecondePartie.SetActive (false);
+			cylindreZoneTp.SetActive (false);
 
 		}
 	}
