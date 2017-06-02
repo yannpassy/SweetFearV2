@@ -81,14 +81,14 @@ public class InteractionMenuGameOver : MonoBehaviour {
             {
                 if (tagSelectionnee == "Recommencer")
                 {
-                    progressBarRecommencer.GetComponent<Image>().fillAmount += Time.deltaTime;
+                    progressBarRecommencer.GetComponent<Image>().fillAmount += Time.deltaTime / 1.75f;
                     particleQuitter.GetComponent<ParticleSystem>().startLifetime = 0f;
                     particleRecommencer.SetActive(true);
                     particleRecommencer.GetComponent<ParticleSystem>().startLifetime = 0.5f;
                 }
                 else
                 {
-                    progressBarQuitter.GetComponent<Image>().fillAmount += Time.deltaTime;
+                    progressBarQuitter.GetComponent<Image>().fillAmount += Time.deltaTime / 1.75f;
                     particleRecommencer.GetComponent<ParticleSystem>().startLifetime = 0f;
                     particleQuitter.SetActive(true);
                     particleQuitter.GetComponent<ParticleSystem>().startLifetime = 0.5f;
