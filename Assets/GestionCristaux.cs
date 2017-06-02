@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GestionCristaux : MonoBehaviour {
 	
-	public GameObject[] mesCristaux = new GameObject[21];
+	public GameObject[] mesCristaux = new GameObject[20];
 	private GameObject cristauxHasard;
 	public GameObject particule;
 	public GameObject clef;

@@ -227,7 +227,7 @@ public class MoveTP : MonoBehaviour
                     quatResultat = quatZ * quatX;
                     curseur.transform.rotation = quatResultat;
                     pioche.SetActive(true);
-                    pioche.transform.position = cam.transform.position + cam.transform.rotation * new Vector3(0, 0, 0.4f);
+                    pioche.transform.position = cam.transform.position + cam.transform.rotation * new Vector3(-0.02f, 0, 0.4f);
                 } else if (tagTouchee == "serrureRouge" && obtentionClefRouge == true) {
                     curseur.SetActive(false);
                     clefOuverture.SetActive(true);
@@ -472,7 +472,7 @@ public class MoveTP : MonoBehaviour
 			destructionCristaux = true;
 			cristauxPowers.GetComponent<MeshCollider> ().enabled = false;
 			if (cristauxPowers.transform.FindChild ("Clef")) {
-				clef = cristauxPowers.transform.GetChild (2).gameObject;
+				clef = cristauxPowers.transform.GetChild (1).gameObject;
 				clef.transform.DOMoveY (6, 2);
                 clef.transform.rotation *= Quaternion.AngleAxis(-45, Vector3.right);
                 cleActiverEffet = true;
