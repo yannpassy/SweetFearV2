@@ -92,7 +92,7 @@ public class Initiation : MonoBehaviour {
     // Use this for initialization
     void Start () {
 		compteur = 1;
-		etat = 0;
+		etat = Etat.texte6;
 		duration = 2.5f;
         destructionCristaux = false;
         Screen.lockCursor = true;
@@ -148,12 +148,12 @@ public class Initiation : MonoBehaviour {
 			}
 
 			if (tagTouchee == "Canvas" && chronoFadeIn > duration) {
-				Debug.Log ("tu me touches");
+				
 				chronoValidationOld = chronoValidation;
 				chronoValidation += Time.deltaTime;
                 tutoProgressBar.GetComponent<Image>().fillAmount += Time.deltaTime / 2.5f;
                 if (chronoValidationOld < 2.5f && chronoValidation >= 2.5f) {
-					Debug.Log ("on arrive a 4");
+					
 					chronoValidation = 0;
 					chronoValidationOld = 0;
 					chronoFadeIn = 0;
@@ -178,9 +178,9 @@ public class Initiation : MonoBehaviour {
 				chronoValidationOld = chronoValidation;
 				chronoValidation += Time.deltaTime;
                 tutoProgressBar.GetComponent<Image>().fillAmount += Time.deltaTime / 2.5f;
-                Debug.Log (chronoValidation);
+                
 				if (chronoValidationOld < 2.5f && chronoValidation >= 2.5f) {
-					Debug.Log ("on y est");
+					
 					chronoValidation = 0;
 					chronoValidationOld = 0;
 					chronoFadeIn = 0;
@@ -221,7 +221,7 @@ public class Initiation : MonoBehaviour {
 		}
 
 		if (etat == Etat.texte4) {
-            Debug.Log("on est dans texte 4");
+           
 			tmp.text = "trouve la clef pour passer la porte Rouge, elle se trouve dans l'un des cristaux violet...";
 			if (passage == false) {
 				FadeInText ();
@@ -276,14 +276,14 @@ public class Initiation : MonoBehaviour {
 			if (destructionCristaux == false && tagTouchee == "CristauxPowers") {
 				quatX = Quaternion.AngleAxis (-90, Vector3.right);
 				quatZ = Quaternion.LookRotation (directionCurseur);
-				Debug.Log (quatZ);
+
 				quatResultat = quatZ * quatX;
 				curseur.transform.rotation = quatResultat;
 				pioche.SetActive (true);
 				pioche.transform.position = cam.transform.position + cam.transform.rotation * new Vector3 (-0.2f, 0, 0.4f);
 
 				if (focusCurseur ()) {
-					Debug.Log ("dans le bloc");
+					
 					cristauxPowers.transform.GetChild (0).gameObject.transform.GetComponent<Rigidbody> ().isKinematic = false;
 					tweenPioche = pioche.transform.DOMove (cristauxPowers.transform.position, 0.35f);
 					StartCoroutine (Pioche ());
@@ -302,7 +302,7 @@ public class Initiation : MonoBehaviour {
         }
         if (etat == Etat.texte5)
         {
-            Debug.Log("on est dans texte 5");
+            
             tmp.text = "teleporte toi maitenant en fixant la zone indique ...";
             if (passage == false)
             {
@@ -726,7 +726,7 @@ public class Initiation : MonoBehaviour {
     {
 		if (dist <= 0.02f && Vector3.Distance (this.transform.position, curseur.transform.position) <= distZoneTp) {
             
-			//Debug.Log(dist);
+
 			chronoOld = chrono;
 			chrono += Time.deltaTime;
 			if (chronoOld < 0.25 && chrono >= 0.25) {
