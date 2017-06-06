@@ -58,6 +58,7 @@ public class MoveTP : MonoBehaviour
     public GameObject clefOuverture;
 	public GameObject pioche;
     public GameObject Timmy;
+	public GameObject Timmy2;
 	public GameObject porteTriangle;
 	public GameObject porteLosange;
 	public GameObject porteCarre;
@@ -154,7 +155,39 @@ public class MoveTP : MonoBehaviour
 			if (Vector3.Distance (this.transform.position, Timmy.transform.position) > 1 && Vector3.Distance (this.transform.position, Timmy.transform.position) < 2) {
 				parameterCreepy.setValue (10.0f);
 			}
+			if (Timmy2 != null) {
+				if (Vector3.Distance (this.transform.position, Timmy2.transform.position) > 10) {
+					parameterCreepy.setValue (0.0f);
+				}
+				if (Vector3.Distance (this.transform.position, Timmy2.transform.position) > 9 && Vector3.Distance (this.transform.position, Timmy2.transform.position) < 10) {
+					parameterCreepy.setValue (2.0f);
+				}
+				if (Vector3.Distance (this.transform.position, Timmy2.transform.position) > 7 && Vector3.Distance (this.transform.position, Timmy2.transform.position) < 8) {
+					parameterCreepy.setValue (4.0f);
+				}
+				if (Vector3.Distance (this.transform.position, Timmy2.transform.position) > 6 && Vector3.Distance (this.transform.position, Timmy2.transform.position) < 7) {
+					parameterCreepy.setValue (5.0f);
+				}
+				if (Vector3.Distance (this.transform.position, Timmy2.transform.position) > 5 && Vector3.Distance (this.transform.position, Timmy2.transform.position) < 6) {
+					parameterCreepy.setValue (6.0f);
+				}
+				if (Vector3.Distance (this.transform.position, Timmy2.transform.position) > 4 && Vector3.Distance (this.transform.position, Timmy2.transform.position) < 5) {
+					parameterCreepy.setValue (7.0f);
+				}
+				if (Vector3.Distance (this.transform.position, Timmy2.transform.position) > 3 && Vector3.Distance (this.transform.position, Timmy2.transform.position) < 4) {
+					parameterCreepy.setValue (8.0f);
+				}
+				if (Vector3.Distance (this.transform.position, Timmy2.transform.position) > 2 && Vector3.Distance (this.transform.position, Timmy2.transform.position) < 3) {
+					parameterCreepy.setValue (9.0f);
+				}
+				if (Vector3.Distance (this.transform.position, Timmy2.transform.position) > 1 && Vector3.Distance (this.transform.position, Timmy2.transform.position) < 2) {
+					parameterCreepy.setValue (10.0f);
+				}
+
+			}
 		}
+
+
         //affiche la souris
         /*if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Escape))
             Screen.lockCursor = false;*/
@@ -493,6 +526,7 @@ public class MoveTP : MonoBehaviour
 			etat = Etat.Look;
 		} else if (etat == Etat.InterrupteurTriangle) {
 			InterrupteurTriangle.GetComponent<Animation> ().Play ();
+			objetTouche.GetComponent<Renderer> ().material.color = Color.green;
 			objetTouche.transform.tag = "obstacle";
 			StartCoroutine (OuverturePorteTriangle ());
 		} else if (etat == Etat.InterrupteurLosange) {
