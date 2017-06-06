@@ -278,7 +278,7 @@ public class MoveTP : MonoBehaviour
 				//Debug.Log(dist);
 				chronoOld = chrono;
 				chrono += Time.deltaTime;
-				if (chronoOld < 0.25 && chrono >= 0.25) {
+				if (chronoOld < 0.25f && chrono >= 0.25f) {
 					anim ["Curseur_anim_simple"].speed = (float)(1.5 + ((3 - 1.5) * ((chrono - 0.25) / (1 - 0.25))));
 					color = curseur.transform.GetChild (0).gameObject.transform.GetChild (0).GetComponent<Renderer> ().material.DOColor (Color.green, 1.25f);
 					color2 = curseur.transform.GetChild (0).gameObject.transform.GetChild (1).GetComponent<Renderer> ().material.DOColor (Color.green, 1.25f);
@@ -286,10 +286,10 @@ public class MoveTP : MonoBehaviour
 					color4 = curseur.transform.GetChild (0).gameObject.transform.GetChild (3).GetComponent<Renderer> ().material.DOColor (Color.green, 1.25f);
 					color5 = curseur.transform.GetChild (0).gameObject.transform.GetChild (4).GetComponent<Renderer> ().material.DOColor (Color.green, 1.25f);
 				}
-				if (chronoOld < 0.5 && chrono >= 0.5) {
+				if (chronoOld < 0.5f && chrono >= 0.5f) {
 					anim ["Curseur_anim_simple"].speed = (float)(1.5 + ((3 - 1.5) * ((chrono - 0.25) / (1 - 0.25))));
 				}
-				if (chronoOld < 0.75 && chrono >= 0.75) {
+				if (chronoOld < 0.75f && chrono >= 0.75f) {
 					anim ["Curseur_anim_simple"].speed = (float)(1.5 + ((3 - 1.5) * ((chrono - 0.25) / (1 - 0.25))));
 				}
 			} else {

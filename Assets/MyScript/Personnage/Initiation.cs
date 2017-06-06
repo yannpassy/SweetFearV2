@@ -54,6 +54,9 @@ public class Initiation : MonoBehaviour {
 	public GameObject levelManager;
 	public GameObject fragmentMesh;
 	public GameObject cylindreZoneTp;
+	public GameObject imageDemiTour;
+	public GameObject imageGauche;
+	public GameObject imageDroite;
 
 	private Rigidbody rb;
 	private float vitesseAnimation;
@@ -89,10 +92,11 @@ public class Initiation : MonoBehaviour {
     private GameObject tutoProgressBar2;
 	private GameObject particleCle;
 
+
     // Use this for initialization
     void Start () {
 		compteur = 1;
-		etat = Etat.texte6;
+		etat = 0;
 		duration = 2.5f;
         destructionCristaux = false;
         Screen.lockCursor = true;
@@ -142,7 +146,7 @@ public class Initiation : MonoBehaviour {
 
 
 		if (etat == Etat.texte1) {
-			tmp.text = "Bienvenue dans SWEETFEAR";
+			tmp.text = "Bienvenue dans SWEETFEAR (Fixer pour continuer)";
 			if (passage == false) {
 				FadeInText ();
 			}
@@ -169,7 +173,7 @@ public class Initiation : MonoBehaviour {
 		}
 
 		if (etat == Etat.texte2) {
-			tmp.text = "Peux-tu t'en sortir?";
+			tmp.text = "ce reve est ta prison, seras-tu capable de t'en evader?";
 			if (passage == false) {
 				FadeInText ();
 			}
@@ -177,9 +181,9 @@ public class Initiation : MonoBehaviour {
 			if (tagTouchee == "Canvas" && chronoFadeIn > duration) {
 				chronoValidationOld = chronoValidation;
 				chronoValidation += Time.deltaTime;
-                tutoProgressBar.GetComponent<Image>().fillAmount += Time.deltaTime / 2.5f;
+                tutoProgressBar.GetComponent<Image>().fillAmount += Time.deltaTime / 3.5f;
                 
-				if (chronoValidationOld < 2.5f && chronoValidation >= 2.5f) {
+				if (chronoValidationOld < 3.5f && chronoValidation >= 3.5f) {
 					
 					chronoValidation = 0;
 					chronoValidationOld = 0;
@@ -195,7 +199,7 @@ public class Initiation : MonoBehaviour {
 		}
 
 		if (etat == Etat.texte3) {
-			tmp.text = "avant que Timmy ne te trouve?";
+			tmp.text = "avant que Timmy ne te trouves?";
 			if (passage == false) {
 				FadeInText ();
 			}
@@ -230,8 +234,8 @@ public class Initiation : MonoBehaviour {
 			if (tagTouchee == "Canvas" && chronoFadeIn > duration) {
 				chronoValidationOld = chronoValidation;
 				chronoValidation += Time.deltaTime;
-                tutoProgressBar.GetComponent<Image>().fillAmount += Time.deltaTime / 2.5f;
-                if (chronoValidationOld < 2.5f && chronoValidation >= 2.5f) {
+                tutoProgressBar.GetComponent<Image>().fillAmount += Time.deltaTime / 5.0f;
+                if (chronoValidationOld < 5.0f && chronoValidation >= 5.0f) {
 					chronoValidation = 0;
 					chronoValidationOld = 0;
 					chronoFadeIn = 0;
@@ -246,7 +250,7 @@ public class Initiation : MonoBehaviour {
 		}
 
 		if (etat == Etat.texteDestructionCristaux) {
-			tmp.text = "fixe le cristaux devant la porte quand le texte disparaitra, seul ces derniers peuvent etre detruit";
+			tmp.text = "fixe le cristal devant la porte quand le texte disparaitra, seul ces derniers peuvent etre detruit";
 			if (passage == false) {
 				FadeInText ();
 			}
@@ -254,8 +258,8 @@ public class Initiation : MonoBehaviour {
 			if (tagTouchee == "Canvas" && chronoFadeIn > duration) {
 				chronoValidationOld = chronoValidation;
 				chronoValidation += Time.deltaTime;
-                tutoProgressBar.GetComponent<Image>().fillAmount += Time.deltaTime / 2.5f;
-                if (chronoValidationOld < 2.5f && chronoValidation >= 2.5f) {
+                tutoProgressBar.GetComponent<Image>().fillAmount += Time.deltaTime / 5.0f;
+                if (chronoValidationOld < 5.0f && chronoValidation >= 5.0f) {
 					chronoValidation = 0;
 					chronoValidationOld = 0;
 					chronoFadeIn = 0;
@@ -313,8 +317,8 @@ public class Initiation : MonoBehaviour {
             {
                 chronoValidationOld = chronoValidation;
                 chronoValidation += Time.deltaTime;
-                tutoProgressBar.GetComponent<Image>().fillAmount += Time.deltaTime / 2.5f;
-                if (chronoValidationOld < 2.5f && chronoValidation >= 2.5f)
+                tutoProgressBar.GetComponent<Image>().fillAmount += Time.deltaTime / 3.0f;
+                if (chronoValidationOld < 3.0f && chronoValidation >= 3.0f)
                 {
                     chronoValidation = 0;
                     chronoValidationOld = 0;
@@ -391,7 +395,7 @@ public class Initiation : MonoBehaviour {
 
 		if (etat == Etat.texteGauche)
 		{
-			tmp.text = "Fixe a present la fleche de gauche";
+			tmp.text = "Fixe a present la fleche de gauche situé à tes pieds";
 			if (passage == false)
 			{
 				FadeInText();
@@ -401,8 +405,8 @@ public class Initiation : MonoBehaviour {
 			{
 				chronoValidationOld = chronoValidation;
 				chronoValidation += Time.deltaTime;
-                tutoProgressBar.GetComponent<Image>().fillAmount += Time.deltaTime / 2.5f;
-                if (chronoValidationOld < 2.5f && chronoValidation >= 2.5f)
+                tutoProgressBar.GetComponent<Image>().fillAmount += Time.deltaTime / 3.5f;
+                if (chronoValidationOld < 3.5f && chronoValidation >= 3.5f)
 				{
 					chronoValidation = 0;
 					chronoValidationOld = 0;
@@ -421,6 +425,7 @@ public class Initiation : MonoBehaviour {
 		}
 
 		if (etat == Etat.gauche) {
+			imageGauche.SetActive (true);	
 			if (tagTouchee == "gauche") {
 				chrono += Time.deltaTime;
 				curseur.SetActive (true);
@@ -483,8 +488,8 @@ public class Initiation : MonoBehaviour {
 			{
 				chronoValidationOld = chronoValidation;
 				chronoValidation += Time.deltaTime;
-                tutoProgressBar.GetComponent<Image>().fillAmount += Time.deltaTime / 2.5f;
-                if (chronoValidationOld < 2.5f && chronoValidation >= 2.5f)
+                tutoProgressBar.GetComponent<Image>().fillAmount += Time.deltaTime / 3.0f;
+                if (chronoValidationOld < 3.0f && chronoValidation >= 3.0f)
 				{
 					chronoValidation = 0;
 					chronoValidationOld = 0;
@@ -510,7 +515,6 @@ public class Initiation : MonoBehaviour {
 		if (etat == Etat.texte7)
 		{
 			tmpSecondePartie.text = "Ce monde est instable";
-			tmp.text = "Mais tu n'as pas encore tout vu, vise la fleche au centre";
 			if (passage == false)
 			{
 				FadeInTextSecondePartie();
@@ -706,6 +710,8 @@ public class Initiation : MonoBehaviour {
 			canvasPremierePartie.SetActive (false);
 			canvasSecondePartie.SetActive (false);
 			cylindreZoneTp.SetActive (false);
+			imageDroite.SetActive (true);
+			imageDemiTour.SetActive (true);
 
 		}
 	}
@@ -730,7 +736,7 @@ public class Initiation : MonoBehaviour {
 			chronoOld = chrono;
 			chrono += Time.deltaTime;
 			if (chronoOld < 0.25 && chrono >= 0.25) {
-				anim ["Curseur_anim_simple"].speed = (float)(1.5 + ((3 - 1.5) * ((chrono - 0.25) / (1 - 0.25))));
+				anim ["Curseur_anim_simple"].speed = (float)(1.5 + ((3 - 1) * ((chrono - 0.25) / (1 - 0.25))));
 				color = curseur.transform.GetChild (0).gameObject.transform.GetChild (0).GetComponent<Renderer> ().material.DOColor (Color.green, 1.25f);
 				color2 = curseur.transform.GetChild (0).gameObject.transform.GetChild (1).GetComponent<Renderer> ().material.DOColor (Color.green, 1.25f);
 				color3 = curseur.transform.GetChild (0).gameObject.transform.GetChild (2).GetComponent<Renderer> ().material.DOColor (Color.green, 1.25f);
