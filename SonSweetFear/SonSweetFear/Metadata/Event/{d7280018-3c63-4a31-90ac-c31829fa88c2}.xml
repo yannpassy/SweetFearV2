@@ -53,7 +53,7 @@
             <destination>{cb2e273a-3866-45b8-8896-f8b86dd3c20d}</destination>
         </relationship>
         <relationship name="output">
-            <destination>{e6bdd07b-75ba-45b8-82b0-c42a083d5c51}</destination>
+            <destination>{17eaf668-7808-453b-bb02-eba566ed346f}</destination>
         </relationship>
     </object>
     <object class="EventAutomatableProperties" id="{f2cac4a3-3847-444a-9009-b2c8d0b74ebd}"/>
@@ -143,14 +143,14 @@
         </relationship>
     </object>
     <object class="LoopRegion" id="{4ea32305-146a-4d21-8965-a1a234bec0b9}">
+        <property name="triggerProbabilityEnabled">
+            <value>true</value>
+        </property>
         <property name="position">
             <value>9</value>
         </property>
         <property name="length">
             <value>12</value>
-        </property>
-        <property name="triggerProbabilityEnabled">
-            <value>true</value>
         </property>
         <relationship name="timeline">
             <destination>{883eac4f-3a14-4464-90ee-dd01e2abd2a2}</destination>

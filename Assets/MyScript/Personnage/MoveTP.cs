@@ -97,7 +97,7 @@ public class MoveTP : MonoBehaviour
 
     private bool cleActiverEffet;
     private float chronoCle;
-    private GameObject particleCle;
+    public GameObject particleCle;
     private GameObject MauvaisPortail;
 
     void Start()
@@ -113,12 +113,10 @@ public class MoveTP : MonoBehaviour
         vide = GameObject.Find("Vide");
         etat = Etat.Look;
 		eventCreepy = FMODUnity.RuntimeManager.CreateInstance (myAmbiance);
-		parameterCreepy.setValue (10.0f);
 		eventCreepy.start ();
 		eventCreepy.getParameter ("creep", out parameterCreepy);
         cleActiverEffet = false;
         chronoCle=0;
-        particleCle= GameObject.Find("ParticleCle");
         particleCle.SetActive(false);
         MauvaisPortail= GameObject.Find("ScriptMauvaisPortail");
     }
@@ -470,6 +468,7 @@ public class MoveTP : MonoBehaviour
 
 		} else if (etat == Etat.cristauxPowers) {
             
+			Debug.Log (cristauxPowers);
 			cristauxPowers.transform.GetChild (0).gameObject.transform.GetComponent<Rigidbody> ().isKinematic = false;
 			tweenPioche = pioche.transform.DOMove (cristauxPowers.transform.position, 0.35f);
 			StartCoroutine (Pioche ());

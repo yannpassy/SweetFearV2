@@ -16,24 +16,25 @@ public class ActiveTrueFalse : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		Debug.Log (nombreEnfant);
-
+		chrono += Time.deltaTime;
 		if (EnfantActuel < nombreEnfant) {
 			Debug.Log (EnfantActuel);
-			chrono += Time.deltaTime;
 			if (chrono > 0.1) {
 				
 				GameObject monGameObject = transform.GetChild (EnfantActuel).gameObject;
 				if (monGameObject.tag == "fragment") {
 
 					ChangeGameObjectKinematic (monGameObject, false, true);
-
 				}
+				chrono = 0;
 				EnfantActuel++;
 			} 
 		} else {
-			GameObject monGameObject = transform.GetChild (30).gameObject;
-			monGameObject.GetComponent<MeshCollider> ().enabled = true;
-			monGameObject.transform.tag = "obstacle";
+			if (chrono > 5) {
+				GameObject monGameObject = transform.GetChild (30).gameObject;
+				monGameObject.GetComponent<MeshCollider> ().enabled = true;
+				monGameObject.transform.tag = "obstacle";
+			}
 		}
     }
 
