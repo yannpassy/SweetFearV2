@@ -226,6 +226,8 @@ ModelImporter:
     100436: Sapin 8
     100438: Sapin 9
     100440: //RootNode
+    100442: PhysCamera001
+    100444: PhysCamera001.Target
     400000: Banc
     400002: Banc 1
     400004: Banc 2
@@ -447,6 +449,8 @@ ModelImporter:
     400436: Sapin 8
     400438: Sapin 9
     400440: //RootNode
+    400442: PhysCamera001
+    400444: PhysCamera001.Target
     2300000: Banc
     2300002: Banc 1
     2300004: Banc 2
