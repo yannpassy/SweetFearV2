@@ -20,6 +20,7 @@ public class TimmyMove : MonoBehaviour
     private float pointCheminApproximation;
 	public float vitesse;
     private float rotationSpeed;
+	private float chrono;
 
     // Use this for initialization
     void Start()
@@ -49,7 +50,11 @@ public class TimmyMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+		chrono += Time.deltaTime;
+		if (chrono > 2.0f) {
+			FMODUnity.RuntimeManager.PlayOneShot ("event:/Pas de Timmy", this.transform.position);
+			chrono = 0;
+		}
         //deplacement de Timmy
         timmy.transform.Translate(directionTimmy.normalized * Time.deltaTime * vitesse);
 
