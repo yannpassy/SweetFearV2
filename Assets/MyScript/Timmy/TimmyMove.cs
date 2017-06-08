@@ -51,7 +51,7 @@ public class TimmyMove : MonoBehaviour
     void Update()
     {
 		chrono += Time.deltaTime;
-		if (chrono > 2.0f) {
+		if (chrono > 1.5f) {
 			FMODUnity.RuntimeManager.PlayOneShot ("event:/Pas de Timmy", this.transform.position);
 			chrono = 0;
 		}

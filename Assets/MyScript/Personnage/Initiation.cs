@@ -57,6 +57,7 @@ public class Initiation : MonoBehaviour {
 	public GameObject imageDemiTour;
 	public GameObject imageGauche;
 	public GameObject imageDroite;
+	public GameObject tutoProgressBar;
 
 	private Rigidbody rb;
 	private float vitesseAnimation;
@@ -88,7 +89,6 @@ public class Initiation : MonoBehaviour {
     private double chronoOld;
     private float chronoFadeOutTp;
 
-    private GameObject tutoProgressBar;
     private GameObject tutoProgressBar2;
 	private GameObject particleCle;
 
@@ -96,7 +96,7 @@ public class Initiation : MonoBehaviour {
     // Use this for initialization
     void Start () {
 		compteur = 1;
-		etat = 0;
+		etat = Etat.texte1;
 		duration = 2.5f;
         destructionCristaux = false;
         Screen.lockCursor = true;
@@ -112,7 +112,7 @@ public class Initiation : MonoBehaviour {
 		reduction = 4.0f;
 		particleCle= GameObject.Find("ParticleCle");
 		particleCle.SetActive(false);
-        tutoProgressBar = GameObject.Find("tutoProgressBar");
+		passage = false;
     }
 	
 	// Update is called once per frame
@@ -142,6 +142,7 @@ public class Initiation : MonoBehaviour {
             tagTouchee = hit.collider.tag;
 			directionCurseur = hit.point - cam.transform.position;
 			directionCurseur.Normalize();
+			Debug.Log (tagTouchee);
 		}
 
 

@@ -192,6 +192,7 @@ public class MoveTP : MonoBehaviour
         if(Vector3.Distance(this.transform.position, Timmy.transform.position) < 0.2f)
         {
 			parameterCreepy.setValue (0.0f);
+			ApplicationMode.passlevel = 1;
             SceneManager.LoadScene("EcranGameOver");
         }
         //affiche ou affiche pas le curseur
