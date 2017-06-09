@@ -154,6 +154,35 @@ public class MoveTP : MonoBehaviour
 			if (Vector3.Distance (this.transform.position, Timmy.transform.position) > 1 && Vector3.Distance (this.transform.position, Timmy.transform.position) < 2) {
 				parameterCreepy.setValue (10.0f);
 			}
+			if (Timmy2 != null) {
+				if (Vector3.Distance (this.transform.position, Timmy2.transform.position) > 10) {
+					parameterCreepy.setValue (0.0f);
+				}
+				if (Vector3.Distance (this.transform.position, Timmy2.transform.position) > 9 && Vector3.Distance (this.transform.position, Timmy2.transform.position) < 10) {
+					parameterCreepy.setValue (2.0f);
+				}
+				if (Vector3.Distance (this.transform.position, Timmy2.transform.position) > 7 && Vector3.Distance (this.transform.position, Timmy2.transform.position) < 8) {
+					parameterCreepy.setValue (4.0f);
+				}
+				if (Vector3.Distance (this.transform.position, Timmy2.transform.position) > 6 && Vector3.Distance (this.transform.position, Timmy2.transform.position) < 7) {
+					parameterCreepy.setValue (5.0f);
+				}
+				if (Vector3.Distance (this.transform.position, Timmy2.transform.position) > 5 && Vector3.Distance (this.transform.position, Timmy2.transform.position) < 6) {
+					parameterCreepy.setValue (6.0f);
+				}
+				if (Vector3.Distance (this.transform.position, Timmy2.transform.position) > 4 && Vector3.Distance (this.transform.position, Timmy2.transform.position) < 5) {
+					parameterCreepy.setValue (7.0f);
+				}
+				if (Vector3.Distance (this.transform.position, Timmy2.transform.position) > 3 && Vector3.Distance (this.transform.position, Timmy2.transform.position) < 4) {
+					parameterCreepy.setValue (8.0f);
+				}
+				if (Vector3.Distance (this.transform.position, Timmy2.transform.position) > 2 && Vector3.Distance (this.transform.position, Timmy2.transform.position) < 3) {
+					parameterCreepy.setValue (9.0f);
+				}
+				if (Vector3.Distance (this.transform.position, Timmy2.transform.position) > 1 && Vector3.Distance (this.transform.position, Timmy2.transform.position) < 2) {
+					parameterCreepy.setValue (10.0f);
+				}
+			}
 		}
 
 
@@ -189,11 +218,16 @@ public class MoveTP : MonoBehaviour
 			cristauxPowers = hit.collider.gameObject;
 		}*/
 
-        if(Vector3.Distance(this.transform.position, Timmy.transform.position) < 0.2f)
+        if(Vector3.Distance(this.transform.position, Timmy.transform.position) < 0.5f)
         {
 			parameterCreepy.setValue (0.0f);
-			ApplicationMode.passlevel = 1;
             SceneManager.LoadScene("EcranGameOver");
+			if (Timmy2 != null) {
+				if (Vector3.Distance (this.transform.position, Timmy2.transform.position) < 0.5f) {
+					parameterCreepy.setValue (0.0f);
+					SceneManager.LoadScene ("EcranGameOver");
+				}
+			}
         }
         //affiche ou affiche pas le curseur
 
@@ -488,6 +522,9 @@ public class MoveTP : MonoBehaviour
 				timmyActive = true;
 				Timmy.GetComponent<TimmyMove> ().enabled = true;
 				FMODUnity.RuntimeManager.PlayOneShot ("event:/Rugissement Timmy", this.transform.position);
+				if (Timmy2 != null) {
+					Timmy2.SetActive (true);
+				}
 			}
 			chrono = 0;
 			etat = Etat.Look;
