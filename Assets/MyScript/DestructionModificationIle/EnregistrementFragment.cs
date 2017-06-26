@@ -21,8 +21,7 @@ public class EnregistrementFragment : MonoBehaviour {
     {
         if(col.gameObject.GetComponent<MeshCollider>().isTrigger == true)
         {
-            rb.constraints = RigidbodyConstraints.None;
-            
+            rb.isKinematic = false;
         }
     }
 }

@@ -221,14 +221,15 @@ public class MoveTP : MonoBehaviour
 
         if(Vector3.Distance(this.transform.position, Timmy.transform.position) < 0.5f)
         {
-            eventCreepy.release();
-            SceneManager.LoadScene("EcranGameOver");
-			if (Timmy2 != null) {
-				if (Vector3.Distance (this.transform.position, Timmy2.transform.position) < 0.5f) {
-                    eventCreepy.release();
-					SceneManager.LoadScene ("EcranGameOver");
+           
+            eventCreepy.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            if (Timmy2 != null) {
+                if (Vector3.Distance (this.transform.position, Timmy2.transform.position) < 0.5f) {
+                    eventCreepy.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+                    SceneManager.LoadScene ("EcranGameOver");
 				}
 			}
+            SceneManager.LoadScene("EcranGameOver");
         }
         //affiche ou affiche pas le curseur
 
@@ -527,8 +528,8 @@ public class MoveTP : MonoBehaviour
 				FMODUnity.RuntimeManager.PlayOneShot ("event:/Rugissement Timmy", this.transform.position);
 				if (Timmy2 != null) {
 					Timmy2.SetActive (true);
-                    
-				}
+                    cristauxPowers.GetComponent<MeshCollider>().enabled = false;
+                }
 			}
 			chrono = 0;
 			etat = Etat.Look;
@@ -615,7 +616,7 @@ public class MoveTP : MonoBehaviour
 
 	IEnumerator ChangerScene(){
 		yield return new WaitForSeconds (1.0f);
-        eventCreepy.release();
+        eventCreepy.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
         ApplicationMode.passlevel = 2;
 		SceneManager.LoadScene ("EcranChangementNiveau");
 	}
