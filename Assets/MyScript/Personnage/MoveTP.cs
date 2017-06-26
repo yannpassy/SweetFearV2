@@ -99,7 +99,6 @@ public class MoveTP : MonoBehaviour
     private float chronoCle;
     public GameObject particleCle;
     private GameObject MauvaisPortail;
-    private bool actionFleche;
 
     void Start()
     {
@@ -120,7 +119,6 @@ public class MoveTP : MonoBehaviour
         chronoCle=0;
         particleCle.SetActive(false);
         MauvaisPortail= GameObject.Find("ScriptMauvaisPortail");
-        actionFleche = true;
     }
 
     // Update is called once per frame
@@ -235,11 +233,6 @@ public class MoveTP : MonoBehaviour
 
 
 		if (etat == Etat.Look) {
-
-            if(!actionFleche && tagTouchee!= "demi-tour" && tagTouchee != "gauche" && tagTouchee != "droite")
-            {
-                actionFleche = true;
-            }
 			
 			if (destructionCristaux == false) {
 				//On calcule la distance entre l'ancienne position du cube et la nouvelle
@@ -395,22 +388,19 @@ public class MoveTP : MonoBehaviour
 			}
 
 
-			if (tagTouchee == "demi-tour" && actionFleche) {
+			if (tagTouchee == "demi-tour") {
                 cam.GetComponent<OVRScreenFadeOut>().enabled = true;
                 cam.GetComponent<OVRScreenFadeOut>().StarFadeOut();
-                actionFleche = false;
                 etat = Etat.demiTour;
 			}
-			if (tagTouchee == "gauche" && actionFleche) {
+			if (tagTouchee == "gauche") {
                 cam.GetComponent<OVRScreenFadeOut>().enabled = true;
                 cam.GetComponent<OVRScreenFadeOut>().StarFadeOut();
-                actionFleche = false;
                 etat = Etat.QuartGauche;
 			}
-			if (tagTouchee == "droite" && actionFleche) {
+			if (tagTouchee == "droite") {
                 cam.GetComponent<OVRScreenFadeOut>().enabled = true;
                 cam.GetComponent<OVRScreenFadeOut>().StarFadeOut();
-                actionFleche = false;
                 etat = Etat.QuartDroite;
 			}
 

@@ -1,6 +1,4 @@
-﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
-
-Shader "Unlit/FracturingColored"
+﻿Shader "Unlit/FracturingColored"
 {
 	Properties
 	{
@@ -40,7 +38,7 @@ Shader "Unlit/FracturingColored"
 			v2f vert (appdata v)
 			{
 				v2f o;
-				o.vertex = UnityObjectToClipPos(v.vertex);
+				o.vertex = mul(UNITY_MATRIX_MVP, v.vertex);
 				return o;
 			}
 			

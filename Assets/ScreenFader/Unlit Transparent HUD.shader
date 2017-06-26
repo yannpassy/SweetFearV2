@@ -1,5 +1,3 @@
-// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
-
 /************************************************************************************
 
 Copyright   :   Copyright 2014 Oculus VR, LLC. All Rights reserved.
@@ -82,7 +80,7 @@ Shader "Unlit/Transparent HUD (ScreenFader)" {
 				v2f vert (appdata_t v)
 				{
 					v2f o;
-					o.vertex = UnityObjectToClipPos(v.vertex);
+					o.vertex = mul(UNITY_MATRIX_MVP, v.vertex);
 					o.texcoord = TRANSFORM_TEX(v.texcoord, _MainTex);
 					o.color = v.color;
 					return o;
