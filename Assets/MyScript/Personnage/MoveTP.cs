@@ -113,8 +113,8 @@ public class MoveTP : MonoBehaviour
         vide = GameObject.Find("Vide");
         etat = Etat.Look;
 		eventCreepy = FMODUnity.RuntimeManager.CreateInstance (myAmbiance);
-		eventCreepy.start ();
-		eventCreepy.getParameter ("creep", out parameterCreepy);
+        //eventCreepy.start ();
+        //eventCreepy.getParameter ("creep", out parameterCreepy);
         cleActiverEffet = false;
         chronoCle=0;
         particleCle.SetActive(false);
@@ -125,8 +125,9 @@ public class MoveTP : MonoBehaviour
     void Update()
     {
 		animPioche ["pioche anim"].speed = 6.0f;
-		//On acccentue le son creepy au fur et a mesure de l'approche de l'ourson
-		if (timmyActive == true) {
+        
+        //On acccentue le son creepy au fur et a mesure de l'approche de l'ourson
+        if (timmyActive == true) {
 			if (Vector3.Distance (this.transform.position, Timmy.transform.position) > 10) {
 				parameterCreepy.setValue (0.0f);
 			}
@@ -220,11 +221,11 @@ public class MoveTP : MonoBehaviour
 
         if(Vector3.Distance(this.transform.position, Timmy.transform.position) < 0.5f)
         {
-			parameterCreepy.setValue (0.0f);
+            eventCreepy.release();
             SceneManager.LoadScene("EcranGameOver");
 			if (Timmy2 != null) {
 				if (Vector3.Distance (this.transform.position, Timmy2.transform.position) < 0.5f) {
-					parameterCreepy.setValue (0.0f);
+                    eventCreepy.release();
 					SceneManager.LoadScene ("EcranGameOver");
 				}
 			}
@@ -510,20 +511,23 @@ public class MoveTP : MonoBehaviour
 			destructionCristaux = true;
 			cristauxPowers.GetComponent<MeshCollider> ().enabled = false;
 			if (cristauxPowers.transform.FindChild ("Clef")) {
-				clef = cristauxPowers.transform.GetChild (1).gameObject;
+                eventCreepy.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+                eventCreepy.start();
+                eventCreepy.getParameter("creep", out parameterCreepy);
+                timmyActive = true;
+                clef = cristauxPowers.transform.GetChild (1).gameObject;
 				clef.transform.DOMoveY (6, 2);
                 clef.transform.rotation *= Quaternion.AngleAxis(-45, Vector3.right);
                 cleActiverEffet = true;
                 particleCle.SetActive(true);
                 particleCle.transform.position = clef.transform.position+ new Vector3(0,1.5f,0);
                 obtentionClefRouge = true;
-				StartCoroutine (AffichageText ()); 
 				Timmy.SetActive (true);
-				timmyActive = true;
 				Timmy.GetComponent<TimmyMove> ().enabled = true;
 				FMODUnity.RuntimeManager.PlayOneShot ("event:/Rugissement Timmy", this.transform.position);
 				if (Timmy2 != null) {
 					Timmy2.SetActive (true);
+                    
 				}
 			}
 			chrono = 0;
@@ -611,8 +615,8 @@ public class MoveTP : MonoBehaviour
 
 	IEnumerator ChangerScene(){
 		yield return new WaitForSeconds (1.0f);
-		parameterCreepy.setValue (0.0f);
-		ApplicationMode.passlevel = 2;
+        eventCreepy.release();
+        ApplicationMode.passlevel = 2;
 		SceneManager.LoadScene ("EcranChangementNiveau");
 	}
 
