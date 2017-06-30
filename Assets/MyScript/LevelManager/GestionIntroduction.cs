@@ -60,8 +60,8 @@ public class GestionIntroduction : MonoBehaviour {
 			
 		}
 
-		if (compteur == 5 && chrono >= duration[compteur]) {
-			Debug.Log(duration[compteur]);
+		if (compteur == 5 && chrono >= duration[compteur-1]) {
+			Debug.Log(duration[compteur-1]);
 			musiqueIntro.stop (FMOD.Studio.STOP_MODE.IMMEDIATE);
 			SceneManager.LoadScene ("NiveauHiver");
 		}

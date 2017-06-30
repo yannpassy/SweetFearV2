@@ -108,7 +108,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 126d619cf4daa52469682f85c1378b4a, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -0.971
+      value: -1.864
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 126d619cf4daa52469682f85c1378b4a, type: 2}
       propertyPath: m_LocalRotation.x
@@ -167,7 +167,7 @@ MonoBehaviour:
   - un livre, un jour fut pris
   - puis fut ouvert
   - une fille, berce par la lecture, s'endormit
-  - "Mais, par un reve agit\xE9, tout s'assombrit"
+  - Mais, par un reve agite, tout s'assombrit
   - Ainsi commence l'histoire de Suzie
   duration:
   - 6
@@ -445,7 +445,7 @@ Prefab:
     - target: {fileID: 2378912, guid: 14691c451e07ff94cb94be3f44e72ab7, type: 2}
       propertyPath: m_Materials.Array.data[1]
       value: 
-      objectReference: {fileID: 2100000, guid: a5f07bfa0755f6446a5affbfb8652a22, type: 2}
+      objectReference: {fileID: 2100000, guid: 33ec9d79d4028b745b2800949f6797a7, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 14691c451e07ff94cb94be3f44e72ab7, type: 2}
   m_IsPrefabParent: 0
@@ -615,7 +615,7 @@ Light:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 0
   m_Range: 10
-  m_SpotAngle: 51.79216
+  m_SpotAngle: 33.313557
   m_CookieSize: 10
   m_Shadows:
     m_Type: 0
@@ -813,7 +813,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1099889005}
   m_LocalRotation: {x: 0.01617008, y: -0, z: -0, w: 0.99986935}
-  m_LocalPosition: {x: -0.978, y: -1.317, z: -1.458}
+  m_LocalPosition: {x: -0.98, y: -1.317, z: -1.458}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -831,7 +831,7 @@ Light:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 0
   m_Range: 10
-  m_SpotAngle: 44.723038
+  m_SpotAngle: 34.04971
   m_CookieSize: 10
   m_Shadows:
     m_Type: 0
@@ -881,7 +881,7 @@ Light:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 0
   m_Range: 10
-  m_SpotAngle: 44.723038
+  m_SpotAngle: 36.86859
   m_CookieSize: 10
   m_Shadows:
     m_Type: 0
@@ -910,7 +910,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1124491171}
   m_LocalRotation: {x: 0.01617008, y: -0, z: -0, w: 0.99986935}
-  m_LocalPosition: {x: 1.272, y: -0.253, z: -1.408}
+  m_LocalPosition: {x: 1.31, y: -0.253, z: -1.408}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -939,7 +939,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1242684681}
   m_LocalRotation: {x: 0.01617008, y: -0, z: -0, w: 0.99986935}
-  m_LocalPosition: {x: -1.6216063, y: -0.284, z: -1.685}
+  m_LocalPosition: {x: -1.62, y: -0.295, z: -1.354}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -957,7 +957,7 @@ Light:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 0
   m_Range: 10
-  m_SpotAngle: 41.398766
+  m_SpotAngle: 33.515617
   m_CookieSize: 10
   m_Shadows:
     m_Type: 0
@@ -1033,7 +1033,7 @@ Prefab:
     - target: {fileID: 2378912, guid: 14691c451e07ff94cb94be3f44e72ab7, type: 2}
       propertyPath: m_Materials.Array.data[1]
       value: 
-      objectReference: {fileID: 2100000, guid: 4990c0e07ed000e4d9bc7b55b4763686, type: 2}
+      objectReference: {fileID: 2100000, guid: a5f07bfa0755f6446a5affbfb8652a22, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 14691c451e07ff94cb94be3f44e72ab7, type: 2}
   m_IsPrefabParent: 0
@@ -1096,7 +1096,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1967118447}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0.453}
   m_LocalScale: {x: 0.0029757419, y: 0.0029757419, z: 0.0029757419}
   m_Children:
   - {fileID: 899764211}

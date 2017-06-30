@@ -110,7 +110,10 @@
             <value>0</value>
         </property>
         <property name="length">
-            <value>6.4000000000000004</value>
+            <value>1.3999999999999999</value>
+        </property>
+        <property name="timelockedOffset">
+            <value>1.7500000000000016</value>
         </property>
         <relationship name="fadeOutCurve">
             <destination>{47962c92-78b0-4d0a-ab55-4bdd08a8f1b2}</destination>
@@ -165,10 +168,10 @@
     <object class="MixerBusPanner" id="{b93c49d3-a976-4d4a-97eb-121cdc15aa9a}"/>
     <object class="AutomationPoint" id="{a6e25c5a-75cb-49f7-ac57-15ecfb0c6bdf}">
         <property name="position">
-            <value>0.50113207547169802</value>
+            <value>0.5675471698113207</value>
         </property>
         <property name="value">
-            <value>-80</value>
+            <value>2.81043148</value>
         </property>
         <property name="curveShape">
             <value>-0.350407094</value>
@@ -199,10 +202,14 @@
         </relationship>
     </object>
     <object class="MixerBusFader" id="{0a480b3d-03ad-4d8e-bcd7-8433597e42d2}"/>
-    <object class="SpatialiserEffect" id="{799dfa67-838a-4d2d-b5b3-8460e45ac32e}"/>
+    <object class="SpatialiserEffect" id="{799dfa67-838a-4d2d-b5b3-8460e45ac32e}">
+        <property name="maximumDistance">
+            <value>10</value>
+        </property>
+    </object>
     <object class="AutomationPoint" id="{f9007cc8-94cd-4771-8958-39c248fc87f5}">
         <property name="position">
-            <value>3.4000000000000004</value>
+            <value>0.29999999999999694</value>
         </property>
         <property name="value">
             <value>1</value>
@@ -213,7 +220,7 @@
     </object>
     <object class="AutomationPoint" id="{2af9729f-875f-40ed-85fb-4d077ac0f01a}">
         <property name="position">
-            <value>6.4000000000000004</value>
+            <value>1.4000000000000015</value>
         </property>
         <property name="value">
             <value>0</value>

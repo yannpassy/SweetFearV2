@@ -17,3 +17,5 @@ EditorBuildSettings:
     path: Assets/MyScene/NiveauEte.unity
   - enabled: 1
     path: Assets/MyScene/EcranChangementNiveau.unity
+  - enabled: 1
+    path: Assets/MyScene/Fin.unity

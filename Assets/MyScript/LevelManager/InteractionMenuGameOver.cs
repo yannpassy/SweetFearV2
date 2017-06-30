@@ -42,11 +42,11 @@ public class InteractionMenuGameOver : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Escape))
             Screen.lockCursor = false;
 
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);  // pour l'oculus, mettre centreCamera par Input.mousePosition
+       // Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);  // pour l'oculus, mettre centreCamera par Input.mousePosition
         RaycastHit hit;
         dist = Vector3.Distance(anciennePositionCurseur, curseur.transform.position);
 
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+        if (Physics.Raycast(new Ray(cam.transform.position, cam.transform.rotation * Vector3.forward), out hit, Mathf.Infinity))
         {
             if (chrono < 2)
             {

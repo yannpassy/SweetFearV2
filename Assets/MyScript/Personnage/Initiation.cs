@@ -119,10 +119,10 @@ public class Initiation : MonoBehaviour {
 	void Update () {
         animPioche["pioche anim"].speed = 6.0f;
         anim.Play();
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);  // pour l'oculus, mettre centreCamera par Input.mousePosition
+        //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);  // pour l'oculus, mettre centreCamera par Input.mousePosition
 		RaycastHit hit;
 
-		if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+		if (Physics.Raycast(new Ray(cam.transform.position, cam.transform.rotation * Vector3.forward), out hit, Mathf.Infinity))
 		{
 			if (etat == Etat.cristauxPowers || etat == Etat.tp || etat == Etat.gauche)
             {
@@ -200,7 +200,7 @@ public class Initiation : MonoBehaviour {
 		}
 
 		if (etat == Etat.texte3) {
-			tmp.text = "avant que Timmy ne te trouves?";
+			tmp.text = "avant que l'ours Timmy ne te trouves?";
 			if (passage == false) {
 				FadeInText ();
 			}
@@ -396,7 +396,7 @@ public class Initiation : MonoBehaviour {
 
 		if (etat == Etat.texteGauche)
 		{
-			tmp.text = "Fixe a present la fleche de gauche situé à tes pieds";
+			tmp.text = "Fixe a present la fleche de gauche situe a tes pieds";
 			if (passage == false)
 			{
 				FadeInText();

@@ -3,6 +3,8 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
 using TMPro;
+using UnityEngine.UI;
+
 
 public class MoveTP : MonoBehaviour
 {
@@ -72,6 +74,7 @@ public class MoveTP : MonoBehaviour
 	public GameObject InterrupteurRond;
 	public GameObject CanvasCle;
 	public GameObject Sphere;
+    public TextMeshProUGUI TextClef;
 
 	private GameObject vide;
 	private GameObject objetTouche;
@@ -106,7 +109,6 @@ public class MoveTP : MonoBehaviour
 		timmyActive = false;
 		Screen.lockCursor = true;
 		obtentionClefRouge = false;
-
         centreCamera = new Vector3(Screen.width / 2.0f, Screen.height / 2.0f, cameraOVR.transform.forward.z);
 		anim = curseur.transform.GetChild (0).gameObject.GetComponent<Animation> ();
 		animPioche = pioche.transform.GetChild (0).gameObject.GetComponent<Animation> ();
@@ -191,10 +193,10 @@ public class MoveTP : MonoBehaviour
         /*if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Escape))
             Screen.lockCursor = false;*/
 
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);  // pour l'oculus, mettre centreCamera par Input.mousePosition
+        //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);  // pour l'oculus, mettre centreCamera par Input.mousePosition
         RaycastHit hit;
         
-		if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+		if (Physics.Raycast(new Ray(cam.transform.position, cam.transform.rotation * Vector3.forward), out hit, Mathf.Infinity))
         {
 			anciennePositionCurseur = curseur.transform.position;
 			if (chrono < 1) {
@@ -221,14 +223,14 @@ public class MoveTP : MonoBehaviour
 
         if(Vector3.Distance(this.transform.position, Timmy.transform.position) < 0.5f)
         {
-           
-            eventCreepy.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
             if (Timmy2 != null) {
                 if (Vector3.Distance (this.transform.position, Timmy2.transform.position) < 0.5f) {
                     eventCreepy.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
                     SceneManager.LoadScene ("EcranGameOver");
 				}
 			}
+            eventCreepy.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            ApplicationMode.passlevel = 1;
             SceneManager.LoadScene("EcranGameOver");
         }
         //affiche ou affiche pas le curseur
@@ -530,6 +532,13 @@ public class MoveTP : MonoBehaviour
 					Timmy2.SetActive (true);
                     cristauxPowers.GetComponent<MeshCollider>().enabled = false;
                 }
+                else
+                {
+                    canvasClef.transform.position = new Vector3(cristauxPowers.transform.position.x, cristauxPowers.transform.position.y + 1.0f, cristauxPowers.transform.position.z);
+                    canvasClef.transform.rotation = cam.transform.rotation;
+                    TextClef.text = "Tu as recupere la clef ! Timmy te cherche maintenant, cours vers la sortie !";
+                }
+                etat = Etat.Look;
 			}
 			chrono = 0;
 			etat = Etat.Look;
@@ -542,23 +551,32 @@ public class MoveTP : MonoBehaviour
 			objetTouche.GetComponent<Renderer> ().material.color = Color.green;
 			objetTouche.transform.tag = "obstacle";
 			StartCoroutine (OuverturePorteTriangle ());
-		} else if (etat == Etat.InterrupteurLosange) {
+            etat = Etat.Look;
+        } else if (etat == Etat.InterrupteurLosange) {
 			InterrupteurLosange.GetComponent<Animation> ().Play ();
-			objetTouche.transform.tag = "obstacle";
+            objetTouche.GetComponent<Renderer>().material.color = Color.green;
+            objetTouche.transform.tag = "obstacle";
 			StartCoroutine (OuverturePorteLosange ());
-		} else if (etat == Etat.InterrupteurCarre) {
+            etat = Etat.Look;
+        } else if (etat == Etat.InterrupteurCarre) {
 			InterrupteurCarre.GetComponent<Animation> ().Play ();
-			objetTouche.transform.tag = "obstacle";
+            objetTouche.GetComponent<Renderer>().material.color = Color.green;
+            objetTouche.transform.tag = "obstacle";
 			StartCoroutine (OuverturePorteCarre ());
-		} else if (etat == Etat.InterrupteurCroix) {
+            etat = Etat.Look;
+        } else if (etat == Etat.InterrupteurCroix) {
 			InterrupteurCroix.GetComponent<Animation> ().Play ();
-			objetTouche.transform.tag = "obstacle";
+            objetTouche.GetComponent<Renderer>().material.color = Color.green;
+            objetTouche.transform.tag = "obstacle";
 			StartCoroutine (OuverturePorteCroix ());
-		} else if (etat == Etat.InterrupteurRond) {
+            etat = Etat.Look;
+        } else if (etat == Etat.InterrupteurRond) {
 			InterrupteurRond.GetComponent<Animation> ().Play ();
-			objetTouche.transform.tag = "obstacle";
+            objetTouche.GetComponent<Renderer>().material.color = Color.green;
+            objetTouche.transform.tag = "obstacle";
 			StartCoroutine (OuverturePorteRond ());
-		} else if (etat == Etat.piedestal) {
+            etat = Etat.Look;
+        } else if (etat == Etat.piedestal) {
 			Sphere.GetComponent<Rigidbody> ().isKinematic = false;
 			objetTouche.transform.tag = "obstacle";
 			Timmy.GetComponent<TimmyMove> ().enabled = true;
@@ -576,6 +594,7 @@ public class MoveTP : MonoBehaviour
 
             if (chronoCle > 5)
             {
+                TextClef.text = "";
                 cleActiverEffet = false;
                 clef.SetActive(false);
                 particleCle.SetActive(false);
@@ -628,39 +647,47 @@ public class MoveTP : MonoBehaviour
 
 	IEnumerator OuverturePorteTriangle(){
 		yield return new WaitForSeconds (1.0f);
-		porteTriangle.GetComponent<Animation>().Play ();
-		etat = Etat.Look;
+        FMODUnity.RuntimeManager.PlayOneShot("event:/grincement porte", porteTriangle.transform.position);
+        porteTriangle.GetComponent<Animation>().Play ();
 	}
 
 	IEnumerator OuverturePorteLosange(){
 		yield return new WaitForSeconds (1.0f);
-		porteLosange.GetComponent<Animation>().Play ();
-		etat = Etat.Look;
+        FMODUnity.RuntimeManager.PlayOneShot("event:/grincement porte", porteLosange.transform.position);
+        porteLosange.GetComponent<Animation>().Play ();
 	}
 
 	IEnumerator OuverturePorteCarre(){
 		yield return new WaitForSeconds (1.0f);
-		porteCarre.GetComponent<Animation>().Play ();
-		etat = Etat.Look;
+        FMODUnity.RuntimeManager.PlayOneShot("event:/grincement porte", porteCarre.transform.position);
+        porteCarre.GetComponent<Animation>().Play ();
 	}
 
 	IEnumerator OuverturePorteCroix(){
 		yield return new WaitForSeconds (1.0f);
-		porteCroix.GetComponent<Animation>().Play ();
-		etat = Etat.Look;
+        FMODUnity.RuntimeManager.PlayOneShot("event:/grincement porte", porteCroix.transform.position);
+        porteCroix.GetComponent<Animation>().Play ();
 	}
 
 	IEnumerator OuverturePorteRond(){
 		yield return new WaitForSeconds (1.0f);
-		porteRondePremiere.GetComponent<Animation>().Play ();
+        FMODUnity.RuntimeManager.PlayOneShot("event:/grincement porte", porteRondePremiere.transform.position);
+        porteRondePremiere.GetComponent<Animation>().Play ();
 		porteRondeSeconde.GetComponent<Animation>().Play ();
-		etat = Etat.Look;
 	}
 
 	void OnCollisionEnter(Collision col){
 		if (col.gameObject.name == "Plane") {
-			ApplicationMode.passlevel = 1;
-			SceneManager.LoadScene("EcranGameOver");
+            if (Timmy2 != null)
+            {
+                ApplicationMode.passlevel = 2;
+                SceneManager.LoadScene("EcranGameOver");
+            }
+            else
+            {
+                ApplicationMode.passlevel = 1;
+                SceneManager.LoadScene("EcranGameOver");
+            }
 		}
 	}
 
